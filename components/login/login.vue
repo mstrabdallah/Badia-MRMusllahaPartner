@@ -19,14 +19,13 @@
               v-model="valid"
               lazy-validation
             >
-              <v-text-field
+           <vue-phone-number-input
                 v-model="phone"
-                :counter="11"
-                :rules="phoneRules"
                 :label="$t('Phone')"
-                required
-                outlined
-              ></v-text-field>
+                class="mb-7"
+                default-country-code="SA"
+                required="true"
+              />
 
               <v-text-field
                 v-model="password"
@@ -36,6 +35,7 @@
                 :label="$t('Password')"
                 @click:append="showPasswordLogin = !showPasswordLogin"
                 outlined
+                dense
               ></v-text-field>
 
               <div class="msg" v-if="msg">

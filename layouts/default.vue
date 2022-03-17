@@ -26,7 +26,7 @@ export default {
   },
   mounted() {
     this.$vuetify.rtl = this.$i18n.locale === 'ar' ? true:false;
-    this.getAuth();
+   // this.getAuth();
   },
   methods: {
     ...mapActions(["getAuth"]),

@@ -1,0 +1,44 @@
+{
+  "EditUserDetails": {
+    "description": "Auto imported from components/editUserDetails.vue"
+  },
+  "Index": {
+    "description": "Auto imported from components/index/index.vue"
+  },
+  "Register": {
+    "description": "Auto imported from components/register/register.vue"
+  },
+  "Services": {
+    "description": "Auto imported from components/services/index.vue"
+  },
+  "Service": {
+    "description": "Auto imported from components/service/index.vue"
+  },
+  "Login": {
+    "description": "Auto imported from components/login/login.vue"
+  },
+  "IndexVueServices": {
+    "description": "Auto imported from components/index/vue/Services.vue"
+  },
+  "IndexVueBox": {
+    "description": "Auto imported from components/index/vue/box.vue"
+  },
+  "IndexVueHead": {
+    "description": "Auto imported from components/index/vue/head.vue"
+  },
+  "IndexVueMobileApp": {
+    "description": "Auto imported from components/index/vue/mobileApp.vue"
+  },
+  "RegisterVueStep1FormRegister": {
+    "description": "Auto imported from components/register/vue/step1-formRegister.vue"
+  },
+  "RegisterVueStep1Otp": {
+    "description": "Auto imported from components/register/vue/step1-otp.vue"
+  },
+  "ServicesVueBoxServices": {
+    "description": "Auto imported from components/services/vue/box-services.vue"
+  },
+  "UserVueEditUserDetails": {
+    "description": "Auto imported from components/user/vue/editUserDetails.vue"
+  }
+}

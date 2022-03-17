@@ -1,8 +1,8 @@
 <template>
-  <v-sheet height="400" class="overflow-hidden">
+  <v-sheet  class="overflow-hidden menu_header">
     <v-container class="fill-height">
       <v-row align="center" justify="center">
-        <v-btn   dark @click.stop="drawer = !drawer"> <fa icon="bars"  /> </v-btn>
+        <v-btn   dark @click.stop="drawer = !drawer"> <font-awesome-icon icon="bars"  /> </v-btn>
       </v-row>
     </v-container>
 
@@ -130,5 +130,9 @@ export default {
 }
 .v-list-item{
       font-size: 17px;
+}
+.menu_header .theme--dark{
+      background-color: #ffffff;
+    color: #444;
 }
 </style>

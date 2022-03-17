@@ -1,15 +1,12 @@
 <template >
   <nav class="header-top container_cc">
-    <a>{{$t('call us')}}</a>
+    <a>{{ $t("call us") }}</a>
     <ul>
       <li :class="[this.$i18n.locale === 'ar' && 'active']">
         <a :href="switchLocalePath('ar')"> العربية </a>
       </li>
-       <v-divider
-      class="mx-4"
-      vertical
-    ></v-divider>
-    
+      <v-divider class="mx-4" vertical></v-divider>
+
       <li :class="[this.$i18n.locale === 'en' && 'active']">
         <a :href="switchLocalePath('en')"> English </a>
       </li>
@@ -27,8 +24,9 @@ export default {};
   justify-content: space-between;
   align-items: center;
   background: #e0b755;
-    padding-top: 10px;
-    padding-bottom: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  z-index: 1;
 }
 ul {
   display: flex;
@@ -40,7 +38,7 @@ ul li:lang(ar) {
 ul li:lang(en) {
   margin-left: 20px;
 }
-li.active a{
+li.active a {
   color: #fff;
 }
 </style>

@@ -1,7 +1,10 @@
 
-export default function ({ route, store, redirect, app, i18n }) {
+export default function ({ req,route, store, redirect, app, i18n }) {
 
   // check cookie
+ 
+  console.log(this.req)
+ //console.log(authId)
   return false
 
   if (app.$cookies.get('token')) {

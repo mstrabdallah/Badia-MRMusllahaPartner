@@ -30,13 +30,19 @@ export default {
 
   ],
 
+  styleResources: {
+    scss: [
+      '~assets/scss/mixins.scss',
+      '~assets/scss/variables.scss'
+    ]
+  },
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/axios.js',
     '~/plugins/vuetify.js',
     '~/plugins/fontawesome.js',
-    '~/plugins/VuePhoneNumberInput.js'
+    '~/plugins/VuePhoneNumberInput.js',
   ],
 
 
@@ -72,6 +78,7 @@ export default {
     'cookie-universal-nuxt',
     '@nuxtjs/dotenv',
     '@nuxt/image',
+    'nuxt-session',
 
   ],
 

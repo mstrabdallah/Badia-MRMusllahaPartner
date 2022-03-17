@@ -7,9 +7,14 @@
     </p>
 
     <div class="groups_but">
+      
+       <NuxtLink :to="localePath('/login')" >
       <v-btn class="ma-2" outlined >Login</v-btn>
+       </NuxtLink>
 
+       <NuxtLink :to="localePath('/register')" >
       <v-btn class="ma-2" outlined >Create Account</v-btn>
+       </NuxtLink>
     </div>
 
     <a class="but_down" href="#serv"><font-awesome-icon icon="angle-down" class="fa" /></a>

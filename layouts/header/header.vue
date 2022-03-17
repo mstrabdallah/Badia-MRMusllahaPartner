@@ -35,6 +35,11 @@
           </li>
 
           <li v-if="!this.$store.state.auth.checkAuth">
+            <NuxtLink :to="localePath('/Categories')">{{ $t("Categories") }}</NuxtLink>
+          </li>
+
+
+          <li v-if="!this.$store.state.auth.checkAuth">
             <NuxtLink :to="localePath('/about')">{{ $t("About") }}</NuxtLink>
           </li>
 
@@ -81,7 +86,6 @@ export default {
   }),
 
   mounted() {
-    // Note: do not add parentheses () for this.handleScroll
     window.addEventListener('scroll', this.handleScroll);
   },
 
@@ -97,8 +101,6 @@ export default {
       } else {
         this.scrolled = true;
       }
-
-      console.log(window.scrollY);
     },
   },
   components: {

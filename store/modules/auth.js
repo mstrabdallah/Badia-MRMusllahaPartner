@@ -3,10 +3,12 @@ import axios from "axios";
 
 const state = {
   checkAuth: false,
+  step: 1,
   token: '',
   user: [],
-  loading:false,
-  checkUserStatus:false
+  register: [],
+  loading: false,
+  checkUserStatus: false
 };
 
 const getters = {
@@ -26,8 +28,8 @@ const actions = {
   },
 
 
-  getAuth({ commit, state ,dispatch}) {
-    
+  getAuth({ commit, state, dispatch }) {
+
     if (!state.checkAuth) return false;
     const response = this.$axios.$get('auth').then((res) => {
       //this.LogOut()
@@ -39,23 +41,40 @@ const actions = {
     });
   },
 
-  checkPhone({state},data) {
-    state.loading=true;
-    this.$axios.post("checkPhone", data).then((res) => {
-        state.checkUserStatus = res.data.status;
-         state.loading=false;
-      })
-      
-      .catch((error) => {
-           state.loading=false;
+  registerStep1({ state, dispatch }, arrayData) {
+
+    var data = new FormData();
+
+    if (state.step === 2)
+      data.append("verification_code", arrayData);
+    else
+      state.register = arrayData;
+
+    data.append("name", state.register.name);
+    data.append("phone", state.register.phone);
+    data.append("email", state.register.email);
+    data.append("referral", state.register.referral);
+    data.append("password", state.register.password);
+
+    state.step = 2;
+    state.loading = true;
+    this.$axios.post("register", data).then((res) => {
+      state.loading = false;
+      state.step = 2;
+    }).catch((error) => {
+        state.loading = false;
       });
   },
 
-  
+
 }
 
 const mutations = {
 
+  registerFPush(state, data) {
+    state.register = state.register.push(data);
+    console.log(state.data)
+  }
 }
 export default {
   state,

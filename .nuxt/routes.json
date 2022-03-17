@@ -1,0 +1,114 @@
+[
+  {
+    "name": "about___en",
+    "path": "/about",
+    "component": "/Users/abdallahthabet/Documents/musallaha-partner-website/pages/about.vue",
+    "chunkName": "pages/about",
+    "_name": "_14c0bb3b"
+  },
+  {
+    "name": "index___ar",
+    "path": "/ar",
+    "component": "/Users/abdallahthabet/Documents/musallaha-partner-website/pages/index.vue",
+    "chunkName": "pages/index",
+    "_name": "_34789600"
+  },
+  {
+    "name": "login___en",
+    "path": "/login",
+    "component": "/Users/abdallahthabet/Documents/musallaha-partner-website/pages/login.vue",
+    "chunkName": "pages/login",
+    "_name": "_03bf8dd2"
+  },
+  {
+    "name": "register___en",
+    "path": "/register",
+    "component": "/Users/abdallahthabet/Documents/musallaha-partner-website/pages/register.vue",
+    "chunkName": "pages/register",
+    "_name": "_b3b69736"
+  },
+  {
+    "name": "services___en",
+    "path": "/services",
+    "component": "/Users/abdallahthabet/Documents/musallaha-partner-website/pages/services/index.vue",
+    "chunkName": "pages/services/index",
+    "_name": "_40f1cf23"
+  },
+  {
+    "name": "test___en",
+    "path": "/test",
+    "component": "/Users/abdallahthabet/Documents/musallaha-partner-website/pages/test.vue",
+    "chunkName": "pages/test",
+    "_name": "_74811fd4"
+  },
+  {
+    "name": "UserProfile___en",
+    "path": "/UserProfile",
+    "component": "/Users/abdallahthabet/Documents/musallaha-partner-website/pages/UserProfile.vue",
+    "chunkName": "pages/UserProfile",
+    "_name": "_b5ae3c28"
+  },
+  {
+    "name": "about___ar",
+    "path": "/ar/about",
+    "component": "/Users/abdallahthabet/Documents/musallaha-partner-website/pages/about.vue",
+    "chunkName": "pages/about",
+    "_name": "_14c0bb3b"
+  },
+  {
+    "name": "login___ar",
+    "path": "/ar/login",
+    "component": "/Users/abdallahthabet/Documents/musallaha-partner-website/pages/login.vue",
+    "chunkName": "pages/login",
+    "_name": "_03bf8dd2"
+  },
+  {
+    "name": "register___ar",
+    "path": "/ar/register",
+    "component": "/Users/abdallahthabet/Documents/musallaha-partner-website/pages/register.vue",
+    "chunkName": "pages/register",
+    "_name": "_b3b69736"
+  },
+  {
+    "name": "services___ar",
+    "path": "/ar/services",
+    "component": "/Users/abdallahthabet/Documents/musallaha-partner-website/pages/services/index.vue",
+    "chunkName": "pages/services/index",
+    "_name": "_40f1cf23"
+  },
+  {
+    "name": "test___ar",
+    "path": "/ar/test",
+    "component": "/Users/abdallahthabet/Documents/musallaha-partner-website/pages/test.vue",
+    "chunkName": "pages/test",
+    "_name": "_74811fd4"
+  },
+  {
+    "name": "UserProfile___ar",
+    "path": "/ar/UserProfile",
+    "component": "/Users/abdallahthabet/Documents/musallaha-partner-website/pages/UserProfile.vue",
+    "chunkName": "pages/UserProfile",
+    "_name": "_b5ae3c28"
+  },
+  {
+    "name": "services-id___ar",
+    "path": "/ar/services/:id",
+    "component": "/Users/abdallahthabet/Documents/musallaha-partner-website/pages/services/_id.vue",
+    "chunkName": "pages/services/_id",
+    "_name": "_e841836a"
+  },
+  {
+    "name": "services-id___en",
+    "path": "/services/:id",
+    "component": "/Users/abdallahthabet/Documents/musallaha-partner-website/pages/services/_id.vue",
+    "chunkName": "pages/services/_id",
+    "_name": "_e841836a"
+  },
+  {
+    "name": "index___en",
+    "path": "/",
+    "component": "/Users/abdallahthabet/Documents/musallaha-partner-website/pages/index.vue",
+    "chunkName": "pages/index",
+    "_name": "_34789600"
+  }
+]
