@@ -23,7 +23,7 @@ export default {};
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #e0b755;
+  background: #30c88d;
   padding-top: 10px;
   padding-bottom: 10px;
   z-index: 1;

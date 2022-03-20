@@ -20,7 +20,8 @@ let store = {};
   store.modules = store.modules || {}
 
   resolveStoreModules(require('../store/modules/auth.js'), 'modules/auth.js')
-  resolveStoreModules(require('../store/modules/ticket.js'), 'modules/ticket.js')
+  resolveStoreModules(require('../store/modules/category.js'), 'modules/category.js')
+  resolveStoreModules(require('../store/modules/cityModules.js'), 'modules/cityModules.js')
   resolveStoreModules(require('../store/modules/tickets.js'), 'modules/tickets.js')
 
   // If the environment supports hot reloading...
@@ -30,7 +31,8 @@ let store = {};
     module.hot.accept([
       '../store/index.js',
       '../store/modules/auth.js',
-      '../store/modules/ticket.js',
+      '../store/modules/category.js',
+      '../store/modules/cityModules.js',
       '../store/modules/tickets.js',
     ], () => {
       // Update `root.modules` with the latest definitions.

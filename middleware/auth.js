@@ -1,17 +1,18 @@
 
-export default function ({ req,route, store, redirect, app, i18n }) {
+export default function ({route, store, redirect, app, i18n }) {
 
   // check cookie
  
-  console.log(this.req)
+  //console.log(this.req)
  //console.log(authId)
-  return false
-
+ 
   if (app.$cookies.get('token')) {
+
     store.state.auth.checkAuth = true;
     store.state.auth.token = app.$cookies.get('token');
   }
 
+  return false;
   const checkUser = store.state.auth.checkAuth;
   //---------------
 

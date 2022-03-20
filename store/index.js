@@ -2,8 +2,8 @@ import Vue from "vue";
 import Vuex from "vuex";
 
 import auth from "./modules/auth";
+import category from "./modules/category";
 import tickets from "./modules/tickets";
-import ticket from "./modules/ticket";
 
 // Load Vuex
 Vue.use(Vuex);
@@ -12,7 +12,7 @@ Vue.use(Vuex);
 export default () => new Vuex.Store({
   modules: {
     auth,
+    category,
     tickets,
-    ticket
   }
 });

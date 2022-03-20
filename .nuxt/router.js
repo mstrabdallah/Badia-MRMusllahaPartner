@@ -7,10 +7,10 @@ import scrollBehavior from './router.scrollBehavior.js'
 const _14c0bb3b = () => interopDefault(import('../pages/about.vue' /* webpackChunkName: "pages/about" */))
 const _34789600 = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
 const _03bf8dd2 = () => interopDefault(import('../pages/login.vue' /* webpackChunkName: "pages/login" */))
+const _1bb9b452 = () => interopDefault(import('../pages/profile.vue' /* webpackChunkName: "pages/profile" */))
 const _b3b69736 = () => interopDefault(import('../pages/register.vue' /* webpackChunkName: "pages/register" */))
 const _40f1cf23 = () => interopDefault(import('../pages/services/index.vue' /* webpackChunkName: "pages/services/index" */))
 const _74811fd4 = () => interopDefault(import('../pages/test.vue' /* webpackChunkName: "pages/test" */))
-const _b5ae3c28 = () => interopDefault(import('../pages/UserProfile.vue' /* webpackChunkName: "pages/UserProfile" */))
 const _e841836a = () => interopDefault(import('../pages/services/_id.vue' /* webpackChunkName: "pages/services/_id" */))
 
 const emptyFn = () => {}
@@ -37,6 +37,10 @@ export const routerOptions = {
     component: _03bf8dd2,
     name: "login___en"
   }, {
+    path: "/profile",
+    component: _1bb9b452,
+    name: "profile___en"
+  }, {
     path: "/register",
     component: _b3b69736,
     name: "register___en"
@@ -49,10 +53,6 @@ export const routerOptions = {
     component: _74811fd4,
     name: "test___en"
   }, {
-    path: "/UserProfile",
-    component: _b5ae3c28,
-    name: "UserProfile___en"
-  }, {
     path: "/ar/about",
     component: _14c0bb3b,
     name: "about___ar"
@@ -60,6 +60,10 @@ export const routerOptions = {
     path: "/ar/login",
     component: _03bf8dd2,
     name: "login___ar"
+  }, {
+    path: "/ar/profile",
+    component: _1bb9b452,
+    name: "profile___ar"
   }, {
     path: "/ar/register",
     component: _b3b69736,
@@ -72,10 +76,6 @@ export const routerOptions = {
     path: "/ar/test",
     component: _74811fd4,
     name: "test___ar"
-  }, {
-    path: "/ar/UserProfile",
-    component: _b5ae3c28,
-    name: "UserProfile___ar"
   }, {
     path: "/ar/services/:id",
     component: _e841836a,

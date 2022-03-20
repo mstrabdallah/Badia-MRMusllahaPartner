@@ -78,8 +78,7 @@ export default {
     'cookie-universal-nuxt',
     '@nuxtjs/dotenv',
     '@nuxt/image',
-    'nuxt-session',
-
+ 
   ],
 
 

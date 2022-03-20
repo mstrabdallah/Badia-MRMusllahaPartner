@@ -1,17 +1,17 @@
 <template>
   <div class="app">
     <v-app>
-       <HeaderTop />
+      <HeaderTop />
       <Header />
       <div class="pages">
-      <Nuxt />
+        <Nuxt />
       </div>
       <Footer />
     </v-app>
   </div>
 </template>
 <script>
-import HeaderTop from './header/header-top.vue'
+import HeaderTop from "./header/header-top.vue";
 import Header from "./header/header.vue";
 import Footer from "./footer/footer.vue";
 import { mapActions } from "vuex";
@@ -22,21 +22,22 @@ export default {
   components: {
     Header,
     Footer,
-    HeaderTop
+    HeaderTop,
   },
   mounted() {
-    this.$vuetify.rtl = this.$i18n.locale === 'ar' ? true:false;
-   // this.getAuth();
+    this.$vuetify.rtl = this.$i18n.locale === "ar" ? true : false;
+       this.getToken();
+
   },
   methods: {
-    ...mapActions(["getAuth"]),
+    ...mapActions(["getToken"]),
   },
 };
 </script>
 
  
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Almarai:wght@300;400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Almarai:wght@300;400&display=swap");
 
 .app:lang(ar) {
   direction: rtl;
@@ -45,11 +46,14 @@ export default {
   margin: 0px;
   padding: 0px;
 }
-html { scroll-behavior: smooth; } 
+html {
+  scroll-behavior: smooth;
+}
 
-body,.v-application {
+body,
+.v-application {
   font-size: 14px;
-font-family: 'Almarai', sans-serif;
+  font-family: "Almarai", sans-serif;
   color: #444;
 }
 ul {
@@ -66,7 +70,7 @@ a,
   color: #444;
   text-decoration: none;
 }
-img{
+img {
   max-width: 100%;
 }
 .container_cc {
@@ -74,16 +78,16 @@ img{
 }
 
 /* body of pages */
-.pages{
-margin-top: 80px;
+.pages {
+  margin-top: 80px;
 }
 .page {
   margin-top: 70px;
-  min-height:calc(100vh - 300px);
+  min-height: calc(100vh - 300px);
 }
- 
+
 .span_color {
-  color: #bf804b;
+  color: #30c88d;
 }
 
 .flex {
@@ -94,23 +98,23 @@ margin-top: 80px;
 /* pages style */
 
 .tickets_add {
-    position: absolute;
-    bottom: 11px;
-    right: 10px;
-    font-size: 31px;
-    background-color: #2b4a4b !important;
-    color: #fff;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px!important;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
+  position: absolute;
+  bottom: 11px;
+  right: 10px;
+  font-size: 31px;
+  background-color: #2b4a4b !important;
+  color: #fff;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px !important;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
-.tickets_add:lang(ar){
+.tickets_add:lang(ar) {
   right: auto;
   left: 10px;
 }
@@ -133,41 +137,45 @@ select {
 
 /* vuetify */
 
+.v-application p,
+p {
+  margin-bottom: 0px;
+  font-size: inherit;
+}
 .v-application .success {
-  background-color: #dfb755 !important;
-  border-color: #dfb755 !important;
+  background-color: #30c88d !important;
+  border-color: #30c88d !important;
 }
 .v-application .green--text.text--darken-1 {
-    color: #2c4b4c !important;
-    caret-color: #43A047 !important;
-    border: 1px solid #2c4b4c;
+  color: #2c4b4c !important;
+  caret-color: #43a047 !important;
+  border: 1px solid #2c4b4c;
 }
 
-.v-card__actions{
+.v-card__actions {
   margin-top: 30px;
 }
-.v-application ul, .v-application ol {
-    padding: 0px;
+.v-application ul,
+.v-application ol {
+  padding: 0px;
 }
-.v-application .text-h5{
-       font-family: unset!important;
+.v-application .text-h5 {
+  font-family: unset !important;
 }
 .v-application .indigo {
-    background-color: #2b4a4b !important;
+  background-color: #2b4a4b !important;
 }
-.v-card{
-      padding: 10px 0px 20px 0px;
+.v-card {
+  padding: 10px 0px 20px 0px;
 }
 
-.v-navigation-drawer{
-      position: fixed;
+.v-navigation-drawer {
+  position: fixed;
 }
 /* fa */
-.fa{
-
-    font-size: 15px;
-    margin: 0px 5px;
-
+.fa {
+  font-size: 15px;
+  margin: 0px 5px;
 }
 @media (max-width: 1100px) {
   .container_cc {

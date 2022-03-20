@@ -1,18 +1,19 @@
-export default function ({ $axios,app }, inject) {
+export default function ({ $axios,app,store }, inject) {
     // Create a custom axios instance
+
     const axios = $axios.create({
       headers: {
         common: {
-            'Authorization': "Bearer " + app.$cookies.get("token"),
-            'Accept': "application/json, text/plain, /",
+            'token': store.state.auth.token,
+            'Accept': "application/json",
             'Content-Type': 'multipart/form-data',
+            'device':store.state.auth.device,
+            'session-id':store.state.auth.sessionId
         }
       }
     })
   
-    // Set baseURL to something different
-    axios.setBaseURL('https://support.tecbadia.com/api')
-    //axios.setBaseURL('http://192.168.1.26/api')
+    axios.setBaseURL('http://192.168.1.26')
 
     // Inject to context as $api
     inject('axios', axios)

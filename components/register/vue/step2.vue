@@ -1,0 +1,106 @@
+<template>
+  <div class="form_register">
+    <h3 class="mb-5">
+      {{ $t("We need your personal data to activate") }}
+    </h3>
+
+    <div class="form">
+      <v-form
+        ref="form"
+        @submit="Step2Function"
+        v-model="valid"
+        lazy-validation
+      >
+        <div class="form_body">
+          <v-radio-group v-model="data.type" row>
+            <label>Type : </label>
+            <v-radio label="individual" value="individual"></v-radio>
+            <v-radio label="company" value="company"></v-radio>
+          </v-radio-group>
+
+          <v-text-field
+            class="mt-6"
+            v-model="data.id_number"
+            :counter="10"
+            :label="$t('ID Number')"
+            :rules="[rules.required, rules.idNumber]"
+            required
+            outlined
+            dense
+          ></v-text-field>
+
+          <v-divider></v-divider>
+
+
+          <v-file-input
+          class="mt-4"
+            label="Click here to Upload license iamge"
+            outlined
+            dense
+            @change="onFileChange"
+            :v-model="data.id_file"
+            :rules="[rules.required]"
+            required
+          ></v-file-input>
+
+          <div v-if="url" class="preview s">
+            <img  :src="url" />
+          </div>
+        </div>
+
+        <v-btn
+          :disabled="!valid"
+          color="success"
+          class="sub"
+          @click="Step2Function"
+          :loading="this.$store.state.auth.loading"
+        >
+          {{ $t("Next") }}
+        </v-btn>
+      </v-form>
+    </div>
+  </div>
+</template>
+
+
+<script>
+import { mapActions } from "vuex";
+
+export default {
+  data: () => ({
+    valid: false,
+    url: "",
+    data: {
+      type: "",
+      id_number: "",
+      id_file: "",
+    },
+    rules: {
+      required: (v) => !!v || "Required.",
+      idNumber: (v) => (v && v.length <= 10) || "id number must be 10 Number",
+    },
+  }),
+
+  methods: {
+    ...mapActions(["registerStep2"]),
+
+    Step2Function(e) {
+      e.preventDefault();
+      if (this.$refs.form.validate() === false) return false;
+      console.log(this.data)
+      this.registerStep2(this.data);
+    },
+
+    onFileChange(e) {
+      this.data.id_file=e;
+      if(e)
+      this.url = URL.createObjectURL(e);
+      else
+      this.url=null
+    },
+
+ 
+  },
+};
+</script>
+ 

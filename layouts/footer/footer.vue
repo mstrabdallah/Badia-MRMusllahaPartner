@@ -5,7 +5,7 @@
                 <div class="col-md-4">
                     <a href="#" class="footer-site-logo">
                         <div class="img-logo">
-                            <img src="/images/onlinepngtools.png" alt="">
+                            <img src="http://localhost:3000/logo.svg" alt="">
                         </div>
                     </a>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit officiis corporis optio natus. </p>
@@ -74,7 +74,7 @@ a {
 }
 .footer-14398 {
 	padding: 3rem 0 1rem;
-	background: #E0B855;	
+	background: #30c88d;	
 	color: #ffffff;
 	.footer-site-logo {
 		color: white;

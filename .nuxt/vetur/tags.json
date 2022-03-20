@@ -8,14 +8,14 @@
   "Register": {
     "description": "Auto imported from components/register/register.vue"
   },
-  "Services": {
-    "description": "Auto imported from components/services/index.vue"
+  "Login": {
+    "description": "Auto imported from components/login/login.vue"
   },
   "Service": {
     "description": "Auto imported from components/service/index.vue"
   },
-  "Login": {
-    "description": "Auto imported from components/login/login.vue"
+  "Services": {
+    "description": "Auto imported from components/services/index.vue"
   },
   "IndexVueServices": {
     "description": "Auto imported from components/index/vue/Services.vue"
@@ -35,10 +35,31 @@
   "RegisterVueStep1Otp": {
     "description": "Auto imported from components/register/vue/step1-otp.vue"
   },
-  "ServicesVueBoxServices": {
-    "description": "Auto imported from components/services/vue/box-services.vue"
+  "RegisterVueStep2": {
+    "description": "Auto imported from components/register/vue/step2.vue"
+  },
+  "RegisterVueStep3": {
+    "description": "Auto imported from components/register/vue/step3.vue"
+  },
+  "RegisterVueStep4": {
+    "description": "Auto imported from components/register/vue/step4.vue"
+  },
+  "RegisterVueStep5": {
+    "description": "Auto imported from components/register/vue/step5.vue"
+  },
+  "RegisterVueStep6": {
+    "description": "Auto imported from components/register/vue/step6.vue"
+  },
+  "RegisterVueStep7": {
+    "description": "Auto imported from components/register/vue/step7.vue"
+  },
+  "RegisterVueStepper": {
+    "description": "Auto imported from components/register/vue/stepper.vue"
   },
   "UserVueEditUserDetails": {
     "description": "Auto imported from components/user/vue/editUserDetails.vue"
+  },
+  "ServicesVueBoxServices": {
+    "description": "Auto imported from components/services/vue/box-services.vue"
   }
 }
