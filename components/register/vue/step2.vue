@@ -31,20 +31,20 @@
 
           <v-divider></v-divider>
 
-
           <v-file-input
-          class="mt-4"
+            class="mt-4"
             label="Click here to Upload license iamge"
             outlined
             dense
             @change="onFileChange"
             :v-model="data.id_file"
             :rules="[rules.required]"
+            prepend-icon="mdi-camera"
             required
           ></v-file-input>
 
           <div v-if="url" class="preview s">
-            <img  :src="url" />
+            <img :src="url" />
           </div>
         </div>
 
@@ -87,19 +87,15 @@ export default {
     Step2Function(e) {
       e.preventDefault();
       if (this.$refs.form.validate() === false) return false;
-      console.log(this.data)
+      console.log(this.data);
       this.registerStep2(this.data);
     },
 
     onFileChange(e) {
-      this.data.id_file=e;
-      if(e)
-      this.url = URL.createObjectURL(e);
-      else
-      this.url=null
+      this.data.id_file = e;
+      if (e) this.url = URL.createObjectURL(e);
+      else this.url = null;
     },
-
- 
   },
 };
 </script>

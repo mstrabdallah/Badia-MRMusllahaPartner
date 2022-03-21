@@ -25,13 +25,16 @@
           <vue-phone-number-input
             v-model="data.phone"
             :label="$t('Phone')"
+            placeholder="Enter Mobile Number"
             class="mb-7"
             default-country-code="SA"
             required
             :rules="[rules.required, rules.phoneVal, rules.phoneNum]"
             phoneNumber="0665656565"
+            v-bind="props"
           />
 
+ 
           <v-text-field
             v-model="data.email"
             :rules="[rules.required, rules.email]"
@@ -100,10 +103,17 @@
 
 <script>
 import { mapActions } from "vuex";
+
 export default {
   data: () => ({
     valid: false,
     showPasswordLogin: false,
+    props: {
+      placeholder: "Enter your phone",
+    },
+    comments: {
+
+},
     data: {
       name: "",
       phone: "",
@@ -131,10 +141,7 @@ export default {
         this.password === this.password_confirmation || "Password must match";
     },
   },
-  mounted() {
-        
-
-  },
+  mounted() {},
   methods: {
     ...mapActions(["registerStep1"]),
 

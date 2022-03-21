@@ -27,10 +27,10 @@ export default {
   mounted() {
     this.$vuetify.rtl = this.$i18n.locale === "ar" ? true : false;
        this.getToken();
-
+this.getMe()
   },
   methods: {
-    ...mapActions(["getToken"]),
+    ...mapActions(["getToken","getMe"]),
   },
 };
 </script>
@@ -83,7 +83,7 @@ img {
 }
 .page {
   margin-top: 70px;
-  min-height: calc(100vh - 300px);
+  min-height: calc(100vh - 190px);
 }
 
 .span_color {

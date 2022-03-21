@@ -1,9 +1,15 @@
 <template>
-  <header class="header container_cc" :class="scrolled ? 'headerFixed':''">
+  <header class="header container_cc" :class="scrolled ? 'headerFixed' : ''">
     <div class="header_p">
       <NuxtLink :to="localePath('/')" class="logo">
         <img src="/logo.svg" />
       </NuxtLink>
+      <!-- 
+      <div class="mob">
+        <div class="searchMobile">
+          <font-awesome-icon icon="magnifying-glass" />
+        </div>
+      </div>
 
       <div class="search">
         <input type="text" placeholder="Search For Services" />
@@ -16,7 +22,7 @@
           dense
           prepend-inner-icon="mdi-map-marker"
         ></v-select>
-      </div>
+      </div> -->
 
       <nav class="menu">
         <ul>
@@ -27,42 +33,27 @@
             </NuxtLink>
           </li>
 
-          <li v-if="this.$store.state.auth.checkAuth">
+          <li v-if="allAuth.checkAuth">
             <NuxtLink :to="localePath('/tickets')">
-              <font-awesome-icon icon="message" class="fa" />
-              {{ $t("My Tickets") }}
+                 <font-awesome-icon icon="bell" class="fa" />
+              {{ $t("Notifications") }}
             </NuxtLink>
           </li>
 
-          <li v-if="!this.$store.state.auth.checkAuth">
-            <NuxtLink :to="localePath('/Categories')">{{ $t("Categories") }}</NuxtLink>
+          <li v-if="!allAuth.checkAuth">
+            <NuxtLink :to="localePath('/Categories')">{{
+              $t("Categories")
+            }}</NuxtLink>
           </li>
 
-
-          <li v-if="!this.$store.state.auth.checkAuth">
+          <li v-if="!allAuth.checkAuth">
             <NuxtLink :to="localePath('/about')">{{ $t("About") }}</NuxtLink>
           </li>
-
-          <li v-if="this.$store.state.auth.checkAuth">
-            <v-menu bottom left>
-              <template v-slot:activator="{ on, attrs }">
-                <div v-bind="attrs" v-on="on" color="primary" icon>
-                  <font-awesome-icon icon="user" class="fa" />
-                  {{ $t("My Account") }}
-                </div>
-              </template>
-
-              <v-list>
-                <v-list-item>
-                  <div @click="Logout">
-                    <v-list-item-title>{{ $t("Logout") }}</v-list-item-title>
-                  </div>
-                </v-list-item>
-              </v-list>
-            </v-menu>
+          <li v-if="allAuth.checkAuth">
+            <MenuAccount />
           </li>
 
-          <li v-if="!this.$store.state.auth.checkAuth">
+          <li v-if="!allAuth.checkAuth">
             <NuxtLink class="login_" :to="localePath('/login')">{{
               $t("Login")
             }}</NuxtLink>
@@ -78,7 +69,8 @@
 
 <script>
 import Menu from "./menu.vue";
-import { mapActions } from "vuex";
+import MenuAccount from "../../components/user/vue/menuAccount.vue";
+import { mapActions, mapGetters } from "vuex";
 export default {
   data: () => ({
     items: ["Foo", "Bar", "Fizz", "Buzz"],
@@ -86,7 +78,10 @@ export default {
   }),
 
   mounted() {
-    window.addEventListener('scroll', this.handleScroll);
+    window.addEventListener("scroll", this.handleScroll);
+  },
+  computed: {
+    ...mapGetters(["allAuth"]),
   },
 
   methods: {
@@ -105,6 +100,7 @@ export default {
   },
   components: {
     Menu,
+    MenuAccount,
   },
 };
 </script>
@@ -112,38 +108,36 @@ export default {
 
 <style scoped>
 header {
-  padding: 0px 100px;
   box-shadow: 0 3px 4px 0 rgb(0 0 0 / 5%);
   z-index: 99;
   background: #fff;
-    position: absolute;
-    top: 41px;
-    width: 100%;
+  position: absolute;
+  top: 41px;
+  width: 100%;
 }
 .headerFixed {
   position: fixed;
   background: #fff;
   width: 100%;
-   top: 0px;
+  top: 0px;
 }
- 
+
 .header_p {
   display: flex;
   align-items: center;
   height: 80px;
-  
 }
-.headerFixed .header_p{
+.headerFixed .header_p {
   height: 60px;
-  transition:  1s;
+  transition: 1s;
 }
 .header_p li a.nuxt-link-exact-active {
-  color: #bf804b;
+  color: #30c88c;
   padding-bottom: 10px;
 }
 
 a.nuxt-link-exact-active.login_ {
-  border: 1px solid #bf804b;
+  border: 1px solid #30c88c;
 }
 .login_ {
   border: 1px solid #ccc;
@@ -169,10 +163,11 @@ a.nuxt-link-exact-active.login_ {
 }
 
 .menu ul li a:hover {
-  color: #bf804b;
+  color: #30c88c;
 }
 
 .logo img {
+  min-width: 47px;
   height: 50px;
   align-items: center;
   display: flex;
@@ -202,18 +197,29 @@ a.nuxt-link-exact-active.login_ {
 .select_head {
   height: 40px;
   border-radius: 6px;
+  max-width: 190px;
 }
 .mob_nav {
   display: none;
   font-size: 20px;
-  color: #bf804b;
+  color: #30c88c;
 }
 .theme--light.v-list-item--disabled {
   color: rgba(0, 0, 0, 0.38);
-  background: #bf804b;
+  background: #30c88c;
   color: #fff;
 }
 
+.searchMobile {
+  background: #f5f5f5;
+  padding: 10px 17px;
+  border-radius: 4px;
+  color: #444;
+  cursor: pointer;
+}
+ 
+@media (max-width: 1024px) {
+}
 @media (max-width: 768px) {
   .search {
     display: none;

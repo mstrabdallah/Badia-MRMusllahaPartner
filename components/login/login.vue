@@ -9,18 +9,17 @@
             <div class="mb-5">
               {{ $t("Enter Phone Number") }}
             </div>
- 
           </div>
 
           <div class="form">
             <v-form
               ref="form"
-              @submit="Login"
+              @submit="LoginFunction"
               v-model="valid"
               lazy-validation
             >
-           <vue-phone-number-input
-                v-model="phone"
+              <vue-phone-number-input
+                v-model="data.phone_number"
                 :label="$t('Phone')"
                 class="mb-7"
                 default-country-code="SA"
@@ -28,7 +27,7 @@
               />
 
               <v-text-field
-                v-model="password"
+                v-model="data.password"
                 :append-icon="showPasswordLogin ? 'mdi-eye' : 'mdi-eye-off'"
                 :rules="[rules.required]"
                 :type="showPasswordLogin ? 'text' : 'password'"
@@ -46,8 +45,8 @@
                 :disabled="!valid"
                 color="success"
                 class="button_login"
-                @click="Login"
-                :loading="loading"
+                @click="LoginFunction"
+                :loading="allAuth.loading"
               >
                 {{ $t("Login") }}
               </v-btn>
@@ -61,6 +60,7 @@
 
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 export default {
   head() {
     return {
@@ -79,62 +79,26 @@ export default {
     loading: false,
     valid: false,
     showPasswordLogin: false,
-    password: "",
-
-    phone: "",
     msg: "",
     msgStatus: true,
-    phoneRules: [
-      (v) => !!v || "Phone is required",
-      (v) => (v && v.length <= 11) || "Phone must be less than 11 Number",
-      (v) =>
-        Number.isInteger(Number(v)) || "The value must be an integer number",
-    ],
     rules: {
       required: (value) => !!value || "Required.",
-      min: (v) => v.length >= 8 || "Min 8 characters",
     },
-
-    emailRules: [
-      (v) => !!v || "E-mail is required",
-      (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
-    ],
-    items: ["Item 1", "Item 2", "Item 3", "Item 4"],
+    data: {
+      phone_number: "",
+      password: "",
+    },
   }),
-
+  computed: {
+    ...mapGetters(["allAuth"]),
+  },
   methods: {
-    Login(e) {
+    ...mapActions(["Login"]),
+    LoginFunction(e) {
       e.preventDefault();
-      this.$refs.form.validate();
       if (this.$refs.form.validate() === false) return false;
 
-      var data = new FormData();
-      data.append("phone", this.phone);
-      data.append("password", this.password);
-      this.loading = true;
-      this.msg = "";
-      this.$axios
-        .post("/login", data)
-        .then((res) => {
-          this.$cookies.set("token", res.data.token, {
-            path: "/",
-            maxAge: 365 * 24 * 60 * 60,
-          });
-          this.$cookies.set("user", res.data.user, {
-            path: "/",
-            maxAge: 365 * 24 * 60 * 60,
-          });
-          if (this.$i18n.locale === "ar") {
-            window.location.href = "/";
-          } else {
-            window.location.href = "/en";
-          }
-          this.loading = false;
-        })
-        .catch((error) => {
-          this.loading = false;
-          this.msg = error.response.data.message;
-        });
+      this.Login(this.data);
     },
   },
 };

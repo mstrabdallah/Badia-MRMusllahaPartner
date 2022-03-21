@@ -16,11 +16,15 @@
           <div class="nationality">
             <div class="mt-4 mb-4">
               <v-select
-                :items="items"
+                :items="allCity.country"
+                item-text="co_name"
+                item-value="id"
                 dense
                 label="nationality"
                 outlined
                 :rules="[rules.required]"
+                v-model="data.nationality_id"
+                :disabled="allCity.loading"
               ></v-select>
             </div>
 
@@ -29,18 +33,18 @@
               outlined
               dense
               :rules="[rules.required]"
+              v-model="data.nationality_file"
             ></v-file-input>
           </div>
           <v-divider></v-divider>
 
           <div class="reg_license mt-8">
-            <p>Please enter the license information</p>
+            <p>license information (optional)</p>
             <v-text-field
               class="mt-6 mb-4"
-              v-model="data.id_number"
-              :counter="10"
+              v-model="data.license"
+              :counter="20"
               :label="$t('ID Number')"
-              :rules="[rules.required, rules.idNumber]"
               required
               outlined
               dense
@@ -52,10 +56,11 @@
               dense
               @change="onFileChange"
               :v-model="data.license_file"
+              prepend-icon="mdi-camera"
             ></v-file-input>
 
-            <div class="preview s">
-              <img v-if="license_view" :src="license_view" />
+            <div v-if="license_view" class="preview s">
+              <img :src="license_view" />
             </div>
           </div>
         </div>
@@ -65,7 +70,7 @@
           color="success"
           class="sub"
           @click="Step5Function"
-         :loading="this.$store.state.auth.loading"
+          :loading="this.$store.state.auth.loading"
         >
           {{ $t("Next") }}
         </v-btn>
@@ -76,31 +81,34 @@
 
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   data: () => ({
     valid: false,
     license_view: null,
-    ex3: { val: 5, color: "red" },
     data: {
-      license_file: null,
-      type: "",
-      id_number: "",
-      id_file: "",
+      nationality_id: null,
+      nationality_file: "",
+      license: "",
+      license_file: "",
     },
     rules: {
       required: (v) => !!v || "Required.",
-      idNumber: (v) => (v && v.length <= 10) || "id number must be 10 Number",
     },
   }),
-
+  computed: {
+    ...mapGetters(["allCity", "allAuth"]),
+  },
+  mounted() {
+    if (this.allAuth.step === 5) this.getCountry();
+  },
   methods: {
-    ...mapActions(["registerStep5"]),
+    ...mapActions(["registerStep5", "getCountry"]),
 
     Step5Function(e) {
       e.preventDefault();
-      //if (this.$refs.form.validate() === false) return false;
+      if (this.$refs.form.validate() === false) return false;
       this.registerStep5(this.data);
     },
 

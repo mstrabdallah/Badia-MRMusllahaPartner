@@ -13,21 +13,34 @@
       >
         <div class="form_body">
           <div class="mt-4 mb-4">
-            <v-select :items="items" dense label="city" outlined></v-select>
+            <v-select
+              :items="allCity.city"
+              item-text="name"
+              item-value="id"
+              label="city"
+              v-model="data.city_id"
+              :rules="[rules.required]"
+              dense
+              outlined
+            ></v-select>
           </div>
 
           <div class="coverage_area">
             <v-slider
-              v-model="ex3.val"
+              v-model="data.coverage_area"
               label="coverage area"
-              :thumb-color="ex3.color"
+              thumb-color="red"
               thumb-label="always"
-              max="500"
+              max="50"
+              min="5"
+              :rules="[rules.required]"
+              step="5"
+              ticks
             >
-            <template v-slot:thumb-label="{ value }">
-           {{value}} kg
-          </template>
-          </v-slider>
+              <template v-slot:thumb-label="{ value }">
+                {{ value }} kg
+              </template>
+            </v-slider>
           </div>
         </div>
 
@@ -47,41 +60,34 @@
 
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   data: () => ({
     valid: false,
-    url: "",
-    ex3: { val: 5, color: "red" },
     data: {
-      type: "",
-      id_number: "",
-      id_file: "",
+      city_id: "",
+      coverage_area: "",
     },
     rules: {
       required: (v) => !!v || "Required.",
-      idNumber: (v) => (v && v.length <= 10) || "id number must be 10 Number",
     },
   }),
+  computed: {
+    ...mapGetters(["allCity"]),
+  },
+  mounted() {
+ //   this.getCity();
+        if (this.$store.state.auth.step ===4) this.getCity();
 
+  },
   methods: {
-    ...mapActions(["registerStep4"]),
+    ...mapActions(["registerStep4", "getCity"]),
 
     Step4Function(e) {
       e.preventDefault();
-      //if (this.$refs.form.validate() === false) return false;
+      if (this.$refs.form.validate() === false) return false;
       this.registerStep4(this.data);
-    },
-
-    onFileChange(e) {
-      const file = e.target.files[0];
-      this.url = URL.createObjectURL(file);
-    },
-
-    onFileMultieChange(e) {
-      const file = e.target.files;
-      this.url = URL.createObjectURL(file);
     },
   },
 };

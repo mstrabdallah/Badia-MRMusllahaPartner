@@ -1,9 +1,9 @@
 {
-  "EditUserDetails": {
-    "description": "Auto imported from components/editUserDetails.vue"
-  },
   "Index": {
     "description": "Auto imported from components/index/index.vue"
+  },
+  "IndexPartner": {
+    "description": "Auto imported from components/index/indexPartner.vue"
   },
   "Register": {
     "description": "Auto imported from components/register/register.vue"
@@ -11,11 +11,11 @@
   "Login": {
     "description": "Auto imported from components/login/login.vue"
   },
-  "Service": {
-    "description": "Auto imported from components/service/index.vue"
+  "OrdersBoxOrder": {
+    "description": "Auto imported from components/orders/box-order.vue"
   },
-  "Services": {
-    "description": "Auto imported from components/services/index.vue"
+  "Orders": {
+    "description": "Auto imported from components/orders/index.vue"
   },
   "IndexVueServices": {
     "description": "Auto imported from components/index/vue/Services.vue"
@@ -59,7 +59,7 @@
   "UserVueEditUserDetails": {
     "description": "Auto imported from components/user/vue/editUserDetails.vue"
   },
-  "ServicesVueBoxServices": {
-    "description": "Auto imported from components/services/vue/box-services.vue"
+  "UserVueMenuAccount": {
+    "description": "Auto imported from components/user/vue/menuAccount.vue"
   }
 }

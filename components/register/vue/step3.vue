@@ -90,7 +90,7 @@ export default {
     },
   }),
   mounted() {
-    this.getCategory();
+     if (this.$store.state.auth.step ===3) this.getCategory();
   },
   computed: {
     ...mapGetters(["allCategory"]),

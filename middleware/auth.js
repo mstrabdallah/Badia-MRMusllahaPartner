@@ -6,7 +6,7 @@ export default function ({route, store, redirect, app, i18n }) {
   //console.log(this.req)
  //console.log(authId)
  
-  if (app.$cookies.get('token')) {
+  if (app.$cookies.get('iA')===1) {
 
     store.state.auth.checkAuth = true;
     store.state.auth.token = app.$cookies.get('token');

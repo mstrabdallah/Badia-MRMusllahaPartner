@@ -1,10 +1,10 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
-import auth from "./modules/auth";
-import category from "./modules/category";
-import tickets from "./modules/tickets";
-
+import auth from "./modules/authModules";
+import category from "./modules/categoryModules";
+import city from './modules/cityModules'
+import orders from './modules/ordersModules'
 // Load Vuex
 Vue.use(Vuex);
 
@@ -13,6 +13,7 @@ export default () => new Vuex.Store({
   modules: {
     auth,
     category,
-    tickets,
+    city,
+    orders
   }
 });

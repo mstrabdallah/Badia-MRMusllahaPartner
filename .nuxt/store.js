@@ -19,10 +19,10 @@ let store = {};
   // Enforce store modules
   store.modules = store.modules || {}
 
-  resolveStoreModules(require('../store/modules/auth.js'), 'modules/auth.js')
-  resolveStoreModules(require('../store/modules/category.js'), 'modules/category.js')
+  resolveStoreModules(require('../store/modules/authModules.js'), 'modules/authModules.js')
+  resolveStoreModules(require('../store/modules/categoryModules.js'), 'modules/categoryModules.js')
   resolveStoreModules(require('../store/modules/cityModules.js'), 'modules/cityModules.js')
-  resolveStoreModules(require('../store/modules/tickets.js'), 'modules/tickets.js')
+  resolveStoreModules(require('../store/modules/ordersModules.js'), 'modules/ordersModules.js')
 
   // If the environment supports hot reloading...
 
@@ -30,10 +30,10 @@ let store = {};
     // Whenever any Vuex module is updated...
     module.hot.accept([
       '../store/index.js',
-      '../store/modules/auth.js',
-      '../store/modules/category.js',
+      '../store/modules/authModules.js',
+      '../store/modules/categoryModules.js',
       '../store/modules/cityModules.js',
-      '../store/modules/tickets.js',
+      '../store/modules/ordersModules.js',
     ], () => {
       // Update `root.modules` with the latest definitions.
       updateModules()

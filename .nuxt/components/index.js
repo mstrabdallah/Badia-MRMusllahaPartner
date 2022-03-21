@@ -1,9 +1,9 @@
-export { default as EditUserDetails } from '../../components/editUserDetails.vue'
 export { default as Index } from '../../components/index/index.vue'
+export { default as IndexPartner } from '../../components/index/indexPartner.vue'
 export { default as Register } from '../../components/register/register.vue'
 export { default as Login } from '../../components/login/login.vue'
-export { default as Service } from '../../components/service/index.vue'
-export { default as Services } from '../../components/services/index.vue'
+export { default as OrdersBoxOrder } from '../../components/orders/box-order.vue'
+export { default as Orders } from '../../components/orders/index.vue'
 export { default as IndexVueServices } from '../../components/index/vue/Services.vue'
 export { default as IndexVueBox } from '../../components/index/vue/box.vue'
 export { default as IndexVueHead } from '../../components/index/vue/head.vue'
@@ -18,7 +18,7 @@ export { default as RegisterVueStep6 } from '../../components/register/vue/step6
 export { default as RegisterVueStep7 } from '../../components/register/vue/step7.vue'
 export { default as RegisterVueStepper } from '../../components/register/vue/stepper.vue'
 export { default as UserVueEditUserDetails } from '../../components/user/vue/editUserDetails.vue'
-export { default as ServicesVueBoxServices } from '../../components/services/vue/box-services.vue'
+export { default as UserVueMenuAccount } from '../../components/user/vue/menuAccount.vue'
 
 // nuxt/nuxt.js#8607
 function wrapFunctional(options) {

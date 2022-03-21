@@ -13,40 +13,41 @@
       >
         <div class="form_body">
           <p>Before starting, the agreements must be approved</p>
+          <div class="agreements_s">
+            <v-checkbox
+              :rules="[rules.required]"
+              v-model="data.agreements_approved"
+            >
+              <template v-slot:label>
+                <div>
+                  By continuing, you agree to
+                  <v-tooltip bottom>
+                    <template v-slot:activator="{ on }">
+                      <a
+                        target="_blank"
+                        href="https://vuetifyjs.com"
+                        @click.stop
+                        v-on="on"
+                      >
+                        the Terms and Conditions
+                      </a>
 
-          <v-checkbox
-            :rules="[rules.required]"
-            v-model="data.agreements_approved"
-          >
-            <template v-slot:label>
-              <div>
-                By continuing, you agree to
-                <v-tooltip bottom>
-                  <template v-slot:activator="{ on }">
-                    <a
-                      target="_blank"
-                      href="https://vuetifyjs.com"
-                      @click.stop
-                      v-on="on"
-                    >
-                      the Terms and Conditions
-                    </a>
+                      and
 
-                    and
-
-                    <a
-                      target="_blank"
-                      href="https://vuetifyjs.com"
-                      @click.stop
-                      v-on="on"
-                    >
-                      Privacy Policy
-                    </a>
-                  </template>
-                </v-tooltip>
-              </div>
-            </template>
-          </v-checkbox>
+                      <a
+                        target="_blank"
+                        href="https://vuetifyjs.com"
+                        @click.stop
+                        v-on="on"
+                      >
+                        Privacy Policy
+                      </a>
+                    </template>
+                  </v-tooltip>
+                </div>
+              </template>
+            </v-checkbox>
+          </div>
         </div>
 
         <v-btn
@@ -76,7 +77,6 @@ export default {
     },
     rules: {
       required: (v) => !!v || "Required.",
-      idNumber: (v) => (v && v.length <= 10) || "id number must be 10 Number",
     },
   }),
 
@@ -85,18 +85,20 @@ export default {
 
     Step7Function(e) {
       e.preventDefault();
-      //if (this.$refs.form.validate() === false) return false;
+      if (this.$refs.form.validate() === false) return false;
       this.registerStep7(this.data);
     },
-
-    onFileChange(e) {
-      if (e.length > 0)
-        e.forEach((element) => {
-          this.license_view.push({ url: URL.createObjectURL(element) });
-        });
-      else this.license_view = null;
-    },
+ 
   },
 };
 </script>
  
+<style scoped>
+.agreements_s{
+  background: #fff;
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 20px;
+    border: 1px solid #cccc;
+}
+</style>

@@ -12,26 +12,49 @@
         lazy-validation
       >
         <div class="form_body">
-          <p>Please select Workplace images to display to the user ...</p>
+          <h3>Please select workplace photos</h3>
 
-          <div class="mt-8">
+          <p class="mt-4">The main picture of the workshop</p>
+
+          <v-file-input
+            label="Click here to Upload The main picture "
+            outlined
+            dense
+            @change="onFileChangeBesic"
+            v-model="data.workshop_front"
+            prepend-icon="mdi-camera"
+            :rules="[rules.required]"
+            required
+          ></v-file-input>
+
+          <div v-if="image_view" class="preview s">
+            <img :src="image_view" />
+          </div>
+
+          <p class="mt-4 p_x00">
+            The number of the specified image must be between 3 to 5 images, it
+            should not be reduced, and it should not increase
+          </p>
+
+          <div class="mt-2">
             <v-file-input
               label="Click here to Upload Workplace images"
               outlined
               dense
               multiple
               @change="onFileChange"
-              :v-model="data.license_file"
+              v-model="data.images"
+              prepend-icon="mdi-camera"
+              :rules="[rules.required]"
+              required
             ></v-file-input>
 
+            <div class="msgStep6" v-if="msgStatus">
+              {{ msg }}
+            </div>
+
             <div class="preview m">
-              <!-- <img v-if="license_view.length>0" :v-for="image in license_view" :src="image.url" /> -->
-
-            
-    
-              <img  v-for="(item,i) in license_view" :key="i" :src="item.url" />
-
-           
+              <img v-for="(item, i) in license_view" :key="i" :src="item.url" />
             </div>
           </div>
         </div>
@@ -57,17 +80,15 @@ import { mapActions } from "vuex";
 export default {
   data: () => ({
     valid: false,
-    license_view: [],
-    ex3: { val: 5, color: "red" },
+    image_view: null,
+    msg: "",
+    msgStatus: false,
     data: {
-      license_file: null,
-      type: "",
-      id_number: "",
-      id_file: "",
+      images: [],
+      workshop_front:null
     },
     rules: {
       required: (v) => !!v || "Required.",
-      idNumber: (v) => (v && v.length <= 10) || "id number must be 10 Number",
     },
   }),
 
@@ -76,19 +97,50 @@ export default {
 
     Step6Function(e) {
       e.preventDefault();
-      //if (this.$refs.form.validate() === false) return false;
-      this.registerStep6(this.data);
-    },
+      if (this.data.images.length > 5 || this.data.images.length < 3)
+        return false;
+      if (this.$refs.form.validate() === false) return false;
+     this.registerStep6(this.data);
+     },
 
+    onFileChangeBesic(e) {
+      if (e) this.image_view = URL.createObjectURL(e);
+      else this.image_view = null;
+    },
     onFileChange(e) {
-      if (e.length>0)
+      if (e.length > 0) {
+        this.msgStatus = false;
+        this.license_view = [];
+
+        if (e.length > 5 || e.length < 3) {
+          this.msgStatus = true;
+          this.data.images = [];
+          this.license_view = [];
+          this.msg =
+            "The number of the specified image must be between 3 to 5 images, it should not be reduced, and it should not increase";
+
+          return false;
+        }
+        this.msgStatus = false;
+
         e.forEach((element) => {
           this.license_view.push({ url: URL.createObjectURL(element) });
-          
         });
-      else this.license_view = null;
+      } else this.license_view = [];
     },
   },
 };
 </script>
  
+<style scoped>
+.msgStep6 {
+  color: #f00;
+  border: 1px solid;
+  padding: 10px;
+  border-radius: 4px;
+}
+.p_x00 {
+  border-top: 1px solid #f2f2f2;
+  padding-top: 30px;
+}
+</style>

@@ -6,12 +6,12 @@ You can directly use them in pages and other components without the need to impo
 
 **Tip:** If a component is conditionally rendered with `v-if` and is big, it is better to use `Lazy` or `lazy-` prefix to lazy load.
 
-- `<EditUserDetails>` | `<edit-user-details>` (components/editUserDetails.vue)
 - `<Index>` | `<index>` (components/index/index.vue)
+- `<IndexPartner>` | `<index-partner>` (components/index/indexPartner.vue)
 - `<Register>` | `<register>` (components/register/register.vue)
 - `<Login>` | `<login>` (components/login/login.vue)
-- `<Service>` | `<service>` (components/service/index.vue)
-- `<Services>` | `<services>` (components/services/index.vue)
+- `<OrdersBoxOrder>` | `<orders-box-order>` (components/orders/box-order.vue)
+- `<Orders>` | `<orders>` (components/orders/index.vue)
 - `<IndexVueServices>` | `<index-vue-services>` (components/index/vue/Services.vue)
 - `<IndexVueBox>` | `<index-vue-box>` (components/index/vue/box.vue)
 - `<IndexVueHead>` | `<index-vue-head>` (components/index/vue/head.vue)
@@ -26,4 +26,4 @@ You can directly use them in pages and other components without the need to impo
 - `<RegisterVueStep7>` | `<register-vue-step7>` (components/register/vue/step7.vue)
 - `<RegisterVueStepper>` | `<register-vue-stepper>` (components/register/vue/stepper.vue)
 - `<UserVueEditUserDetails>` | `<user-vue-edit-user-details>` (components/user/vue/editUserDetails.vue)
-- `<ServicesVueBoxServices>` | `<services-vue-box-services>` (components/services/vue/box-services.vue)
+- `<UserVueMenuAccount>` | `<user-vue-menu-account>` (components/user/vue/menuAccount.vue)
