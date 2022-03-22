@@ -4,25 +4,6 @@
       <NuxtLink :to="localePath('/')" class="logo">
         <img src="/logo.svg" />
       </NuxtLink>
-      <!-- 
-      <div class="mob">
-        <div class="searchMobile">
-          <font-awesome-icon icon="magnifying-glass" />
-        </div>
-      </div>
-
-      <div class="search">
-        <input type="text" placeholder="Search For Services" />
-
-        <v-select
-          class="select_head"
-          :items="items"
-          label="Location"
-          outlined
-          dense
-          prepend-inner-icon="mdi-map-marker"
-        ></v-select>
-      </div> -->
 
       <nav class="menu">
         <ul>
@@ -34,8 +15,8 @@
           </li>
 
           <li v-if="allAuth.checkAuth">
-            <NuxtLink :to="localePath('/tickets')">
-                 <font-awesome-icon icon="bell" class="fa" />
+            <NuxtLink :to="localePath('/notifications')">
+              <font-awesome-icon icon="bell" class="fa" />
               {{ $t("Notifications") }}
             </NuxtLink>
           </li>
@@ -49,8 +30,49 @@
           <li v-if="!allAuth.checkAuth">
             <NuxtLink :to="localePath('/about')">{{ $t("About") }}</NuxtLink>
           </li>
-          <li v-if="allAuth.checkAuth">
-            <MenuAccount />
+
+          <li v-if="this.$store.state.auth.checkAuth">
+            <v-menu bottom left>
+              <template v-slot:activator="{ on, attrs }">
+                <div v-bind="attrs" v-on="on">
+                  <font-awesome-icon icon="user" class="fa"  />
+                  {{ $t("My Account") }}
+                </div>
+              </template>
+
+              <v-list>
+                <NuxtLink :to="localePath('/account')">
+                  <v-list-item link>
+                    <v-list-item-title>
+                      {{ $t("My Account") }}
+                    </v-list-item-title>
+                  </v-list-item>
+                </NuxtLink>
+
+
+                <NuxtLink :to="localePath('/my-work')">
+                  <v-list-item link>
+                    <v-list-item-title>
+                      {{ $t("My Work") }}
+                    </v-list-item-title>
+                  </v-list-item>
+                </NuxtLink>
+
+                <NuxtLink :to="localePath('/my-earnings')">
+                  <v-list-item link>
+                    <v-list-item-title>
+                      {{ $t("My Earnings") }}
+                    </v-list-item-title>
+                  </v-list-item>
+                </NuxtLink>
+
+                <v-list-item>
+                  <div @click="Logout">
+                    <v-list-item-title>{{ $t("Logout") }}</v-list-item-title>
+                  </div>
+                </v-list-item>
+              </v-list>
+            </v-menu>
           </li>
 
           <li v-if="!allAuth.checkAuth">
@@ -69,7 +91,6 @@
 
 <script>
 import Menu from "./menu.vue";
-import MenuAccount from "../../components/user/vue/menuAccount.vue";
 import { mapActions, mapGetters } from "vuex";
 export default {
   data: () => ({
@@ -100,7 +121,6 @@ export default {
   },
   components: {
     Menu,
-    MenuAccount,
   },
 };
 </script>
@@ -153,6 +173,7 @@ a.nuxt-link-exact-active.login_ {
 .menu ul {
   font-size: 16px;
   display: flex;
+      font-size: 14px;
 }
 .menu ul li:lang(en) {
   margin-left: 5em;
@@ -217,7 +238,7 @@ a.nuxt-link-exact-active.login_ {
   color: #444;
   cursor: pointer;
 }
- 
+
 @media (max-width: 1024px) {
 }
 @media (max-width: 768px) {

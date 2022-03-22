@@ -5,7 +5,7 @@
 <script>
 import Orders from "../../components/orders/index.vue";
 export default {
-  name: "OrdersPages",
+  name: "mywork",
   components:{
     Orders
   }

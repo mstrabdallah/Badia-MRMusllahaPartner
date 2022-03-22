@@ -22,7 +22,10 @@ let store = {};
   resolveStoreModules(require('../store/modules/authModules.js'), 'modules/authModules.js')
   resolveStoreModules(require('../store/modules/categoryModules.js'), 'modules/categoryModules.js')
   resolveStoreModules(require('../store/modules/cityModules.js'), 'modules/cityModules.js')
+  resolveStoreModules(require('../store/modules/earningsModules.js'), 'modules/earningsModules.js')
+  resolveStoreModules(require('../store/modules/notificationModules.js'), 'modules/notificationModules.js')
   resolveStoreModules(require('../store/modules/ordersModules.js'), 'modules/ordersModules.js')
+  resolveStoreModules(require('../store/modules/userModules.js'), 'modules/userModules.js')
 
   // If the environment supports hot reloading...
 
@@ -33,7 +36,10 @@ let store = {};
       '../store/modules/authModules.js',
       '../store/modules/categoryModules.js',
       '../store/modules/cityModules.js',
+      '../store/modules/earningsModules.js',
+      '../store/modules/notificationModules.js',
       '../store/modules/ordersModules.js',
+      '../store/modules/userModules.js',
     ], () => {
       // Update `root.modules` with the latest definitions.
       updateModules()

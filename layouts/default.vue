@@ -26,11 +26,14 @@ export default {
   },
   mounted() {
     this.$vuetify.rtl = this.$i18n.locale === "ar" ? true : false;
-       this.getToken();
-this.getMe()
+
+    if (!this.$cookies.get("token")) {
+      this.getToken();
+    }
+    this.getMe();
   },
   methods: {
-    ...mapActions(["getToken","getMe"]),
+    ...mapActions(["getToken", "getMe"]),
   },
 };
 </script>

@@ -34,7 +34,6 @@
             v-bind="props"
           />
 
- 
           <v-text-field
             v-model="data.email"
             :rules="[rules.required, rules.email]"
@@ -111,9 +110,6 @@ export default {
     props: {
       placeholder: "Enter your phone",
     },
-    comments: {
-
-},
     data: {
       name: "",
       phone: "",

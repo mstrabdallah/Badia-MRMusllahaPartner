@@ -1,15 +1,18 @@
 
-export default function ({route, store, redirect, app, i18n }) {
+export default function ({ route, store, redirect, app, i18n }) {
 
   // check cookie
- 
+
   //console.log(this.req)
- //console.log(authId)
- 
-  if (app.$cookies.get('iA')===1) {
+  //console.log(authId)
+
+  if (app.$cookies.get('token')) {
+    store.state.auth.token = app.$cookies.get('token');
+
+  }
+  if (app.$cookies.get('iA') === 1) {
 
     store.state.auth.checkAuth = true;
-    store.state.auth.token = app.$cookies.get('token');
   }
 
   return false;
@@ -26,9 +29,9 @@ export default function ({route, store, redirect, app, i18n }) {
 
   if (!checkUser) {
     if (i18n.locale === 'ar')
-    return redirect('/login')
-  else
-    return redirect('/en/login')
+      return redirect('/login')
+    else
+      return redirect('/en/login')
   }
 
   //  Invalid Access For User

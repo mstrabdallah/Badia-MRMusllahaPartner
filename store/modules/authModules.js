@@ -7,13 +7,13 @@ const state = {
   is_active: 0,
   token: '',
   device: 'website',
-  sessionId: '1234567',
+  sessionId: '12345678',
   user: [],
   register: [],
   loading: false,
   checkUserStatus: false,
   loadingReg: true,
-  
+
 };
 
 const getters = {
@@ -40,27 +40,27 @@ const actions = {
     }
   },
 
-  getAuth({ commit, state, dispatch }) {
+  // getAuth({ commit, state, dispatch }) {
 
-    if (!state.checkAuth) return false;
-    const response = this.$axios.$get('auth').then((res) => {
-      //this.LogOut()
-      commit("user", response.data);
-    }).catch(function (error) {
-      if (error.response.status === 401) {
-        dispatch('Logout');
-      }
-    });
-  },
+  //   if (!state.checkAuth) return false;
+  //   const response = this.$axios.$get('auth').then((res) => {
+  //     //this.LogOut()
+  //     commit("user", response.data);
+  //   }).catch(function (error) {
+  //     if (error.response.status === 401) {
+  //       dispatch('Logout');
+  //     }
+  //   });
+  // },
 
   getToken({ app, state, dispatch }) {
     if (state.checkAuth === true) return false;
     const response = this.$axios.$get('/check_token').then((res) => {
-      if (res.status) {
+      if (res.status === 200) {
         state.token = res.token;
         this.$cookies.set("token", res.token, {
           path: "/",
-          maxAge: 365 * 24 * 60 * 60,
+          maxAge: 365 * 24 * 60 * 60
         });
       } else {
 
@@ -73,6 +73,24 @@ const actions = {
       // }
     });
   },
+
+  getMe({ state }) {
+
+    //  state.loadingReg = true;
+    const response = this.$axios.$get('/me').then((res) => {
+      state.loadingReg = false;
+      if (res.data === 401) {
+        state.step = 1;
+
+      } else {
+        state.step = res.data.current_step + 1;
+        state.user =res.data;
+      }
+    }).catch(function (error) {
+
+    });
+  },
+
   Login({ app, state, dispatch }, arrayData) {
 
     var data = new FormData();
@@ -103,22 +121,7 @@ const actions = {
   },
 
 
-  getMe({ state }) {
 
-    //  state.loadingReg = true;
-    const response = this.$axios.$get('/me').then((res) => {
-      state.loadingReg = false;
-      if (res.data === 401) {
-        state.step = 1;
-
-      } else {
-        state.step = res.data.current_step + 1;
-        commit("user", res.data);
-      }
-    }).catch(function (error) {
-
-    });
-  },
   registerStep1({ state }, arrayData) {
     var data = new FormData();
 

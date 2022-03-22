@@ -13,7 +13,8 @@ export default function ({ $axios,app,store }, inject) {
       }
     })
   
-    axios.setBaseURL('http://192.168.1.26')
+  //  axios.setBaseURL('http://192.168.1.26')
+    axios.setBaseURL('http://192.168.1.03')
 
     // Inject to context as $api
     inject('axios', axios)

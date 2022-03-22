@@ -5,10 +5,12 @@ import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
 const _14c0bb3b = () => interopDefault(import('../pages/about.vue' /* webpackChunkName: "pages/about" */))
+const _138cda9e = () => interopDefault(import('../pages/account/index.vue' /* webpackChunkName: "pages/account/index" */))
 const _34789600 = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
 const _03bf8dd2 = () => interopDefault(import('../pages/login.vue' /* webpackChunkName: "pages/login" */))
-const _3977276a = () => interopDefault(import('../pages/orders/index.vue' /* webpackChunkName: "pages/orders/index" */))
-const _1bb9b452 = () => interopDefault(import('../pages/profile.vue' /* webpackChunkName: "pages/profile" */))
+const _5389ec58 = () => interopDefault(import('../pages/my-earnings.vue' /* webpackChunkName: "pages/my-earnings" */))
+const _b747467a = () => interopDefault(import('../pages/my-work/index.vue' /* webpackChunkName: "pages/my-work/index" */))
+const _6a2bddd4 = () => interopDefault(import('../pages/notifications.vue' /* webpackChunkName: "pages/notifications" */))
 const _b3b69736 = () => interopDefault(import('../pages/register.vue' /* webpackChunkName: "pages/register" */))
 const _74811fd4 = () => interopDefault(import('../pages/test.vue' /* webpackChunkName: "pages/test" */))
 
@@ -28,6 +30,10 @@ export const routerOptions = {
     component: _14c0bb3b,
     name: "about___en"
   }, {
+    path: "/account",
+    component: _138cda9e,
+    name: "account___en"
+  }, {
     path: "/ar",
     component: _34789600,
     name: "index___ar"
@@ -36,13 +42,17 @@ export const routerOptions = {
     component: _03bf8dd2,
     name: "login___en"
   }, {
-    path: "/orders",
-    component: _3977276a,
-    name: "orders___en"
+    path: "/my-earnings",
+    component: _5389ec58,
+    name: "my-earnings___en"
   }, {
-    path: "/profile",
-    component: _1bb9b452,
-    name: "profile___en"
+    path: "/my-work",
+    component: _b747467a,
+    name: "my-work___en"
+  }, {
+    path: "/notifications",
+    component: _6a2bddd4,
+    name: "notifications___en"
   }, {
     path: "/register",
     component: _b3b69736,
@@ -56,17 +66,25 @@ export const routerOptions = {
     component: _14c0bb3b,
     name: "about___ar"
   }, {
+    path: "/ar/account",
+    component: _138cda9e,
+    name: "account___ar"
+  }, {
     path: "/ar/login",
     component: _03bf8dd2,
     name: "login___ar"
   }, {
-    path: "/ar/orders",
-    component: _3977276a,
-    name: "orders___ar"
+    path: "/ar/my-earnings",
+    component: _5389ec58,
+    name: "my-earnings___ar"
   }, {
-    path: "/ar/profile",
-    component: _1bb9b452,
-    name: "profile___ar"
+    path: "/ar/my-work",
+    component: _b747467a,
+    name: "my-work___ar"
+  }, {
+    path: "/ar/notifications",
+    component: _6a2bddd4,
+    name: "notifications___ar"
   }, {
     path: "/ar/register",
     component: _b3b69736,

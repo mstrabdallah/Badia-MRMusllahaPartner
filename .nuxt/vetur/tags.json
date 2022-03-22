@@ -5,17 +5,26 @@
   "IndexPartner": {
     "description": "Auto imported from components/index/indexPartner.vue"
   },
-  "Register": {
-    "description": "Auto imported from components/register/register.vue"
-  },
   "Login": {
     "description": "Auto imported from components/login/login.vue"
+  },
+  "Notifications": {
+    "description": "Auto imported from components/notifications/notifications.vue"
+  },
+  "MyEarnings": {
+    "description": "Auto imported from components/myEarnings/myEarnings.vue"
+  },
+  "Register": {
+    "description": "Auto imported from components/register/register.vue"
   },
   "OrdersBoxOrder": {
     "description": "Auto imported from components/orders/box-order.vue"
   },
   "Orders": {
     "description": "Auto imported from components/orders/index.vue"
+  },
+  "User": {
+    "description": "Auto imported from components/user/user.vue"
   },
   "IndexVueServices": {
     "description": "Auto imported from components/index/vue/Services.vue"
@@ -28,6 +37,12 @@
   },
   "IndexVueMobileApp": {
     "description": "Auto imported from components/index/vue/mobileApp.vue"
+  },
+  "ServicesVueBoxService": {
+    "description": "Auto imported from components/services/vue/box-service.vue"
+  },
+  "ServicesVueShowService": {
+    "description": "Auto imported from components/services/vue/show-service.vue"
   },
   "RegisterVueStep1FormRegister": {
     "description": "Auto imported from components/register/vue/step1-formRegister.vue"
@@ -56,10 +71,16 @@
   "RegisterVueStepper": {
     "description": "Auto imported from components/register/vue/stepper.vue"
   },
-  "UserVueEditUserDetails": {
-    "description": "Auto imported from components/user/vue/editUserDetails.vue"
+  "UserInfo": {
+    "description": "Auto imported from components/user/vue/user-info.vue"
   },
-  "UserVueMenuAccount": {
-    "description": "Auto imported from components/user/vue/menuAccount.vue"
+  "UserItems": {
+    "description": "Auto imported from components/user/vue/user-items.vue"
+  },
+  "UserVueFormsChangeInfo": {
+    "description": "Auto imported from components/user/vue/forms/changeInfo.vue"
+  },
+  "UserVueFormsChangePassword": {
+    "description": "Auto imported from components/user/vue/forms/changePassword.vue"
   }
 }

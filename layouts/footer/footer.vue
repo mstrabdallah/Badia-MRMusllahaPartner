@@ -73,9 +73,10 @@ a {
 	text-align: end;
 }
 .footer-14398 {
-	padding: 3rem 0 1rem;
-	background: #30c88d;	
-	color: #ffffff;
+    padding: 3rem 0 1rem;
+    background: #f6f6f6;
+    color: #444;
+    border-top: 1px solid #efefef;
 	.footer-site-logo {
 		color: white;
 		font-size: 26px;
@@ -84,7 +85,7 @@ a {
 		display: block;
 	}
 	h3 {
-		color: #c1804c;
+		    color: #30c88c;
 		font-size: 16px;
 		margin-bottom: 20px;
 	}
@@ -101,9 +102,9 @@ a {
 		li {
 			margin-bottom: 10px;
 			a {
-				color: #ffffff;
+				color: #444;
 				&:hover {
-					color: #c1804c;
+					    color: #30c88c;
 				}
 			}
 		}
@@ -112,7 +113,7 @@ a {
 		li {
 			display: inline-block;
 			a {
-				color: white;
+				color: #555;
 				display: inline-block;
 				padding: 10px;
 			}
