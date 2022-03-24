@@ -2,7 +2,7 @@
     <footer class="footer-14398">
         <div class="container">
             <div class="row mb-1">
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <a href="#" class="footer-site-logo">
                         <div class="img-logo">
                             <img src="http://localhost:3000/logo.svg" alt="">
@@ -10,7 +10,7 @@
                     </a>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit officiis corporis optio natus. </p>
                 </div>
-                <div class="col-md-4 mr-auto footer-menu">
+                <div class="col-md-2 mr-auto footer-menu">
                     <h3>Shop</h3>
                     <ul class="list-unstyled links">
                         <li><a href="#">Services</a></li>
@@ -32,18 +32,9 @@
                 </div>
             </div>
             <div class="row mb-4">
-                <div class="col-12 pb-4">
-                    <div class="line"></div>
-                </div>
-                <div class="col-md-6 ms-auto text-md-left">
-                    <ul class="list-unstyled social nav-right">
-                        <li><a href="#"><span class="icon-twitter"></span></a></li>
-                        <li><a href="#"><span class="icon-instagram"></span></a></li>
-                        <li><a href="#"><span class="icon-facebook"></span></a></li>
-                        <li><a href="#"><span class="icon-pinterest"></span></a></li>
-                    </ul>
-                </div>
-                <div class="col-md-6 text-md-right text-center">
+                
+         
+                <div class="col-md-12 text-md-right text-center">
                     <ul class="list-unstyled link-menu nav-left">
                         <li>Copyright © 2000-2022 Badia Inc. All Rights Reserved.</li>
                         

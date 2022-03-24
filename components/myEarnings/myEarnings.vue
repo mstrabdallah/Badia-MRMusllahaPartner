@@ -1,6 +1,7 @@
 <template>
   <div class="page container_cc">
-    <h1>MY Earnings</h1>
+    <div class="Earnings"> 
+    <h1 class="">MY Earnings</h1>
     <v-containe no-gutters>
       <v-row gutters="5">
         <v-col cols="12" md="6">
@@ -23,6 +24,7 @@
       </v-row>
     </v-containe>
   </div>
+  </div>
 </template>
 <script>
 import { mapActions, mapGetters } from "vuex";
@@ -39,6 +41,9 @@ export default {
 };
 </script>
 <style scoped>
+.Earnings{
+  margin-top: 120px;
+}
 h1 {
     text-align: center;
     border-bottom: 1px solid #f6f6f6;

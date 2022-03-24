@@ -7,7 +7,6 @@
     <div class="form">
       <v-form
         ref="form"
-        @submit="Step6Function"
         v-model="valid"
         lazy-validation
       >
@@ -59,12 +58,14 @@
           </div>
         </div>
 
+        <Msg />
         <v-btn
           :disabled="!valid"
           color="success"
           class="sub"
           @click="Step6Function"
           :loading="this.$store.state.auth.loading"
+          type="submit"
         >
           {{ $t("Next") }}
         </v-btn>
@@ -75,9 +76,12 @@
 
 
 <script>
-import { mapActions } from "vuex";
-
+import { mapActions, mapGetters } from "vuex";
+import Msg from "./msg.vue";
 export default {
+  components: {
+    Msg,
+  },
   data: () => ({
     valid: false,
     image_view: null,
@@ -85,7 +89,7 @@ export default {
     msgStatus: false,
     data: {
       images: [],
-      workshop_front:null
+      workshop_front: null,
     },
     rules: {
       required: (v) => !!v || "Required.",
@@ -100,8 +104,8 @@ export default {
       if (this.data.images.length > 5 || this.data.images.length < 3)
         return false;
       if (this.$refs.form.validate() === false) return false;
-     this.registerStep6(this.data);
-     },
+      this.registerStep6(this.data);
+    },
 
     onFileChangeBesic(e) {
       if (e) this.image_view = URL.createObjectURL(e);

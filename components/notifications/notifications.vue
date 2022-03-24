@@ -18,22 +18,10 @@
         <v-list-item-subtitle> {{item.body}}</v-list-item-subtitle>
       </v-list-item-content>
 
-      <v-list-item-avatar
-        tile
-        size="80"
-        color="grey"
-      ></v-list-item-avatar>
+   
     </v-list-item>
 
-    <v-card-actions>
-      <v-btn
-        outlined
-        rounded
-        text
-      >
-        Button
-      </v-btn>
-    </v-card-actions>
+ 
   </v-card>
 
  

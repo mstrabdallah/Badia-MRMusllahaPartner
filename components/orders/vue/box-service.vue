@@ -28,16 +28,7 @@
                 <td>4</td>
                 <td>333</td>
               </tr>
-              <tr>
-                <td>Continue your learning with related</td>
-                <td>4</td>
-                <td>333</td>
-              </tr>
-              <tr>
-                <td>Continue your learning with related</td>
-                <td>4</td>
-                <td>333</td>
-              </tr>
+      
               <tr>
                 <td>Continue your learning with related</td>
                 <td>4</td>
@@ -47,7 +38,7 @@
           </template>
         </v-simple-table>
       </div>
-      <div class="boxser_item">
+      <!-- <div class="boxser_item">
         <font-awesome-icon icon="clock" />
         <span>1:00</span>
       </div>
@@ -60,7 +51,7 @@
       <div class="boxser_item">
         <font-awesome-icon icon="bars" />
         <span>Continue your learning </span>
-      </div>
+      </div> -->
     </div>
 
     <div class="boxser_footer">
@@ -83,8 +74,13 @@ export default {
   padding: 15px;
   border-radius: 4px;
   border: 1px solid #ece9e9;
+   transition: 0ms;
 }
-
+.boxser:hover{
+      box-shadow: 0 4px 20px rgb(0 0 0 / 25%);
+    transform: translateY(-4px);
+    transition: 0ms;
+}
 .boxser_img {
   border-bottom: 1px solid #f8f8f8;
   padding-bottom: 12px;

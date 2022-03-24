@@ -4,15 +4,15 @@
       <template>
         <v-container>
           <v-row no-gutters>
-            <v-col>
+            <v-col cols="12" md="6">
               <div class="mob_imgs">
                 <img
                   src="https://www.mrmusllaha.com/static/media/mobileapp1.b7b023d7.png"
                 />
               </div>
             </v-col>
-            <v-divider class="mx-4" d-sm-none vertical></v-divider>
-            <v-col>
+            <v-col cols="12" md="6">
+ 
               <div class="mob_des">
                 <h3>
                   We are the ideal platform to have a range of services at your

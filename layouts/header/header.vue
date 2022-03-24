@@ -10,33 +10,23 @@
           <li>
             <NuxtLink :to="localePath('/')">
               <font-awesome-icon icon="house" class="fa" />
-              {{ $t("Home") }}
+              <span class="navM_">{{ $t("Home") }}</span>
             </NuxtLink>
           </li>
 
           <li v-if="allAuth.checkAuth">
             <NuxtLink :to="localePath('/notifications')">
               <font-awesome-icon icon="bell" class="fa" />
-              {{ $t("Notifications") }}
+              <span class="navM_">{{ $t("Notifications") }}</span>
             </NuxtLink>
           </li>
 
-          <li v-if="!allAuth.checkAuth">
-            <NuxtLink :to="localePath('/Categories')">{{
-              $t("Categories")
-            }}</NuxtLink>
-          </li>
-
-          <li v-if="!allAuth.checkAuth">
-            <NuxtLink :to="localePath('/about')">{{ $t("About") }}</NuxtLink>
-          </li>
-
-          <li v-if="this.$store.state.auth.checkAuth">
+          <li v-if="allAuth.checkAuth">
             <v-menu bottom left>
               <template v-slot:activator="{ on, attrs }">
                 <div v-bind="attrs" v-on="on">
-                  <font-awesome-icon icon="user" class="fa"  />
-                  {{ $t("My Account") }}
+                  <font-awesome-icon icon="user" class="fa" />
+                  <span class="navM_">{{ $t("My Account") }}</span>
                 </div>
               </template>
 
@@ -48,7 +38,6 @@
                     </v-list-item-title>
                   </v-list-item>
                 </NuxtLink>
-
 
                 <NuxtLink :to="localePath('/my-work')">
                   <v-list-item link>
@@ -82,9 +71,9 @@
           </li>
         </ul>
       </nav>
-      <div class="mob_nav">
+      <!-- <div class="mob_nav">
         <Menu />
-      </div>
+      </div> -->
     </div>
   </header>
 </template>
@@ -128,12 +117,13 @@ export default {
 
 <style scoped>
 header {
-  box-shadow: 0 3px 4px 0 rgb(0 0 0 / 5%);
-  z-index: 99;
-  background: #fff;
-  position: absolute;
-  top: 41px;
-  width: 100%;
+box-shadow: 0px 1px 4px 0 rgb(0 0 0 / 5%);
+    border: 1px solid #efefef;
+    z-index: 99;
+    background: #fff;
+    position: absolute;
+    top: 41px;
+    width: 100%;
 }
 .headerFixed {
   position: fixed;
@@ -145,7 +135,7 @@ header {
 .header_p {
   display: flex;
   align-items: center;
-  height: 80px;
+  height: 70px;
 }
 .headerFixed .header_p {
   height: 60px;
@@ -173,7 +163,7 @@ a.nuxt-link-exact-active.login_ {
 .menu ul {
   font-size: 16px;
   display: flex;
-      font-size: 14px;
+  font-size: 14px;
 }
 .menu ul li:lang(en) {
   margin-left: 5em;
@@ -238,17 +228,32 @@ a.nuxt-link-exact-active.login_ {
   color: #444;
   cursor: pointer;
 }
-
-@media (max-width: 1024px) {
-}
+ 
 @media (max-width: 768px) {
-  .search {
-    display: none;
+  .menu {
+    justify-content: center;
   }
+  .menu ul{
+        justify-content: space-evenly;
+    width: 100%;
+  }
+  .menu ul li {
+    margin-left: 0em !important;
+    margin-right: 0em !important;
+        background: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  .emptyData_loding{
+    width: 100%;
+  }
+
   .mob_nav {
     display: block;
   }
-  .menu ul {
+
+  .navM_ {
     display: none;
   }
 }

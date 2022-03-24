@@ -15,6 +15,8 @@ import HeaderTop from "./header/header-top.vue";
 import Header from "./header/header.vue";
 import Footer from "./footer/footer.vue";
 import { mapActions } from "vuex";
+import { uuid } from "vue-uuid";
+
 export default {
   head() {
     return this.$nuxtI18nHead({ addSeoAttributes: true });
@@ -27,13 +29,15 @@ export default {
   mounted() {
     this.$vuetify.rtl = this.$i18n.locale === "ar" ? true : false;
 
+    this.setAuth(uuid.v5(navigator.userAgent, "65f9af5d-f23f-4065-ac85-da725569fdcd"));
+
     if (!this.$cookies.get("token")) {
       this.getToken();
     }
     this.getMe();
   },
   methods: {
-    ...mapActions(["getToken", "getMe"]),
+    ...mapActions(["getToken", "getMe", "setAuth"]),
   },
 };
 </script>
@@ -82,11 +86,15 @@ img {
 
 /* body of pages */
 .pages {
-  margin-top: 80px;
+  margin-top: 20px;
 }
 .page {
   margin-top: 70px;
   min-height: calc(100vh - 190px);
+}
+
+.title_page{
+      padding: 20px 0px;
 }
 
 .span_color {
@@ -183,6 +191,17 @@ p {
 @media (max-width: 1100px) {
   .container_cc {
     padding: 0px 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container_cc {
+    padding: 0px 20px;
+  }
+
+  .user_items {
+    padding: 0px !important;
+    margin: 20px 0px;
   }
 }
 </style>

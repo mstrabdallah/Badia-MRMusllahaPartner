@@ -7,7 +7,6 @@
     <div class="form">
       <v-form
         ref="form"
-        @submit="Step4Function"
         v-model="valid"
         lazy-validation
       >
@@ -44,12 +43,14 @@
           </div>
         </div>
 
+<Msg />
         <v-btn
           :disabled="!valid"
           color="success"
           class="sub"
           @click="Step4Function"
           :loading="this.$store.state.auth.loading"
+          type="submit"
         >
           {{ $t("Next") }}
         </v-btn>
@@ -61,8 +62,11 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
-
+import Msg from "./msg.vue";
 export default {
+  components:{
+    Msg
+  },
   data: () => ({
     valid: false,
     data: {

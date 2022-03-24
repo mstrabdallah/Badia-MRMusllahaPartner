@@ -12,24 +12,20 @@
           </div>
 
           <div class="form">
-            <v-form
-              ref="form"
-              @submit="LoginFunction"
-              v-model="valid"
-              lazy-validation
-            >
+            <v-form ref="form" v-model="valid" lazy-validation>
+
+              
               <vue-phone-number-input
                 v-model="data.phone_number"
                 :label="$t('Phone')"
                 class="mb-7"
                 default-country-code="SA"
-                required="true"
               />
+                <!-- :rules="[rules.required]" -->
 
               <v-text-field
                 v-model="data.password"
                 :append-icon="showPasswordLogin ? 'mdi-eye' : 'mdi-eye-off'"
-                :rules="[rules.required]"
                 :type="showPasswordLogin ? 'text' : 'password'"
                 :label="$t('Password')"
                 @click:append="showPasswordLogin = !showPasswordLogin"
@@ -37,9 +33,7 @@
                 dense
               ></v-text-field>
 
-              <div class="msg" v-if="msg">
-                <p>{{ $t(msg) }}</p>
-              </div>
+              <Msg />
 
               <v-btn
                 :disabled="!valid"
@@ -47,6 +41,7 @@
                 class="button_login"
                 @click="LoginFunction"
                 :loading="allAuth.loading"
+                type="submit"
               >
                 {{ $t("Login") }}
               </v-btn>
@@ -61,12 +56,15 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import Msg from "../register/vue/msg.vue";
 export default {
+  components: {
+    Msg,
+  },
   head() {
     return {
       title: this.$i18n.t("Login-page"),
       meta: [
-        // hid is used as unique identifier. Do not use `vmid` for it as it will not work
         {
           hid: "todos description",
           name: "todos description",
@@ -75,20 +73,19 @@ export default {
       ],
     };
   },
-  data: () => ({
-    loading: false,
-    valid: false,
-    showPasswordLogin: false,
-    msg: "",
-    msgStatus: true,
-    rules: {
-      required: (value) => !!value || "Required.",
-    },
-    data: {
-      phone_number: "",
-      password: "",
-    },
-  }),
+  data() {
+    return {
+      valid: false,
+      showPasswordLogin: false,
+      rules: {
+        required: (value) => !!value || "Required.",
+      },
+      data: {
+        phone_number: "",
+        password: "",
+      },
+    };
+  },
   computed: {
     ...mapGetters(["allAuth"]),
   },

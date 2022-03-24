@@ -3,15 +3,18 @@ export default function ({ route, store, redirect, app, i18n }) {
 
   // check cookie
 
-  //console.log(this.req)
   //console.log(authId)
+ 
+   const user = app.$cookies.get('user');
 
   if (app.$cookies.get('token')) {
     store.state.auth.token = app.$cookies.get('token');
 
+
   }
   if (app.$cookies.get('iA') === 1) {
-
+    store.state.auth.user      = user;
+    store.state.auth.is_online = user.is_online;
     store.state.auth.checkAuth = true;
   }
 

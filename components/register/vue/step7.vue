@@ -7,7 +7,6 @@
     <div class="form">
       <v-form
         ref="form"
-        @submit="Step7Function"
         v-model="valid"
         lazy-validation
       >
@@ -50,11 +49,13 @@
           </div>
         </div>
 
+        <Msg />
         <v-btn
           :disabled="!valid"
           color="success"
           class="sub"
           @click="Step7Function"
+          type="submit"
           :loading="this.$store.state.auth.loading"
         >
           {{ $t("Start Using The Site") }}
@@ -66,9 +67,12 @@
 
 
 <script>
-import { mapActions } from "vuex";
-
+import { mapActions, mapGetters } from "vuex";
+import Msg from "./msg.vue";
 export default {
+  components: {
+    Msg,
+  },
   data: () => ({
     valid: false,
     on: false,
@@ -88,17 +92,16 @@ export default {
       if (this.$refs.form.validate() === false) return false;
       this.registerStep7(this.data);
     },
- 
   },
 };
 </script>
  
 <style scoped>
-.agreements_s{
+.agreements_s {
   background: #fff;
-    padding: 10px;
-    border-radius: 4px;
-    margin-top: 20px;
-    border: 1px solid #cccc;
+  padding: 10px;
+  border-radius: 4px;
+  margin-top: 20px;
+  border: 1px solid #cccc;
 }
 </style>

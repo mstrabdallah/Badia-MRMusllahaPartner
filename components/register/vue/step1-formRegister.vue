@@ -7,7 +7,6 @@
     <div class="form">
       <v-form
         ref="form"
-        @submit="Step1Function"
         v-model="valid"
         lazy-validation
       >
@@ -28,9 +27,9 @@
             placeholder="Enter Mobile Number"
             class="mb-7"
             default-country-code="SA"
+            :only-countries="['SA']"
             required
             :rules="[rules.required, rules.phoneVal, rules.phoneNum]"
-            phoneNumber="0665656565"
             v-bind="props"
           />
 
@@ -46,7 +45,7 @@
           <v-text-field
             v-model="data.password"
             :append-icon="showPasswordLogin ? 'mdi-eye' : 'mdi-eye-off'"
-            :rules="[rules.required, rules.min]"
+            :rules="[rules.required, rules.passwordRules]"
             :type="showPasswordLogin ? 'text' : 'password'"
             :label="$t('Password')"
             @click:append="showPasswordLogin = !showPasswordLogin"
@@ -55,11 +54,12 @@
           ></v-text-field>
 
           <v-text-field
-            v-model="password_confirmation"
+            v-model="data.password_confirmation"
             :append-icon="showPasswordLogin ? 'mdi-eye' : 'mdi-eye-off'"
             :type="showPasswordLogin ? 'text' : 'password'"
             :label="$t('Re-enter the password')"
             @click:append="showPasswordLogin = !showPasswordLogin"
+            :rules="[rules.required, rules.confirmPasswordRules]"
             outlined
             dense
           ></v-text-field>
@@ -81,9 +81,7 @@
           </v-expansion-panels>
         </div>
 
-        <div class="msg" v-if="msg">
-          <p>{{ $t(msg) }}</p>
-        </div>
+        <Msg />
 
         <v-btn
           :disabled="!valid"
@@ -91,6 +89,7 @@
           class="sub"
           @click="Step1Function"
           :loading="this.$store.state.auth.loading"
+          type="submit"
         >
           {{ $t("Next") }}
         </v-btn>
@@ -101,41 +100,48 @@
 
 
 <script>
-import { mapActions } from "vuex";
-
+import { mapActions, mapGetters } from "vuex";
+import Msg from "./msg.vue";
 export default {
-  data: () => ({
-    valid: false,
-    showPasswordLogin: false,
-    props: {
-      placeholder: "Enter your phone",
-    },
-    data: {
-      name: "",
-      phone: "",
-      email: "",
-      referral: "",
-      password: "",
-      checkbox: false,
-      password_confirmation: "",
-    },
-    msg: "",
-    msgStatus: true,
-    rules: {
-      required: (v) => !!v || "Required.",
-      email: (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
-      phoneVal: (v) =>
-        (v && v.length <= 11) || "Phone must be less than 11 Number",
-      phoneNum: (v) =>
-        Number.isInteger(Number(v)) || "The value must be an integer number",
-      min: (v) => v.length >= 8 || "Min 8 characters",
-    },
-  }),
+  components: {
+    Msg,
+  },
+  data() {
+    return {
+      valid: false,
+      showPasswordLogin: false,
+      props: {
+        placeholder: "Enter your phone",
+      },
+      data: {
+        name: "",
+        phone: "",
+        email: "",
+        referral: "",
+        password: "",
+        checkbox: false,
+        password_confirmation: "",
+      },
+      msg: "",
+      msgStatus: true,
+      rules: {
+        required: (v) => !!v || "Required.",
+        email: (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+        phoneVal: (v) =>
+          (v && v.length <= 11) || "Phone must be less than 11 Number",
+        phoneNum: (v) =>
+          Number.isInteger(Number(v)) || "The value must be an integer number",
+        min: (v) => v.length >= 8 || "Min 8 characters",
+        passwordRules: (value) =>
+          (value && value.length >= 6) || "minimum 6 characters or Number",
+        confirmPasswordRules: (value) =>
+          value === this.data.password ||
+          "The password confirmation does not match.",
+      },
+    };
+  },
   computed: {
-    passwordConfirmationRule() {
-      return () =>
-        this.password === this.password_confirmation || "Password must match";
-    },
+    ...mapGetters(["allAuth"]),
   },
   mounted() {},
   methods: {

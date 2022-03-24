@@ -1,10 +1,12 @@
 
 const state = {
     loading: false,
+    online: false,
     msgPassword: null,
     changePasswordDone: false,
-    msgInfo:null,
-    msgInfoDone:false,
+    msgInfo: null,
+    msgInfoDone: false,
+
 
 };
 
@@ -14,14 +16,7 @@ const getters = {
 
 const actions = {
 
-    async getCategory({ state }) {
-        state.loadingsub = true;
-        state.loading = true;
-        await this.$axios.get("/Category").then((res) => {
-            state.category = res.data.data;
-            state.loading = false;
-        });
-    },
+
 
     changeInfo({ state }, arrayData) {
 

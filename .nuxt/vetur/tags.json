@@ -8,17 +8,8 @@
   "Login": {
     "description": "Auto imported from components/login/login.vue"
   },
-  "Notifications": {
-    "description": "Auto imported from components/notifications/notifications.vue"
-  },
-  "MyEarnings": {
-    "description": "Auto imported from components/myEarnings/myEarnings.vue"
-  },
   "Register": {
     "description": "Auto imported from components/register/register.vue"
-  },
-  "OrdersBoxOrder": {
-    "description": "Auto imported from components/orders/box-order.vue"
   },
   "Orders": {
     "description": "Auto imported from components/orders/index.vue"
@@ -38,11 +29,20 @@
   "IndexVueMobileApp": {
     "description": "Auto imported from components/index/vue/mobileApp.vue"
   },
-  "ServicesVueBoxService": {
-    "description": "Auto imported from components/services/vue/box-service.vue"
+  "Notifications": {
+    "description": "Auto imported from components/notifications/notifications.vue"
   },
-  "ServicesVueShowService": {
-    "description": "Auto imported from components/services/vue/show-service.vue"
+  "MyEarnings": {
+    "description": "Auto imported from components/myEarnings/myEarnings.vue"
+  },
+  "OrdersVueBoxService": {
+    "description": "Auto imported from components/orders/vue/box-service.vue"
+  },
+  "OrdersVueShowService": {
+    "description": "Auto imported from components/orders/vue/show-service.vue"
+  },
+  "RegisterVueMsg": {
+    "description": "Auto imported from components/register/vue/msg.vue"
   },
   "RegisterVueStep1FormRegister": {
     "description": "Auto imported from components/register/vue/step1-formRegister.vue"
@@ -70,6 +70,9 @@
   },
   "RegisterVueStepper": {
     "description": "Auto imported from components/register/vue/stepper.vue"
+  },
+  "UserComplete": {
+    "description": "Auto imported from components/user/vue/user-complete.vue"
   },
   "UserInfo": {
     "description": "Auto imported from components/user/vue/user-info.vue"

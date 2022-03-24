@@ -1,5 +1,6 @@
 <template>
   <div class="user_items">
+    <Complete />
     <v-expansion-panels>
       <v-expansion-panel>
         <v-expansion-panel-header>
@@ -37,6 +38,8 @@
 <script>
 import ChangePassword from './forms/changePassword.vue'
 import ChangeInfo from './forms/changeInfo.vue'
+import Complete from './user-complete.vue'
+
 export default {
   data: () => ({
     date: null,
@@ -50,13 +53,9 @@ export default {
   }),
   components:{
       ChangePassword,
-      ChangeInfo
+      ChangeInfo,
+      Complete
   }
 };
 </script>
-
-<style scoped>
-.user_items{
-        padding: 0px 20px;
-}
-</style>
+ 

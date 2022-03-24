@@ -1,18 +1,20 @@
-//export const namespaces = true
 
+//const code = navigator.userAgent;
 const state = {
   checkAuth: false,
   step: 1,
   stepSub: 1,
   is_active: 0,
+  is_online: 0,
   token: '',
   device: 'website',
-  sessionId: '12345678',
+  sessionId: '1234567',//this.$uuid.v5(navigator.userAgent, '65f9af5d-f23f-4065-ac85-da725569fdcd'),
   user: [],
   register: [],
   loading: false,
   checkUserStatus: false,
   loadingReg: true,
+  errors: [],
 
 };
 
@@ -22,6 +24,19 @@ const getters = {
 };
 
 const actions = {
+  setAuth({ state }, data) {
+
+    state.sessionId = data;
+  },
+
+  changeOnline({ state }) {
+    state.loading = true;
+
+    this.$axios.post("/me/changeStatus", {}).then((res) => {
+      state.is_online = res.data.data.status;
+      state.loading = false;
+    });
+  },
 
   routerTo() {
     if (this.$i18n.locale === "en") {
@@ -56,8 +71,10 @@ const actions = {
   getToken({ app, state, dispatch }) {
     if (state.checkAuth === true) return false;
     const response = this.$axios.$get('/check_token').then((res) => {
+    
       if (res.status === 200) {
         state.token = res.token;
+         
         this.$cookies.set("token", res.token, {
           path: "/",
           maxAge: 365 * 24 * 60 * 60
@@ -84,11 +101,15 @@ const actions = {
 
       } else {
         state.step = res.data.current_step + 1;
-        state.user =res.data;
-      }
-    }).catch(function (error) {
+        state.user = res.data;
+        state.is_online = res.data.is_online
 
-    });
+        state.token = res.token;
+        this.$cookies.set("user", res.data, { path: "/", maxAge: 365 * 24 * 60 * 60 });
+      }
+      }).catch(function (error) {
+
+      });
   },
 
   Login({ app, state, dispatch }, arrayData) {
@@ -99,16 +120,19 @@ const actions = {
     state.loading = true;
     const response = this.$axios.$post('/me/login', data).then((res) => {
       state.loading = false;
-
       if (res.status === 200) {
-
+        
         state.is_active = res.data.is_active;
+        this.$cookies.set("user", res.data, { path: "/", maxAge: 365 * 24 * 60 * 60 });
+
         this.$cookies.set("iA", res.data.is_active, {
           path: "/",
           maxAge: 365 * 24 * 60 * 60,
         });
         // window.location.href = "/";
         dispatch('routerTo');
+      }else{
+          state.errors = res.msg;
       }
       //state.token = res.token;
 
@@ -122,7 +146,11 @@ const actions = {
 
 
 
-  registerStep1({ state }, arrayData) {
+  setNext({ state }) {
+    state.errors = [];
+    state.loading = true;
+  },
+  registerStep1({ state, dispatch }, arrayData) {
     var data = new FormData();
 
     if (state.stepSub === 2)
@@ -137,22 +165,32 @@ const actions = {
     data.append("password", state.register.password);
     data.append("password_confirmation", state.register.password);
 
-    state.loading = true;
+    dispatch('setNext')
     this.$axios.post("/Register/step1", data).then((res) => {
       state.loading = false;
-      if (res.status === 200) {
+
+
+      if (res.data.status === 200) {
         if (state.stepSub === 1)
           state.stepSub = 2;
         else
           state.step = 2;
       }
+      else {
+        if (state.stepSub === 1)
+          state.errors = res.data.errors;
+        else
+          state.errors = res.data.msg;
+      }
+
+
+
     }).catch((error) => {
       state.loading = false;
     });
   },
 
   registerStep2({ state }, arrayData) {
-    console.log('arrayData ...', arrayData)
     var data = new FormData();
     state.register = arrayData;
 
@@ -164,7 +202,7 @@ const actions = {
     state.loading = true;
     this.$axios.post("/Register/step2", data).then((res) => {
       state.loading = false;
-      if (res.status === 200) {
+      if (res.data.status === 200) {
 
         state.step = 3;
       }
@@ -186,8 +224,11 @@ const actions = {
     }
     state.loading = true;
     this.$axios.post("/Register/step3", data).then((res) => {
-      state.loading = false;
-      state.step = 4;
+      if (res.data.status === 200) {
+        state.loading = false;
+        state.step = 4;
+      }
+
     }).catch((error) => {
       state.loading = false;
     });

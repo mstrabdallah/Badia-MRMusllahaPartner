@@ -7,7 +7,6 @@
         <div class="form">
           <v-form
             ref="form"
-            @submit="Step1Function"
             v-model="valid"
             lazy-validation
           >
@@ -32,9 +31,7 @@
               </v-snackbar>
             </div>
 
-            <div class="msg" v-if="msg">
-              <p>{{ $t(msg) }}</p>
-            </div>
+          <Msg />
             <div class="form_footer">
               <v-btn
                 :disabled="!valid"
@@ -42,6 +39,7 @@
                 class="sub"
                 @click="Step1Function"
                 :loading="this.$store.state.auth.loading"
+                type="submit"
               >
                 {{ $t("Next") }}
               </v-btn>
@@ -54,8 +52,12 @@
  
  
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
+import Msg from "./msg.vue";
 export default {
+  components:{
+    Msg
+  },
   data: () => ({
     snackbar: false,
     snackbarColor: "default",
