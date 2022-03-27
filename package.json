@@ -21,7 +21,6 @@
     "vue": "^2.6.14",
     "vue-phone-number-input": "^1.1.12",
     "vue-server-renderer": "^2.6.14",
-    "vue-sessionstorage": "^1.0.0",
     "vue-template-compiler": "^2.6.14",
     "vue-uuid": "^2.1.0",
     "vuex": "^3.4.0",

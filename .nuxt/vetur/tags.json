@@ -8,23 +8,23 @@
   "MyEarnings": {
     "description": "Auto imported from components/myEarnings/myEarnings.vue"
   },
-  "Register": {
-    "description": "Auto imported from components/register/register.vue"
-  },
-  "Notifications": {
-    "description": "Auto imported from components/notifications/notifications.vue"
-  },
-  "Orders": {
-    "description": "Auto imported from components/orders/orders.vue"
-  },
-  "ToolsLoadingP": {
-    "description": "Auto imported from components/tools/loadingP.vue"
-  },
   "LoginForgotPassword": {
     "description": "Auto imported from components/login/forgot-password.vue"
   },
   "Login": {
     "description": "Auto imported from components/login/login.vue"
+  },
+  "Orders": {
+    "description": "Auto imported from components/orders/orders.vue"
+  },
+  "Register": {
+    "description": "Auto imported from components/register/register.vue"
+  },
+  "ToolsLoadingP": {
+    "description": "Auto imported from components/tools/loadingP.vue"
+  },
+  "Notifications": {
+    "description": "Auto imported from components/notifications/notifications.vue"
   },
   "User": {
     "description": "Auto imported from components/user/user.vue"
@@ -40,6 +40,15 @@
   },
   "IndexVueMobileApp": {
     "description": "Auto imported from components/index/vue/mobileApp.vue"
+  },
+  "OrdersToolsMsg": {
+    "description": "Auto imported from components/orders/tools/msg.vue"
+  },
+  "OrdersVueBoxService": {
+    "description": "Auto imported from components/orders/vue/box-service.vue"
+  },
+  "OrdersVueShowService": {
+    "description": "Auto imported from components/orders/vue/show-service.vue"
   },
   "RegisterVueMsg": {
     "description": "Auto imported from components/register/vue/msg.vue"
@@ -70,15 +79,6 @@
   },
   "RegisterVueStepper": {
     "description": "Auto imported from components/register/vue/stepper.vue"
-  },
-  "OrdersToolsMsg": {
-    "description": "Auto imported from components/orders/tools/msg.vue"
-  },
-  "OrdersVueBoxService": {
-    "description": "Auto imported from components/orders/vue/box-service.vue"
-  },
-  "OrdersVueShowService": {
-    "description": "Auto imported from components/orders/vue/show-service.vue"
   },
   "UserComplete": {
     "description": "Auto imported from components/user/vue/user-complete.vue"

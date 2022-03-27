@@ -93,12 +93,12 @@
               </template>
               <v-list>
                 <v-list-item>
-                  <a :href="switchLocalePath('ar')">
+                  <a @click="changeLanguage('ar')">
                     <img width="24px" src="/saflag.png" />
                   </a>
                 </v-list-item>
                 <v-list-item>
-                  <a :href="switchLocalePath('en')">
+                  <a @click="changeLanguage('en')" >
                     <img width="24px" src="/usflag.png" />
                   </a>
                 </v-list-item>
@@ -131,7 +131,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(["Logout"]),
+    ...mapActions(["Logout","changeLanguage"]),
     handleClick(index) {
       this.items[index].click.call(this);
     },

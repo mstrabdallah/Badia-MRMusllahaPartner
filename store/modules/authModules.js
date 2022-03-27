@@ -2,13 +2,13 @@
 //const code = navigator.userAgent;
 const state = {
   checkAuth: false,
-  step: 4,
-  stepSub:1,
+  step: 1,
+  stepSub: 1,
   is_active: 0,
   is_online: 0,
   token: null,
   device: 'website',
-  sessionId: '1234567',//this.$uuid.v5(navigator.userAgent, '65f9af5d-f23f-4065-ac85-da725569fdcd'),
+  sessionId: '',
   user: [],
   register: [],
   loading: false,
@@ -26,10 +26,28 @@ const getters = {
 };
 
 const actions = {
-  setAuth({ state }, data) {
 
-    state.sessionId = data;
+  async setApi({ state, dispatch }, data) {
+
+    await this.$axios.setHeader('session-id', data)
+    await this.$axios.setHeader('device', state.device)
+    await this.$axios.setHeader('lang',this.$i18n.locale)
+    if (this.$cookies.get("token")) await this.$axios.setHeader('token',this.$cookies.get("token"))
+    if (!this.$cookies.get("token")) await dispatch('getToken')
+
+
+    //sId = session-id  -- for check if user agent changed
+    if (!this.$cookies.get("sId")) this.$cookies.set("sId", data, { path: "/", maxAge: 365 * 24 * 60 * 60 });
+    if (this.$cookies.get("sId") != data) alert('a7a')
+
+    // get api when open site first time
+
+    dispatch('getMe')
+ 
+    
   },
+
+
 
   changeOnline({ state }) {
     state.loading = true;
@@ -57,15 +75,15 @@ const actions = {
       window.location.href = "/ar";
     }
   },
- 
-  getToken({ app, state, dispatch }) {
+
+ async getToken({ app, state, dispatch }) {
     if (state.checkAuth === true) return false;
-    const response = this.$axios.$get('/check_token').then((res) => {
-    
+    const response = await this.$axios.$get('/check_token').then((res) => {
+
       if (res.status === 200) {
         state.token = res.token;
-         
-        this.$axios.setHeader('token',res.token)
+
+        this.$axios.setHeader('token', res.token)
 
         this.$cookies.set("token", res.token, {
           path: "/",
@@ -99,16 +117,14 @@ const actions = {
         state.token = res.token;
         this.$cookies.set("user", res.data, { path: "/", maxAge: 365 * 24 * 60 * 60 });
       }
-      }).catch(function (error) {
+    }).catch(function (error) {
 
-      });
+    });
   },
 
- async Login({ app, state, dispatch }, arrayData) {
+  async Login({ app, state, dispatch }, arrayData) {
 
- // const currentToken = await this.$fire.messaging.getToken()
-  const currentToken =' await this.$fire.messaging.getToken()'
- // alert(2)
+    const currentToken = await this.$fire.messaging.getToken()
     var data = new FormData();
     data.append("phone_number", arrayData.phone_number.replace(/\s/g, ''));
     data.append("password", arrayData.password);
@@ -118,7 +134,7 @@ const actions = {
     const response = this.$axios.$post('/me/login', data).then((res) => {
       state.loading = false;
       if (res.status === 200) {
-        
+
         state.is_active = res.data.is_active;
         this.$cookies.set("user", res.data, { path: "/", maxAge: 365 * 24 * 60 * 60 });
 
@@ -126,12 +142,10 @@ const actions = {
           path: "/",
           maxAge: 365 * 24 * 60 * 60,
         });
-        // window.location.href = "/";
         dispatch('routerTo');
-      }else{
-          state.errors = res.msg;
+      } else {
+        state.errors = res.msg;
       }
-      //state.token = res.token;
 
     }).catch(function (error) {
       // if (error.response.status === 401) {
@@ -144,10 +158,10 @@ const actions = {
 
   forgotPassword({ state }, arrayData) {
 
-    if(arrayData.phone_number === null){
-       alert(this.$i18n.t('Enter Your Phone'))
-       return false
-      }
+    if (arrayData.phone_number === null) {
+      alert(this.$i18n.t('Enter Your Phone'))
+      return false
+    }
     var data = new FormData();
     data.append("phone_number", arrayData.phone_number.replace(/\s/g, ''));
     data.append("verification_code", arrayData.verification_code);
@@ -158,24 +172,24 @@ const actions = {
 
     var Url = '/me/forget/forgetPassword';
     if (state.forgotStep === 2)
-        Url = '/me/forget/verifyCode'
+      Url = '/me/forget/verifyCode'
     else if (state.forgotStep === 3)
-        Url = '/me/forget/changePassword'
+      Url = '/me/forget/changePassword'
 
     this.$axios.post(Url, data).then((res) => {
-        state.loading = false;
+      state.loading = false;
 
-        if (res.data.status == 200) {
-            if (state.forgotStep === 1) state.forgotStep = 2;
-            else if (state.forgotStep === 2) state.forgotStep = 3;
-            else if (state.forgotStep === 3) state.forgotStep = 4;
-        } else {
-          state.errors = res.data.msg;
-        }
+      if (res.data.status == 200) {
+        if (state.forgotStep === 1) state.forgotStep = 2;
+        else if (state.forgotStep === 2) state.forgotStep = 3;
+        else if (state.forgotStep === 3) state.forgotStep = 4;
+      } else {
+        state.errors = res.data.msg;
+      }
     }).catch((error) => {
-        state.loading = false;
+      state.loading = false;
     });
-},
+  },
 
   setNext({ state }) {
     state.errors = [];
@@ -198,7 +212,7 @@ const actions = {
     data.append("password", state.register.password);
     data.append("password_confirmation", state.register.password);
     data.append("code", state.register.code);
-    
+
     data.append("fcm", currentToken);
 
     dispatch('setNext')
@@ -226,7 +240,7 @@ const actions = {
     });
   },
 
-  registerStep2({ state,dispatch }, arrayData) {
+  registerStep2({ state, dispatch }, arrayData) {
     var data = new FormData();
     state.register = arrayData;
 

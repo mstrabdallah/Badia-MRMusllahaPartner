@@ -3,168 +3,144 @@
     "name": "about___en",
     "path": "/about",
     "component": "/Users/abdallahthabet/Documents/musallaha-partner-website/pages/about.vue",
-    "chunkName": "pages/about",
-    "_name": "_14c0bb3b"
+    "chunkName": "pages/about"
   },
   {
     "name": "account___en",
     "path": "/account",
     "component": "/Users/abdallahthabet/Documents/musallaha-partner-website/pages/account/index.vue",
-    "chunkName": "pages/account/index",
-    "_name": "_138cda9e"
+    "chunkName": "pages/account/index"
   },
   {
     "name": "index___ar",
     "path": "/ar",
     "component": "/Users/abdallahthabet/Documents/musallaha-partner-website/pages/index.vue",
-    "chunkName": "pages/index",
-    "_name": "_34789600"
+    "chunkName": "pages/index"
   },
   {
     "name": "forgot-password___en",
     "path": "/forgot-password",
     "component": "/Users/abdallahthabet/Documents/musallaha-partner-website/pages/forgot-password.vue",
-    "chunkName": "pages/forgot-password",
-    "_name": "_05d06b9a"
+    "chunkName": "pages/forgot-password"
   },
   {
     "name": "login___en",
     "path": "/login",
     "component": "/Users/abdallahthabet/Documents/musallaha-partner-website/pages/login.vue",
-    "chunkName": "pages/login",
-    "_name": "_03bf8dd2"
+    "chunkName": "pages/login"
   },
   {
     "name": "my-earnings___en",
     "path": "/my-earnings",
     "component": "/Users/abdallahthabet/Documents/musallaha-partner-website/pages/my-earnings.vue",
-    "chunkName": "pages/my-earnings",
-    "_name": "_5389ec58"
+    "chunkName": "pages/my-earnings"
   },
   {
     "name": "my-work___en",
     "path": "/my-work",
     "component": "/Users/abdallahthabet/Documents/musallaha-partner-website/pages/my-work/index.vue",
-    "chunkName": "pages/my-work/index",
-    "_name": "_b747467a"
+    "chunkName": "pages/my-work/index"
   },
   {
     "name": "notifications___en",
     "path": "/notifications",
     "component": "/Users/abdallahthabet/Documents/musallaha-partner-website/pages/notifications.vue",
-    "chunkName": "pages/notifications",
-    "_name": "_6a2bddd4"
+    "chunkName": "pages/notifications"
   },
   {
     "name": "privcy-policy___en",
     "path": "/privcy-policy",
     "component": "/Users/abdallahthabet/Documents/musallaha-partner-website/pages/privcy-policy.vue",
-    "chunkName": "pages/privcy-policy",
-    "_name": "_46e177c8"
+    "chunkName": "pages/privcy-policy"
   },
   {
     "name": "register___en",
     "path": "/register",
     "component": "/Users/abdallahthabet/Documents/musallaha-partner-website/pages/register.vue",
-    "chunkName": "pages/register",
-    "_name": "_b3b69736"
+    "chunkName": "pages/register"
   },
   {
     "name": "terms-condition___en",
     "path": "/terms-condition",
     "component": "/Users/abdallahthabet/Documents/musallaha-partner-website/pages/terms-condition.vue",
-    "chunkName": "pages/terms-condition",
-    "_name": "_43f2e6fa"
+    "chunkName": "pages/terms-condition"
   },
   {
     "name": "test___en",
     "path": "/test",
     "component": "/Users/abdallahthabet/Documents/musallaha-partner-website/pages/test.vue",
-    "chunkName": "pages/test",
-    "_name": "_74811fd4"
+    "chunkName": "pages/test"
   },
   {
     "name": "about___ar",
     "path": "/ar/about",
     "component": "/Users/abdallahthabet/Documents/musallaha-partner-website/pages/about.vue",
-    "chunkName": "pages/about",
-    "_name": "_14c0bb3b"
+    "chunkName": "pages/about"
   },
   {
     "name": "account___ar",
     "path": "/ar/account",
     "component": "/Users/abdallahthabet/Documents/musallaha-partner-website/pages/account/index.vue",
-    "chunkName": "pages/account/index",
-    "_name": "_138cda9e"
+    "chunkName": "pages/account/index"
   },
   {
     "name": "forgot-password___ar",
     "path": "/ar/forgot-password",
     "component": "/Users/abdallahthabet/Documents/musallaha-partner-website/pages/forgot-password.vue",
-    "chunkName": "pages/forgot-password",
-    "_name": "_05d06b9a"
+    "chunkName": "pages/forgot-password"
   },
   {
     "name": "login___ar",
     "path": "/ar/login",
     "component": "/Users/abdallahthabet/Documents/musallaha-partner-website/pages/login.vue",
-    "chunkName": "pages/login",
-    "_name": "_03bf8dd2"
+    "chunkName": "pages/login"
   },
   {
     "name": "my-earnings___ar",
     "path": "/ar/my-earnings",
     "component": "/Users/abdallahthabet/Documents/musallaha-partner-website/pages/my-earnings.vue",
-    "chunkName": "pages/my-earnings",
-    "_name": "_5389ec58"
+    "chunkName": "pages/my-earnings"
   },
   {
     "name": "my-work___ar",
     "path": "/ar/my-work",
     "component": "/Users/abdallahthabet/Documents/musallaha-partner-website/pages/my-work/index.vue",
-    "chunkName": "pages/my-work/index",
-    "_name": "_b747467a"
+    "chunkName": "pages/my-work/index"
   },
   {
     "name": "notifications___ar",
     "path": "/ar/notifications",
     "component": "/Users/abdallahthabet/Documents/musallaha-partner-website/pages/notifications.vue",
-    "chunkName": "pages/notifications",
-    "_name": "_6a2bddd4"
+    "chunkName": "pages/notifications"
   },
   {
     "name": "privcy-policy___ar",
     "path": "/ar/privcy-policy",
     "component": "/Users/abdallahthabet/Documents/musallaha-partner-website/pages/privcy-policy.vue",
-    "chunkName": "pages/privcy-policy",
-    "_name": "_46e177c8"
+    "chunkName": "pages/privcy-policy"
   },
   {
     "name": "register___ar",
     "path": "/ar/register",
     "component": "/Users/abdallahthabet/Documents/musallaha-partner-website/pages/register.vue",
-    "chunkName": "pages/register",
-    "_name": "_b3b69736"
+    "chunkName": "pages/register"
   },
   {
     "name": "terms-condition___ar",
     "path": "/ar/terms-condition",
     "component": "/Users/abdallahthabet/Documents/musallaha-partner-website/pages/terms-condition.vue",
-    "chunkName": "pages/terms-condition",
-    "_name": "_43f2e6fa"
+    "chunkName": "pages/terms-condition"
   },
   {
     "name": "test___ar",
     "path": "/ar/test",
     "component": "/Users/abdallahthabet/Documents/musallaha-partner-website/pages/test.vue",
-    "chunkName": "pages/test",
-    "_name": "_74811fd4"
+    "chunkName": "pages/test"
   },
   {
     "name": "index___en",
     "path": "/",
     "component": "/Users/abdallahthabet/Documents/musallaha-partner-website/pages/index.vue",
-    "chunkName": "pages/index",
-    "_name": "_34789600"
+    "chunkName": "pages/index"
   }
 ]

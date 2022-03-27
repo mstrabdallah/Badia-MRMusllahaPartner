@@ -104,7 +104,6 @@ export default {
 
     LoginFunction(e) {
       e.preventDefault();
-      alert(this.$refs.form.validate())
       if (this.$refs.form.validate() === false) return false;
       this.Login(this.data);
     },

@@ -25,23 +25,23 @@ export default {
     Footer,
     HeaderTop,
   },
-  async mounted() {
- 
-    this.$fire.messaging.onMessage((payload) => {
-    this.getOrderPending();
-  })
+
+  async beforeCreate() {
     this.$vuetify.rtl = this.$i18n.locale === "ar" ? true : false;
+    
+  },
 
-console.log('navigator',uuid.v5(navigator.userAgent, "65f9af5d-f23f-4065-ac85-da725569fdcd"))
-    this.setAuth(uuid.v5(navigator.userAgent, "65f9af5d-f23f-4065-ac85-da725569fdcd"));
+  async mounted() {
+    this.$fire.messaging.onMessage((payload) => {
+      this.getOrderPending();
+    });
 
-    if (!this.$cookies.get("token")) {
-      this.getToken();
-    }
-    this.getMe();
+    await this.setApi(uuid.v5(navigator.userAgent, "65f9af5d-f23f-4065-ac85-da725569fdcd"));
+
+   
   },
   methods: {
-    ...mapActions(["getToken", "getMe", "setAuth","getOrderPending"]),
+    ...mapActions(["getToken", "setApi", "getOrderPending"]),
   },
 };
 </script>
@@ -97,12 +97,12 @@ img {
   margin-top: 70px;
   min-height: calc(100vh - 190px);
 }
-.page_h{
-    min-height: calc(100vh - 190px);
+.page_h {
+  min-height: calc(100vh - 190px);
 }
- 
-.title_page{
-      padding: 20px 0px;
+
+.title_page {
+  padding: 20px 0px;
 }
 
 .span_color {
@@ -191,37 +191,41 @@ p {
 .v-navigation-drawer {
   position: fixed;
 }
-.v-otp-input{
+.v-otp-input {
   direction: ltr;
 }
 /* plugins */
 
-.vue-phone-number-input{
-   
+ 
+.country-selector__input:lang(ar) {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+        border-top-left-radius: 0!important;
+    border-bottom-left-radius: 0!important;
 }
-.country-selector__input:lang(ar){
-      border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
-}
-.input-tel__input:lang(ar){
+.input-tel__input:lang(ar) {
   direction: ltr;
-      border-top-left-radius: 4px!important;
-    border-bottom-left-radius: 4px!important;
+    border-top-left-radius: 4px !important;
+  border-bottom-left-radius: 4px !important;
+      border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
 
 }
-.input-tel__label:lang(ar){
+.input-tel__label:lang(ar) {
   right: 13px;
   left: auto;
 }
-.input-tel__clear:lang(ar){
-    left: 8px;
-    right: auto;
+.input-tel__clear:lang(ar) {
+  left: 8px;
+  right: auto;
 }
-.input-tel input,.country-selector__label{
+.input-tel input,
+.country-selector__label {
   font-family: "Almarai", sans-serif;
 }
-.country-selector__label,.input-tel input:lang(ar){
-    text-align: right;
+.country-selector__label,
+.input-tel input:lang(ar) {
+  text-align: right;
 }
 /* fa */
 .fa {

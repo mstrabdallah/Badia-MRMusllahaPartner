@@ -38,11 +38,10 @@ export default {
   data: () => ({}),
 
   mounted() {
-    this.getMe();
   },
   methods: {
-    ...mapActions(["getMe"]),
-  },
+
+},
   components: {
     Stepper,
   },

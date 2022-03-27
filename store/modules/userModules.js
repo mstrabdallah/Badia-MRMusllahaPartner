@@ -16,7 +16,10 @@ const getters = {
 
 const actions = {
 
-
+    async changeLanguage({ state},data){
+        await this.$cookies.set("lang", data, { path: "/", maxAge: 365 * 24 * 60 * 60 });
+        location.reload();
+      },
 
     changeInfo({ state }, arrayData) {
 

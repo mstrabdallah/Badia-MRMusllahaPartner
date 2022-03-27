@@ -1,22 +1,15 @@
-import { v5 as uuidv5 } from "uuid";
 
 export default function ({ route, store, redirect, app, i18n }) {
 
   // check cookie
 
-  //console.log(authId)
  
    const user = app.$cookies.get('user');
 
-  // console.log('-----navigator-----',uuidv5(navigator.userAgent, "65f9af5d-f23f-4065-ac85-da725569fdcd"))
-  // console.log('-----navigator-----',app.$uuid.v5(navigator.userAgent, "65f9af5d-f23f-4065-ac85-da725569fdcd"))
+   //set lang
+   
+   if(app.$cookies.get('lang')) i18n.setLocale(app.$cookies.get('lang'))
 
-
-  if (app.$cookies.get('token')) {
-    store.state.auth.token = app.$cookies.get('token');
-
-
-  }
   if (app.$cookies.get('iA') === 1) {
     store.state.auth.user      = user;
     store.state.auth.is_online = user.is_online;
