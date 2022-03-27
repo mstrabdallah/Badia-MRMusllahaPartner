@@ -1,7 +1,6 @@
 <template>
   <div class="app">
     <v-app>
-      <HeaderTop />
       <Header />
       <div class="pages">
         <Nuxt />
@@ -26,9 +25,14 @@ export default {
     Footer,
     HeaderTop,
   },
-  mounted() {
+  async mounted() {
+ 
+    this.$fire.messaging.onMessage((payload) => {
+    this.getOrderPending();
+  })
     this.$vuetify.rtl = this.$i18n.locale === "ar" ? true : false;
 
+console.log('navigator',uuid.v5(navigator.userAgent, "65f9af5d-f23f-4065-ac85-da725569fdcd"))
     this.setAuth(uuid.v5(navigator.userAgent, "65f9af5d-f23f-4065-ac85-da725569fdcd"));
 
     if (!this.$cookies.get("token")) {
@@ -37,7 +41,7 @@ export default {
     this.getMe();
   },
   methods: {
-    ...mapActions(["getToken", "getMe", "setAuth"]),
+    ...mapActions(["getToken", "getMe", "setAuth","getOrderPending"]),
   },
 };
 </script>
@@ -87,12 +91,16 @@ img {
 /* body of pages */
 .pages {
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 .page {
   margin-top: 70px;
   min-height: calc(100vh - 190px);
 }
-
+.page_h{
+    min-height: calc(100vh - 190px);
+}
+ 
 .title_page{
       padding: 20px 0px;
 }
@@ -182,6 +190,38 @@ p {
 
 .v-navigation-drawer {
   position: fixed;
+}
+.v-otp-input{
+  direction: ltr;
+}
+/* plugins */
+
+.vue-phone-number-input{
+   
+}
+.country-selector__input:lang(ar){
+      border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+.input-tel__input:lang(ar){
+  direction: ltr;
+      border-top-left-radius: 4px!important;
+    border-bottom-left-radius: 4px!important;
+
+}
+.input-tel__label:lang(ar){
+  right: 13px;
+  left: auto;
+}
+.input-tel__clear:lang(ar){
+    left: 8px;
+    right: auto;
+}
+.input-tel input,.country-selector__label{
+  font-family: "Almarai", sans-serif;
+}
+.country-selector__label,.input-tel input:lang(ar){
+    text-align: right;
 }
 /* fa */
 .fa {

@@ -1,15 +1,11 @@
 <template>
   <div class="form_register">
     <h3 class="mb-5">
-      {{ $t("Categories") }}
+      {{ $t("Choose Categories") }}
     </h3>
 
     <div class="form">
-      <v-form
-        ref="form"
-        v-model="valid"
-        lazy-validation
-      >
+      <v-form ref="form" v-model="valid" lazy-validation>
         <div class="form_body">
           <div v-if="allCategory.loading">
             <v-progress-circular
@@ -24,9 +20,10 @@
               :items="allCategory.category"
               item-text="name"
               item-value="id"
-              label="Categories"
+              :label="$t('Main Category')"
               @change="changeCategory"
               v-model="data.category_id"
+              :rules="[this.$rules.required]"
               dense
               outlined
             ></v-select>
@@ -40,7 +37,8 @@
                   item-value="id"
                   chips
                   class="mt-2"
-                  label="sub category"
+                  :label="$t('Cub Category')"
+                  :rules="[this.$rules.required]"
                   multiple
                   dense
                   outlined
@@ -64,7 +62,7 @@
           class="sub"
           @click="Step3Function"
           type="submit"
-          :loading="this.$store.state.auth.loading"
+          :loading="allCategory.loading"
         >
           {{ $t("Next") }}
         </v-btn>
@@ -94,14 +92,19 @@ export default {
     },
   }),
   mounted() {
-    if (this.$store.state.auth.step === 3) this.getCategory();
+    if(this.allAuth.step === 3) this.getCategory()
   },
+
   computed: {
-    ...mapGetters(["allCategory"]),
+    ...mapGetters(["allCategory", "allAuth"]),
   },
+
   methods: {
     ...mapActions(["registerStep3", "getCategory", "getCategorySub"]),
 
+    fun() {
+      alert();
+    },
     Step3Function(e) {
       e.preventDefault();
       if (this.$refs.form.validate() === false) return false;

@@ -1,5 +1,5 @@
 <template>
-  <section class="container_cc mob">
+  <section id="mobileApp" class="container_cc mob">
     <div class="mob_body">
       <template>
         <v-container>
@@ -12,15 +12,11 @@
               </div>
             </v-col>
             <v-col cols="12" md="6">
- 
               <div class="mob_des">
                 <h3>
-                  We are the ideal platform to have a range of services at your
-                  doorstep.
+                  {{ $t("sections_m_t") }}
                 </h3>
-                <p>
-                  Use our mobile app <br />For reference and get free service
-                </p>
+                <p v-html="$t('sections_m_p')"></p>
 
                 <div class="but_download">
                   <a
@@ -76,6 +72,12 @@ p {
   line-height: 35px;
   margin-top: 40px;
   margin-left: 20px;
+}
+p:lang(ar) {
+  border-right: 1px solid #dfb754;
+  border-left: none;
+  padding-right: 12px;
+  margin-right: 20px;
 }
 
 .but_download {

@@ -1,158 +1,116 @@
 <template>
-    <footer class="footer-14398">
-        <div class="container">
-            <div class="row mb-1">
-                <div class="col-md-6">
-                    <a href="#" class="footer-site-logo">
-                        <div class="img-logo">
-                            <img src="http://localhost:3000/logo.svg" alt="">
-                        </div>
-                    </a>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit officiis corporis optio natus. </p>
-                </div>
-                <div class="col-md-2 mr-auto footer-menu">
-                    <h3>Shop</h3>
-                    <ul class="list-unstyled links">
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">Clients</a></li>
-                        <li><a href="#">Features</a></li>
-                        <li><a href="#">Manassat</a></li>
-                        <li><a href="#">Online retail</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-4 mr-auto footer-menu">
-                    <h3>Press</h3>
-                    <ul class="list-unstyled links">
-                        <li><a href="#">Events</a></li>
-                        <li><a href="#">News</a></li>
-                        <li><a href="#">Awards</a></li>
-                        <li><a href="#">Testimonials</a></li>
-                        <li><a href="#">Online retail</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="row mb-4">
-                
-         
-                <div class="col-md-12 text-md-right text-center">
-                    <ul class="list-unstyled link-menu nav-left">
-                        <li>Copyright © 2000-2022 Badia Inc. All Rights Reserved.</li>
-                        
-                    </ul>
-                </div>
-            </div>
+  <footer class="mt-5">
+    <v-row class="my-2">
+      <v-col cols="12" md="6" class="footer_info">
+        <div class="img-logo">
+          <a href="#">
+            <img src="http://localhost:3000/logo.svg" alt="" />
+          </a>
         </div>
-    </footer>
+
+        <p class="p1" v-html="$t('headp1')"></p>
+      </v-col>
+      <v-col cols="12" md="3">
+        <div class="links_heading_p">
+          <div class="links">
+            <h2 class="links_heading">{{ $t("Other pages") }}</h2>
+            <nuxt-link to="">{{ $t("Terms and conditions") }}</nuxt-link>
+            <nuxt-link to="">{{ $t("Privacy Policy") }}</nuxt-link>
+            <nuxt-link to="">{{ $t("About mr.musllaha") }}</nuxt-link>
+          </div>
+        </div>
+      </v-col>
+      <v-col cols="12" md="3">
+        <div class="links_heading_p">
+          <h2 class="links_heading">{{ $t("Quick links") }}</h2>
+          <div class="links">
+            <nuxt-link to="/login">{{ $t("Login") }}</nuxt-link>
+            <nuxt-link to="/register">{{ $t("Create Account") }}</nuxt-link>
+          </div>
+        </div>
+      </v-col>
+    </v-row>
+
+    <v-row class="my-3 social">
+      <ul>
+        <li class="mx-2" v-for="icon in icons" :key="icon">
+          <v-icon size="24px">{{ icon }}</v-icon>
+        </li>
+      </ul>
+    </v-row>
+    <v-divider></v-divider>
+
+    <p class="my-2 copy">
+      {{ $t("All copy rights reserved to mrmusllaha © 2022.") }}
+    </p>
+  </footer>
 </template>
+<script>
+export default {
+  data: () => ({
+    icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
+  }),
+};
+</script>
 
-<style lang="scss" scoped >
-
-
-a {
-	transition: .3s all ease;
-	&, &:hover {
-		text-decoration: none!important;
-	}
+<style scoped>
+footer {
+  background: #f6f6f6;
+  border-top: 1px solid #efefef;
 }
-.list-unstyled{
-		list-style: none;
+footer .footer_info,
+footer ul,
+footer .social,
+footer .copy {
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
-.v-application ul, .v-application ol{
-	padding-left: 0px;
+.footer_info {
+  flex-direction: column;
 }
-.footer-menu{
-	text-align: end;
+footer .img-logo {
+  width: 100%;
 }
-.footer-14398 {
-    padding: 3rem 0 1rem;
-    background: #f6f6f6;
-    color: #444;
-    border-top: 1px solid #efefef;
-	.footer-site-logo {
-		color: white;
-		font-size: 26px;
-		font-weight: bold;
-		margin-bottom: 30px;
-		display: block;
-	}
-	h3 {
-		    color: #30c88c;
-		font-size: 16px;
-		margin-bottom: 20px;
-	}
-    .img-logo{
-        width: 150px;
-        height: 80px;
-        img{
-            position: relative;
-            height: 100%;
-            width: 100%;
-        }
-    }
-	.links {
-		li {
-			margin-bottom: 10px;
-			a {
-				color: #444;
-				&:hover {
-					    color: #30c88c;
-				}
-			}
-		}
-	}
-	.link-menu {
-		li {
-			display: inline-block;
-			a {
-				color: #555;
-				display: inline-block;
-				padding: 10px;
-			}
-		}
-		&.nav-left {
-			li {
-				&:first-child {
-					a {
-						padding-left: 0;
-					}	
-				}
-			}
-		}
-		&.nav-right {
-			li {
-				&:last-child {
-					a {
-						padding-left: 0;
-					}	
-				}
-			}
-		}
-		
-	}
-	.social {
-		li {
-			display: inline-block;
-			a {
-				display: inline-block;
-				padding: 10px;
-				color: #ffffff;
-			}
-			&:last-child {
-				a {
-					padding-right: 0;
-				}
-			}
-		}
-	}
-	.social a:hover {
-		
-			color: #c1804c;
-		
-	}
-	.line {
-		border-top: 1px solid rgba(white, .2);
-	}
+footer .img-logo a {
+  display: block;
+  text-align: center;
 }
-
-
+footer .img-logo img {
+  max-width: 100px;
+}
+footer .p1 {
+  width: 60%;
+  margin: 5px auto;
+  text-align: center;
+  font-size: 15px !important;
+}
+footer .links_heading {
+  margin-bottom: 15px;
+}
+footer .links a {
+  display: block;
+  font-size: 14px;
+  margin-top: 5px;
+  transition: 0.3s all ease;
+  line-height: 30px;
+}
+footer .links a:hover {
+  color: #30c88c;
+}
+footer .social ul li .v-icon {
+  cursor: pointer;
+  transition: 0.3s all ease;
+  color: #30c88c;
+}
+footer .social ul li .v-icon:hover {
+  color: #444;
+}
+@media (max-width: 959px) {
+  .links_heading_p {
+    text-align: center;
+    border: 1px solid #eaeaea;
+    padding: 12px;
+  }
+}
 </style>

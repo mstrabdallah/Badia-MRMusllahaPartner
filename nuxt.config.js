@@ -1,3 +1,4 @@
+const fs = require('fs')
 
 const env = require('dotenv').config()
 export default {
@@ -43,11 +44,13 @@ export default {
     '~/plugins/vuetify.js',
     '~/plugins/fontawesome.js',
     '~/plugins/VuePhoneNumberInput.js',
+    '~/plugins/validation-rules.js',
+    
   ],
 
 
   router: {
-    middleware: ['auth'],
+    middleware: ['auth','settingsRouter'],
   },
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -78,7 +81,27 @@ export default {
     'cookie-universal-nuxt',
     '@nuxtjs/dotenv',
     '@nuxt/image',
- 
+    [
+    '@nuxtjs/firebase',
+    {
+      config: {
+        apiKey: "AIzaSyDXbTa3UZqb6IJgRjm9E665dgblRriSvPw",
+        authDomain: "mstare-musallha.firebaseapp.com",
+        projectId: "mstare-musallha",
+        storageBucket: "mstare-musallha.appspot.com",
+        messagingSenderId: "843576382095",
+        appId: "1:843576382095:web:89f0d188aa0cb7250a96fa"
+      },
+      onFirebaseHosting: false,
+      services: {
+        messaging: {
+          createServiceWorker: true,
+          fcmPublicVapidKey: 'BIY1eVUiXdLL3mnaqdjmWLM3OLFCB-hIV784pNey6i0t4HSpTIuchVBRJll--IIU9MwpaF-885K_5xL-22V4vRI',
+          inject: fs.readFileSync('./serviceWorker.js')
+        }
+      }
+    }
+  ],
   ],
 
 

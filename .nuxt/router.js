@@ -7,11 +7,14 @@ import scrollBehavior from './router.scrollBehavior.js'
 const _14c0bb3b = () => interopDefault(import('../pages/about.vue' /* webpackChunkName: "pages/about" */))
 const _138cda9e = () => interopDefault(import('../pages/account/index.vue' /* webpackChunkName: "pages/account/index" */))
 const _34789600 = () => interopDefault(import('../pages/index.vue' /* webpackChunkName: "pages/index" */))
+const _05d06b9a = () => interopDefault(import('../pages/forgot-password.vue' /* webpackChunkName: "pages/forgot-password" */))
 const _03bf8dd2 = () => interopDefault(import('../pages/login.vue' /* webpackChunkName: "pages/login" */))
 const _5389ec58 = () => interopDefault(import('../pages/my-earnings.vue' /* webpackChunkName: "pages/my-earnings" */))
 const _b747467a = () => interopDefault(import('../pages/my-work/index.vue' /* webpackChunkName: "pages/my-work/index" */))
 const _6a2bddd4 = () => interopDefault(import('../pages/notifications.vue' /* webpackChunkName: "pages/notifications" */))
+const _46e177c8 = () => interopDefault(import('../pages/privcy-policy.vue' /* webpackChunkName: "pages/privcy-policy" */))
 const _b3b69736 = () => interopDefault(import('../pages/register.vue' /* webpackChunkName: "pages/register" */))
+const _43f2e6fa = () => interopDefault(import('../pages/terms-condition.vue' /* webpackChunkName: "pages/terms-condition" */))
 const _74811fd4 = () => interopDefault(import('../pages/test.vue' /* webpackChunkName: "pages/test" */))
 
 const emptyFn = () => {}
@@ -38,6 +41,10 @@ export const routerOptions = {
     component: _34789600,
     name: "index___ar"
   }, {
+    path: "/forgot-password",
+    component: _05d06b9a,
+    name: "forgot-password___en"
+  }, {
     path: "/login",
     component: _03bf8dd2,
     name: "login___en"
@@ -54,9 +61,17 @@ export const routerOptions = {
     component: _6a2bddd4,
     name: "notifications___en"
   }, {
+    path: "/privcy-policy",
+    component: _46e177c8,
+    name: "privcy-policy___en"
+  }, {
     path: "/register",
     component: _b3b69736,
     name: "register___en"
+  }, {
+    path: "/terms-condition",
+    component: _43f2e6fa,
+    name: "terms-condition___en"
   }, {
     path: "/test",
     component: _74811fd4,
@@ -69,6 +84,10 @@ export const routerOptions = {
     path: "/ar/account",
     component: _138cda9e,
     name: "account___ar"
+  }, {
+    path: "/ar/forgot-password",
+    component: _05d06b9a,
+    name: "forgot-password___ar"
   }, {
     path: "/ar/login",
     component: _03bf8dd2,
@@ -86,9 +105,17 @@ export const routerOptions = {
     component: _6a2bddd4,
     name: "notifications___ar"
   }, {
+    path: "/ar/privcy-policy",
+    component: _46e177c8,
+    name: "privcy-policy___ar"
+  }, {
     path: "/ar/register",
     component: _b3b69736,
     name: "register___ar"
+  }, {
+    path: "/ar/terms-condition",
+    component: _43f2e6fa,
+    name: "terms-condition___ar"
   }, {
     path: "/ar/test",
     component: _74811fd4,

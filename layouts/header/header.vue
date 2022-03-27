@@ -65,9 +65,45 @@
           </li>
 
           <li v-if="!allAuth.checkAuth">
-            <NuxtLink class="login_" :to="localePath('/login')">{{
-              $t("Login")
-            }}</NuxtLink>
+            <NuxtLink class="login_" :to="localePath('/login')">
+            <font-awesome-icon style=" padding: 0; margin: 0px 5px; " icon="right-to-bracket" />
+            {{$t("Login")}}
+            </NuxtLink>
+          </li>
+
+          <li>
+            <v-menu offset-y>
+              <template v-slot:activator="{ on, attrs }">
+                <div v-if="$i18n.locale === 'ar'">
+                  <img
+                    v-bind="attrs"
+                    v-on="on"
+                    width="24px"
+                    src="/saflag.png"
+                  />
+                </div>
+                <div v-else>
+                  <img
+                    v-bind="attrs"
+                    v-on="on"
+                    width="24px"
+                    src="/usflag.png"
+                  />
+                </div>
+              </template>
+              <v-list>
+                <v-list-item>
+                  <a :href="switchLocalePath('ar')">
+                    <img width="24px" src="/saflag.png" />
+                  </a>
+                </v-list-item>
+                <v-list-item>
+                  <a :href="switchLocalePath('en')">
+                    <img width="24px" src="/usflag.png" />
+                  </a>
+                </v-list-item>
+              </v-list>
+            </v-menu>
           </li>
         </ul>
       </nav>
@@ -101,7 +137,7 @@ export default {
     },
 
     handleScroll() {
-      if (window.scrollY < 41) {
+      if (window.scrollY < 20) {
         this.scrolled = false;
       } else {
         this.scrolled = true;
@@ -117,13 +153,12 @@ export default {
 
 <style scoped>
 header {
-box-shadow: 0px 1px 4px 0 rgb(0 0 0 / 5%);
-    border: 1px solid #efefef;
-    z-index: 99;
-    background: #fff;
-    position: absolute;
-    top: 41px;
-    width: 100%;
+  box-shadow: 0px 1px 4px 0 rgb(0 0 0 / 5%);
+  border: 1px solid #efefef;
+  z-index: 99;
+  background: #fff;
+  width: 100%;
+  position: fixed;
 }
 .headerFixed {
   position: fixed;
@@ -136,14 +171,14 @@ box-shadow: 0px 1px 4px 0 rgb(0 0 0 / 5%);
   display: flex;
   align-items: center;
   height: 70px;
+    transition: 1s;
+
 }
 .headerFixed .header_p {
   height: 60px;
-  transition: 1s;
 }
 .header_p li a.nuxt-link-exact-active {
   color: #30c88c;
-  padding-bottom: 10px;
 }
 
 a.nuxt-link-exact-active.login_ {
@@ -164,6 +199,7 @@ a.nuxt-link-exact-active.login_ {
   font-size: 16px;
   display: flex;
   font-size: 14px;
+  align-items: center;
 }
 .menu ul li:lang(en) {
   margin-left: 5em;
@@ -228,24 +264,24 @@ a.nuxt-link-exact-active.login_ {
   color: #444;
   cursor: pointer;
 }
- 
+
 @media (max-width: 768px) {
   .menu {
     justify-content: center;
   }
-  .menu ul{
-        justify-content: space-evenly;
+  .menu ul {
+    justify-content: space-evenly;
     width: 100%;
   }
   .menu ul li {
     margin-left: 0em !important;
     margin-right: 0em !important;
-        background: #f4f4f4;
+    background: #f4f4f4;
     padding: 10px;
     border-radius: 5px;
   }
 
-  .emptyData_loding{
+  .emptyData_loding {
     width: 100%;
   }
 

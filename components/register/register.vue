@@ -1,7 +1,7 @@
 <template>
-  <div class="container_cc">
+  <div class="container_cc page">
     <div class="register">
-      <h1>{{ $t("Register") }}</h1>
+      <h1>{{ $t("Create Account") }}</h1>
 
       <div class="loadingReg" v-if="this.$store.state.auth.loadingReg">
         <v-progress-circular
@@ -24,7 +24,7 @@ import { mapActions } from "vuex";
 export default {
   head() {
     return {
-      title: this.$i18n.t("Register-page"),
+      title: this.$i18n.t("Create Account"),
       meta: [
         // hid is used as unique identifier. Do not use `vmid` for it as it will not work
         {

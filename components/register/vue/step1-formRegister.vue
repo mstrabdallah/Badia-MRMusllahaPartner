@@ -1,15 +1,11 @@
 <template>
   <div class="form_register" v-if="this.$store.state.auth.stepSub === 1">
     <h3 class="mb-5">
-      {{ $t("Enter your basic information") }}
+      {{ $t("Enter Your Basic Information") }}
     </h3>
 
     <div class="form">
-      <v-form
-        ref="form"
-        v-model="valid"
-        lazy-validation
-      >
+      <v-form ref="form" v-model="valid" lazy-validation>
         <div class="form_body">
           <v-text-field
             v-model="data.name"
@@ -23,20 +19,15 @@
 
           <vue-phone-number-input
             v-model="data.phone"
-            :label="$t('Phone')"
-            placeholder="Enter Mobile Number"
             class="mb-7"
-            default-country-code="SA"
-            :only-countries="['SA']"
             required
-            :rules="[rules.required, rules.phoneVal, rules.phoneNum]"
-            v-bind="props"
+            v-bind="vuePhone.props"
+            @update="data.code = $event.countryCallingCode"
           />
-
-          <v-text-field
+           <v-text-field
             v-model="data.email"
             :rules="[rules.required, rules.email]"
-            label="E-mail"
+            :label="$t('E-mail')"
             required
             outlined
             dense
@@ -57,7 +48,7 @@
             v-model="data.password_confirmation"
             :append-icon="showPasswordLogin ? 'mdi-eye' : 'mdi-eye-off'"
             :type="showPasswordLogin ? 'text' : 'password'"
-            :label="$t('Re-enter the password')"
+            :label="$t('Re-enter The Password')"
             @click:append="showPasswordLogin = !showPasswordLogin"
             :rules="[rules.required, rules.confirmPasswordRules]"
             outlined
@@ -67,7 +58,7 @@
           <v-expansion-panels class="mb-6">
             <v-expansion-panel>
               <v-expansion-panel-header expand-icon="mdi-menu-down">
-                More Options
+               {{$t('More Options')}}
               </v-expansion-panel-header>
               <v-expansion-panel-content>
                 <v-text-field
@@ -91,7 +82,7 @@
           :loading="this.$store.state.auth.loading"
           type="submit"
         >
-          {{ $t("Next") }}
+          {{ $t("NEXT") }}
         </v-btn>
       </v-form>
     </div>
@@ -108,11 +99,24 @@ export default {
   },
   data() {
     return {
+   vuePhone: {
+        phone: "",
+        results: [],
+        props: {
+          clearable: true,
+          fetchCountry: true,
+          noExample: false,
+          translations: {
+            countrySelectorLabel: this.$i18n.t("Country code"),
+            countrySelectorError: this.$i18n.t("error"),
+            phoneNumberLabel: this.$i18n.t("Enter Your Phone"),
+            example: this.$i18n.t("Example :"),
+          },
+        },
+      },
+
       valid: false,
       showPasswordLogin: false,
-      props: {
-        placeholder: "Enter your phone",
-      },
       data: {
         name: "",
         phone: "",
@@ -121,11 +125,12 @@ export default {
         password: "",
         checkbox: false,
         password_confirmation: "",
+        code:""
       },
       msg: "",
       msgStatus: true,
       rules: {
-        required: (v) => !!v || "Required.",
+        required: (v) => !!v || this.$i18n.t('Required'),
         email: (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
         phoneVal: (v) =>
           (v && v.length <= 11) || "Phone must be less than 11 Number",

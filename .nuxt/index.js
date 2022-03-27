@@ -15,6 +15,7 @@ import { createStore } from './store.js'
 
 import nuxt_plugin_plugin_7b61f688 from 'nuxt_plugin_plugin_7b61f688' // Source: ./components/plugin.js (mode: 'all')
 import nuxt_plugin_plugin_4eb41a66 from 'nuxt_plugin_plugin_4eb41a66' // Source: ./vuetify/plugin.js (mode: 'all')
+import nuxt_plugin_index_0ed7fbb0 from 'nuxt_plugin_index_0ed7fbb0' // Source: ./firebase/index.js (mode: 'all')
 import nuxt_plugin_image_57baaace from 'nuxt_plugin_image_57baaace' // Source: ./image.js (mode: 'all')
 import nuxt_plugin_cookieuniversalnuxt_5bf25146 from 'nuxt_plugin_cookieuniversalnuxt_5bf25146' // Source: ./cookie-universal-nuxt.js (mode: 'all')
 import nuxt_plugin_pluginutils_2be3f05d from 'nuxt_plugin_pluginutils_2be3f05d' // Source: ./nuxt-i18n/plugin.utils.js (mode: 'all')
@@ -26,6 +27,7 @@ import nuxt_plugin_axios_5659d192 from 'nuxt_plugin_axios_5659d192' // Source: .
 import nuxt_plugin_vuetify_d6afc2c2 from 'nuxt_plugin_vuetify_d6afc2c2' // Source: ../plugins/vuetify.js (mode: 'all')
 import nuxt_plugin_fontawesome_b8db358e from 'nuxt_plugin_fontawesome_b8db358e' // Source: ../plugins/fontawesome.js (mode: 'all')
 import nuxt_plugin_VuePhoneNumberInput_3eb46d14 from 'nuxt_plugin_VuePhoneNumberInput_3eb46d14' // Source: ../plugins/VuePhoneNumberInput.js (mode: 'all')
+import nuxt_plugin_validationrules_0ed77d84 from 'nuxt_plugin_validationrules_0ed77d84' // Source: ../plugins/validation-rules.js (mode: 'all')
 
 // Component: <ClientOnly>
 Vue.component(ClientOnly.name, ClientOnly)
@@ -230,6 +232,10 @@ async function createApp(ssrContext, config = {}) {
     await nuxt_plugin_plugin_4eb41a66(app.context, inject)
   }
 
+  if (typeof nuxt_plugin_index_0ed7fbb0 === 'function') {
+    await nuxt_plugin_index_0ed7fbb0(app.context, inject)
+  }
+
   if (typeof nuxt_plugin_image_57baaace === 'function') {
     await nuxt_plugin_image_57baaace(app.context, inject)
   }
@@ -272,6 +278,10 @@ async function createApp(ssrContext, config = {}) {
 
   if (typeof nuxt_plugin_VuePhoneNumberInput_3eb46d14 === 'function') {
     await nuxt_plugin_VuePhoneNumberInput_3eb46d14(app.context, inject)
+  }
+
+  if (typeof nuxt_plugin_validationrules_0ed77d84 === 'function') {
+    await nuxt_plugin_validationrules_0ed77d84(app.context, inject)
   }
 
   // Lock enablePreview in context

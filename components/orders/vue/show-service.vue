@@ -9,8 +9,8 @@
       <v-card>
         <div class="sboxser">
           <div class="sboxser_img">
-            <v-img src="http://localhost:3000/logo.svg"></v-img>
-            <h3>Continue your learning with related</h3>
+            <v-img :src="data.category.image"></v-img>
+            <h3>{{ data.category.name }}</h3>
           </div>
 
           <div class="sboxser_body">
@@ -26,59 +26,87 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td>Continue your learning with related</td>
-                      <td>4</td>
-                      <td>333</td>
-                    </tr>
-                    <tr>
-                      <td>Continue your learning with related</td>
-                      <td>4</td>
-                      <td>333</td>
-                    </tr>
-
-                    <tr>
-                      <td>Continue your learning with related</td>
-                      <td>4</td>
-                      <td>333</td>
+                    <tr v-for="item in data.services.data" :key="item">
+                      <td>{{ item.service.title }}</td>
+                      <td>{{ item.quantity }}</td>
+                      <td>{{ item.price }}</td>
                     </tr>
                   </tbody>
                 </template>
               </v-simple-table>
             </div>
-            <div class="sboxser_item">
-              <span>
-                <font-awesome-icon icon="clock" />
-                <span>Time</span>
-              </span>
-              <span>1:00</span>
-            </div>
-
-            <div class="sboxser_item">
-              <span>
-                <font-awesome-icon icon="calendar-days" />
-                <span>Date</span>
-              </span>
-              <span>18-2-2022</span>
-            </div>
-
-            <div class="sboxser_item">
-              <span>
-                <font-awesome-icon icon="bars" />
-                <span>Sub Category</span>
-              </span>
-              <span>Paiement when recieving</span>
-            </div>
 
             <div class="sboxser_payment">
               <h4>Payments details</h4>
+
               <div class="sboxser_item">
                 <span>
                   <font-awesome-icon icon="money-check-dollar" />
+                  <span>Total Price</span>
+                </span>
+
+                <span>{{ data.total_price }}</span>
+              </div>
+
+              <div class="sboxser_item">
+                <span>
+                  <font-awesome-icon icon="hand-holding-dollar" />
+
                   <span>Payment method </span>
                 </span>
 
-                <span>Paiement when recieving</span>
+                <span>{{ data.payment_method }}</span>
+              </div>
+            </div>
+
+            <div class="sboxser_user">
+              <h4>User Info</h4>
+              <div class="sboxser_item">
+                <span class="sboxser_useri">
+                  <v-img
+                    :src="data.customer.image"
+                    v-if="data.customer.image != null"
+                  ></v-img>
+                  <font-awesome-icon
+                    icon="user"
+                    v-if="data.customer.image === null"
+                  />
+                  <span>{{ data.customer.name }}</span>
+                </span>
+              </div>
+              <div class="sboxser_item">
+                <span>
+                  <font-awesome-icon icon="money-check-dollar" />
+                  <span>Phone</span>
+                </span>
+
+                <span>{{ data.customer.phone }}</span>
+              </div>
+            </div>
+
+            <div class="sboxser_info">
+              <div class="sboxser_item">
+                <span>
+                  <font-awesome-icon icon="clock" />
+                  <span>Time</span>
+                </span>
+                <span>{{ data.time }}</span>
+              </div>
+
+              <div class="sboxser_item">
+                <span>
+                  <font-awesome-icon icon="calendar-days" />
+                  <span>Date</span>
+                </span>
+                <span>{{ data.date }}</span>
+              </div>
+
+              <div class="sboxser_item">
+                <span>
+                  <font-awesome-icon icon="calendar-days" />
+                  <span>status</span>
+                </span>
+                 <span>{{$t('statusOrder'+data.status)}}</span>
               </div>
             </div>
           </div>
@@ -88,11 +116,69 @@
             <v-btn color="darken-1" text @click="dialog = false"> hide </v-btn>
 
             <v-btn
+              color="red darken-1"
+              class="sub"
+              @click="cancelOrder(data.id)"
+              :loading="allOrders.loadingAc"
+              :disabled="allOrders.loadingAc"
+              v-if="data.status > 0 && data.status <= 4"
+            >
+              Cancel
+            </v-btn>
+
+            <v-btn
               color="primary  darken-1"
               class="sub"
-              @click="dialog = false"
+              @click="acceptOrderFunction(data.id)"
+              :loading="allOrders.loadingA"
+              :disabled="allOrders.loadingA"
+              v-if="data.status === 0"
             >
               Accept
+            </v-btn>
+
+            <v-btn
+              color="primary  darken-1"
+              class="sub"
+              @click="rescheduleOrder(data.id)"
+              :loading="allOrders.loadingA"
+              :disabled="allOrders.loadingA"
+              v-if="data.status === 1"
+            >
+              ReSchedule
+            </v-btn>
+
+            <v-btn
+              color="primary  darken-1"
+              class="sub"
+              @click="inWayOrder(data.id)"
+              :loading="allOrders.loadingA2"
+              :disabled="allOrders.loadingA2"
+              v-if="data.status === 1 || data.status === 4"
+            >
+              In Way
+            </v-btn>
+
+            <v-btn
+              color="primary  darken-1"
+              class="sub"
+              @click="startOrder(data.id)"
+              :loading="allOrders.loadingA"
+              :disabled="allOrders.loadingA"
+              v-if="data.status === 2"
+            >
+              Start Work
+            </v-btn>
+
+            <v-btn
+              color="primary  darken-1"
+              class="sub"
+              @click="completeOrder(data.id)"
+              :loading="allOrders.loadingA2"
+              :disabled="allOrders.loadingA2"
+              v-if="data.status === 3"
+            >
+              Complete
             </v-btn>
           </div>
         </v-card-actions>
@@ -101,11 +187,25 @@
   </v-row>
 </template>
 <script>
+import { mapActions, mapGetters } from "vuex";
 export default {
   data() {
     return {
       dialog: false,
     };
+  },
+  props: ["data"],
+
+  mounted() {},
+  computed: {
+    ...mapGetters(["allOrders"]),
+  },
+
+  methods: {
+    ...mapActions(["acceptOrder","inWayOrder","startOrder","completeOrder","rescheduleOrder","cancelOrder"]),
+    acceptOrderFunction(e) {
+      this.acceptOrder(e);
+    },
   },
 };
 </script>
@@ -113,6 +213,14 @@ export default {
 <style scoped>
 .sboxser {
   padding: 15px;
+}
+.sboxser_useri {
+  align-items: center;
+  display: flex;
+}
+.sboxser_useri svg{
+  font-size: 18px;
+
 }
 
 .sboxser_img {
@@ -128,6 +236,13 @@ export default {
   margin: auto;
   border: 1px solid #efefef;
 }
+
+.sboxser_useri .v-image {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
 .sboxser h3 {
   text-align: center;
   margin: 10px 0px;
@@ -150,7 +265,9 @@ export default {
   padding: 0px 10px;
 }
 
-.sboxser_payment {
+.sboxser_payment,
+.sboxser_user,
+.sboxser_info {
   border-top: 1px solid #f3f3f3;
   padding: 20px 0px;
   margin-top: 20px;
@@ -160,10 +277,11 @@ export default {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  border-top: 1px solid #e4e4e4;
+  padding-top: 20px;
 }
 
 .sboxser_footer .sub {
-  min-width: 250px;
 }
 
 button.MoreDetails {

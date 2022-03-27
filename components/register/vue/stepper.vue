@@ -3,43 +3,43 @@
   <v-stepper v-model="this.$store.state.auth.step">
     <v-stepper-header>
       <v-stepper-step :complete="this.$store.state.auth.step > 1" step="1"
-        >basic information</v-stepper-step
+        >{{$t('The Basic Information')}}</v-stepper-step
       >
 
       <v-divider></v-divider>
 
       <v-stepper-step :complete="this.$store.state.auth.step > 2" step="2">
-        personal information
+       {{$t('The Personal Information')}}
       </v-stepper-step>
 
       <v-divider></v-divider>
 
       <v-stepper-step :complete="this.$store.state.auth.step > 3" step="3"
-        >Categories</v-stepper-step
+        >{{$t('Choose Categories')}}</v-stepper-step
       >
 
       <v-divider></v-divider>
 
       <v-stepper-step :complete="this.$store.state.auth.step > 4" step="4"
-        >coverage area</v-stepper-step
+        >{{$t('Coverage Area')}}</v-stepper-step
       >
 
       <v-divider></v-divider>
 
       <v-stepper-step :complete="this.$store.state.auth.step > 5" step="5"
-        >nationality and license</v-stepper-step
+        >{{$t('Nationality And License')}}</v-stepper-step
       >
 
       <v-divider></v-divider>
 
       <v-stepper-step :complete="this.$store.state.auth.step > 6" step="6"
-        >Workplace</v-stepper-step
+        >{{$t('Workplace')}}</v-stepper-step
       >
 
       <v-divider></v-divider>
 
       <v-stepper-step :complete="this.$store.state.auth.step > 7" step="7"
-        >agreements approved</v-stepper-step
+        >{{$t('Agreements Approve')}}</v-stepper-step
       >
     </v-stepper-header>
 

@@ -1,23 +1,20 @@
 <template>
-  <section  class="head bg">
-    <h2>خدمات عند الطلب</h2>
-    <p>
-      نحن المنصة المثالية للحصول على مجموعة من الخدمات على عتبة داركم.<br />
-      اطلب خدماتك على الفور أو احجز موعدك ليوم محدد.
-    </p>
+  <section  class="head bg page">
+    <h2>{{$t('headH2')}}</h2>
+    <p  v-html="$t('headp1')"></p>
 
     <div class="groups_but">
       
        <NuxtLink :to="localePath('/login')" >
-      <v-btn class="ma-2" outlined >Login</v-btn>
+      <v-btn class="ma-2" outlined >{{$t('Login')}}</v-btn>
        </NuxtLink>
 
        <NuxtLink :to="localePath('/register')" >
-      <v-btn class="ma-2" outlined >Create Account</v-btn>
+      <v-btn class="ma-2" outlined >{{$t("Create Account")}}</v-btn>
        </NuxtLink>
     </div>
 
-    <a class="but_down" href="#serv"><font-awesome-icon icon="angle-down" class="fa" /></a>
+    <a class="but_down" href="#mobileApp"><font-awesome-icon icon="angle-down" class="fa" /></a>
 
   </section>
 </template>

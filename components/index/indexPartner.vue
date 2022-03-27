@@ -20,26 +20,18 @@
       <div class="emptyData_loding" v-if="allAuth.is_online === 1"></div>
 
       <div class="sec_body_items" v-if="allAuth.is_online === 1">
-        <v-row>
-          <v-col cols="12" md="4">
-            <BoxServices />
-          </v-col>
-          <v-col cols="12" md="4">
-            <BoxServices />
-          </v-col>
-          <v-col cols="12" md="4">
-            <BoxServices />
-          </v-col>
-          <v-col cols="12" md="4">
-            <BoxServices />
-          </v-col>
-          <v-col cols="12" md="4">
-            <BoxServices />
-          </v-col>
-          <v-col cols="12" md="4">
-            <BoxServices />
+           <v-container fluid>
+                <v-row>
+          <v-col
+            cols="12"
+            md="4"
+            v-for="item in allOrders.pending.data"
+            :key="item"
+          >
+            <BoxServices :data="item"/>
           </v-col>
         </v-row>
+           </v-container>
       </div>
     </div>
   </div>
@@ -52,10 +44,13 @@ export default {
     BoxServices,
   },
   computed: {
-    ...mapGetters(["allAuth"]),
+    ...mapGetters(["allAuth", "allOrders"]),
+  },
+  mounted() {
+    this.getOrderPending();
   },
   methods: {
-    ...mapActions(["changeOnline"]),
+    ...mapActions(["changeOnline", "getOrderPending"]),
     getTime() {
       var event = new Date();
       var options = {
@@ -75,6 +70,9 @@ export default {
 }
 .index_P h2 {
   margin-bottom: 20px;
+}
+.sec_body_items{
+  width: 100%;
 }
 .head_index {
   padding: 10px;

@@ -2,11 +2,11 @@
 //const code = navigator.userAgent;
 const state = {
   checkAuth: false,
-  step: 1,
-  stepSub: 1,
+  step: 4,
+  stepSub:1,
   is_active: 0,
   is_online: 0,
-  token: '',
+  token: null,
   device: 'website',
   sessionId: '1234567',//this.$uuid.v5(navigator.userAgent, '65f9af5d-f23f-4065-ac85-da725569fdcd'),
   user: [],
@@ -15,6 +15,8 @@ const state = {
   checkUserStatus: false,
   loadingReg: true,
   errors: [],
+  forgotStep: 1,
+  dataProcess: []
 
 };
 
@@ -48,26 +50,14 @@ const actions = {
   Logout() {
     this.$cookies.remove('token');
     this.$cookies.remove('user');
-    if (this.$i18n.locale === "ar") {
+    this.$cookies.remove('iA');
+    if (this.$i18n.locale === "en") {
       window.location.href = "/";
     } else {
-      window.location.href = "/en";
+      window.location.href = "/ar";
     }
   },
-
-  // getAuth({ commit, state, dispatch }) {
-
-  //   if (!state.checkAuth) return false;
-  //   const response = this.$axios.$get('auth').then((res) => {
-  //     //this.LogOut()
-  //     commit("user", response.data);
-  //   }).catch(function (error) {
-  //     if (error.response.status === 401) {
-  //       dispatch('Logout');
-  //     }
-  //   });
-  // },
-
+ 
   getToken({ app, state, dispatch }) {
     if (state.checkAuth === true) return false;
     const response = this.$axios.$get('/check_token').then((res) => {
@@ -75,6 +65,8 @@ const actions = {
       if (res.status === 200) {
         state.token = res.token;
          
+        this.$axios.setHeader('token',res.token)
+
         this.$cookies.set("token", res.token, {
           path: "/",
           maxAge: 365 * 24 * 60 * 60
@@ -112,11 +104,16 @@ const actions = {
       });
   },
 
-  Login({ app, state, dispatch }, arrayData) {
+ async Login({ app, state, dispatch }, arrayData) {
 
+ // const currentToken = await this.$fire.messaging.getToken()
+  const currentToken =' await this.$fire.messaging.getToken()'
+ // alert(2)
     var data = new FormData();
     data.append("phone_number", arrayData.phone_number.replace(/\s/g, ''));
     data.append("password", arrayData.password);
+    data.append("code", arrayData.code);
+    data.append("fcm", currentToken);
     state.loading = true;
     const response = this.$axios.$post('/me/login', data).then((res) => {
       state.loading = false;
@@ -145,12 +142,48 @@ const actions = {
   },
 
 
+  forgotPassword({ state }, arrayData) {
+
+    if(arrayData.phone_number === null){
+       alert(this.$i18n.t('Enter Your Phone'))
+       return false
+      }
+    var data = new FormData();
+    data.append("phone_number", arrayData.phone_number.replace(/\s/g, ''));
+    data.append("verification_code", arrayData.verification_code);
+    data.append("new_password", arrayData.new_password);
+    data.append("new_password_confirmation", arrayData.new_password_confirmation);
+
+    state.loading = true;
+
+    var Url = '/me/forget/forgetPassword';
+    if (state.forgotStep === 2)
+        Url = '/me/forget/verifyCode'
+    else if (state.forgotStep === 3)
+        Url = '/me/forget/changePassword'
+
+    this.$axios.post(Url, data).then((res) => {
+        state.loading = false;
+
+        if (res.data.status == 200) {
+            if (state.forgotStep === 1) state.forgotStep = 2;
+            else if (state.forgotStep === 2) state.forgotStep = 3;
+            else if (state.forgotStep === 3) state.forgotStep = 4;
+        } else {
+          state.errors = res.data.msg;
+        }
+    }).catch((error) => {
+        state.loading = false;
+    });
+},
 
   setNext({ state }) {
     state.errors = [];
     state.loading = true;
   },
-  registerStep1({ state, dispatch }, arrayData) {
+  async registerStep1({ state, dispatch }, arrayData) {
+    const currentToken = await this.$fire.messaging.getToken()
+
     var data = new FormData();
 
     if (state.stepSub === 2)
@@ -164,6 +197,9 @@ const actions = {
     data.append("referral", state.register.referral);
     data.append("password", state.register.password);
     data.append("password_confirmation", state.register.password);
+    data.append("code", state.register.code);
+    
+    data.append("fcm", currentToken);
 
     dispatch('setNext')
     this.$axios.post("/Register/step1", data).then((res) => {
@@ -190,7 +226,7 @@ const actions = {
     });
   },
 
-  registerStep2({ state }, arrayData) {
+  registerStep2({ state,dispatch }, arrayData) {
     var data = new FormData();
     state.register = arrayData;
 
@@ -205,6 +241,7 @@ const actions = {
       if (res.data.status === 200) {
 
         state.step = 3;
+        dispatch('getCategory')
       }
 
     }).catch((error) => {

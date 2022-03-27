@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import Orders from "../../components/orders/index.vue";
+import Orders from "../../components/orders/orders.vue";
 export default {
   name: "mywork",
   components:{

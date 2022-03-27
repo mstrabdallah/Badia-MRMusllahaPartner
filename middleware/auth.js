@@ -1,3 +1,4 @@
+import { v5 as uuidv5 } from "uuid";
 
 export default function ({ route, store, redirect, app, i18n }) {
 
@@ -6,6 +7,10 @@ export default function ({ route, store, redirect, app, i18n }) {
   //console.log(authId)
  
    const user = app.$cookies.get('user');
+
+  // console.log('-----navigator-----',uuidv5(navigator.userAgent, "65f9af5d-f23f-4065-ac85-da725569fdcd"))
+  // console.log('-----navigator-----',app.$uuid.v5(navigator.userAgent, "65f9af5d-f23f-4065-ac85-da725569fdcd"))
+
 
   if (app.$cookies.get('token')) {
     store.state.auth.token = app.$cookies.get('token');
@@ -16,6 +21,10 @@ export default function ({ route, store, redirect, app, i18n }) {
     store.state.auth.user      = user;
     store.state.auth.is_online = user.is_online;
     store.state.auth.checkAuth = true;
+  }else if( app.$cookies.get('iA') > 0 &&  app.$cookies.get('iA') <=7){
+    store.state.auth.checkAuthStep = true;
+    store.state.auth.current_step = user.current_step;
+
   }
 
   return false;

@@ -5,7 +5,7 @@
     </div>
     <div v-else>
       <Head />
-      <Services />
+      <!-- <Services /> -->
       <MobileApp />
     </div>
   </div>

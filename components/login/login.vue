@@ -7,21 +7,18 @@
         <div class="form_login">
           <div class="form_title">
             <div class="mb-5">
-              {{ $t("Enter Phone Number") }}
+              {{ $t("Enter your login information to continue") }}
             </div>
           </div>
 
           <div class="form">
             <v-form ref="form" v-model="valid" lazy-validation>
-
-              
               <vue-phone-number-input
                 v-model="data.phone_number"
-                :label="$t('Phone')"
+                v-bind="vuePhone.props"
                 class="mb-7"
-                default-country-code="SA"
-              />
-                <!-- :rules="[rules.required]" -->
+                @update="data.code = $event.countryCallingCode"
+              ></vue-phone-number-input>
 
               <v-text-field
                 v-model="data.password"
@@ -29,10 +26,13 @@
                 :type="showPasswordLogin ? 'text' : 'password'"
                 :label="$t('Password')"
                 @click:append="showPasswordLogin = !showPasswordLogin"
+                :rules="[$rules.required]"
                 outlined
                 dense
               ></v-text-field>
-
+              <div class="LForgotPassword">
+                <NuxtLink :to="localePath('/Forgot-Password')">{{$t('Forgot Password ?')}}</NuxtLink>
+              </div>
               <Msg />
 
               <v-btn
@@ -61,20 +61,29 @@ export default {
   components: {
     Msg,
   },
-  head() {
+  head() { 
     return {
-      title: this.$i18n.t("Login-page"),
-      meta: [
-        {
-          hid: "todos description",
-          name: "todos description",
-          content: "todos My custom description",
-        },
-      ],
+      title: this.$i18n.t("Login"),
     };
   },
   data() {
     return {
+      vuePhone: {
+        phone: "",
+        results: [],
+        props: {
+          clearable: true,
+          fetchCountry: true,
+          noExample: false,
+          translations: {
+            countrySelectorLabel: this.$i18n.t("Country code"),
+            countrySelectorError: this.$i18n.t("error"),
+            phoneNumberLabel: this.$i18n.t("Enter Your Phone"),
+            example: this.$i18n.t("Example :"),
+          },
+        },
+      },
+
       valid: false,
       showPasswordLogin: false,
       rules: {
@@ -83,6 +92,7 @@ export default {
       data: {
         phone_number: "",
         password: "",
+        code: "",
       },
     };
   },
@@ -91,10 +101,11 @@ export default {
   },
   methods: {
     ...mapActions(["Login"]),
+
     LoginFunction(e) {
       e.preventDefault();
+      alert(this.$refs.form.validate())
       if (this.$refs.form.validate() === false) return false;
-
       this.Login(this.data);
     },
   },
@@ -125,4 +136,9 @@ export default {
   width: 100%;
   margin-top: 30px;
 }
+
+.LForgotPassword {
+    margin-top: -16px;
+    display: block;
+    position: absolute;}
 </style>

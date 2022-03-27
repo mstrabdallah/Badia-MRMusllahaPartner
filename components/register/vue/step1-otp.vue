@@ -12,7 +12,7 @@
           >
             <div class="form_body">
               <p class="mb-4 mt-4">
-                We sent you the activation code over the phone, please enter here
+                {{$t('We sent you the activation code over the phone, please enter here')}}
               </p>
               <div class="ma-auto position-relative" style="max-width: 300px">
                 <v-otp-input
@@ -41,7 +41,7 @@
                 :loading="this.$store.state.auth.loading"
                 type="submit"
               >
-                {{ $t("Next") }}
+                {{ $t("NEXT") }}
               </v-btn>
             </div>
           </v-form>

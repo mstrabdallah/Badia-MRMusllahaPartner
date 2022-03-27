@@ -5,24 +5,25 @@
     </h3>
 
     <div class="form">
-      <v-form
-        ref="form"
-        v-model="valid"
-        lazy-validation
-      >
+      <v-form ref="form" v-model="valid" lazy-validation>
         <div class="form_body">
-          <v-radio-group :rules="[rules.required]" v-model="data.type" row>
-            <label>Type : </label>
-            <v-radio label="individual" value="individual"></v-radio>
-            <v-radio label="company" value="company"></v-radio>
+          <v-radio-group :rules="[this.$rules.required]" v-model="data.type" row>
+            <label>{{$t('Type')}} : </label>
+            <v-radio :label="$t('Individual')" value="individual"></v-radio>
+            <v-radio  :label="$t('Company')" value="company"></v-radio>
           </v-radio-group>
 
           <v-text-field
             class="mt-6"
             v-model="data.id_number"
             :counter="10"
-            :label="$t('ID Number')"
-            :rules="[rules.required, rules.idNumber]"
+            :label="[
+              data.type === 'company'
+                ? $t('commercial registration No.')
+                : $t('ID No.'),
+            ]"
+            
+            :rules="[this.$rules.required,this.$rules.min]"
             required
             outlined
             dense
@@ -32,12 +33,16 @@
 
           <v-file-input
             class="mt-4"
-            label="Click here to Upload license iamge"
+            :label="[
+              data.type === 'company'
+                ? $t('copy of commercial registration')
+                : $t('Click here to Upload Copy Of ID'),
+            ]"
             outlined
             dense
             @change="onFileChange"
             :v-model="data.id_file"
-            :rules="[rules.required]"
+             :rules="[this.$rules.required]"
             prepend-icon="mdi-camera"
             required
           ></v-file-input>
@@ -56,7 +61,7 @@
           :loading="this.$store.state.auth.loading"
           type="submit"
         >
-          {{ $t("Next") }}
+          {{ $t("NEXT") }}
         </v-btn>
       </v-form>
     </div>
@@ -71,19 +76,21 @@ export default {
   components: {
     Msg,
   },
-  data: () => ({
-    valid: false,
-    url: "",
-    data: {
-      type: "",
-      id_number: "",
-      id_file: "",
-    },
-    rules: {
-      required: (v) => !!v || "Required.",
-      idNumber: (v) => (v && v.length <= 10) || "id number must be 10 Number",
-    },
-  }),
+ 
+  data() {
+    return {
+      valid: false,
+      url: "",
+      data: {
+        type: "",
+        id_number: "",
+        id_file: "",
+      },
+      rules: {
+        idNumber: (v) => (v && v.length <= 10) || "id number must be 10 Number",
+      },
+    };
+  },
 
   methods: {
     ...mapActions(["registerStep2"]),

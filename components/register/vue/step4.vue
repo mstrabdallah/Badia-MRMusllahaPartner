@@ -16,9 +16,9 @@
               :items="allCity.city"
               item-text="name"
               item-value="id"
-              label="city"
+              :label="$t('City')"
               v-model="data.city_id"
-              :rules="[rules.required]"
+              :rules="[$rules.required]"
               dense
               outlined
             ></v-select>
@@ -27,12 +27,12 @@
           <div class="coverage_area">
             <v-slider
               v-model="data.coverage_area"
-              label="coverage area"
+              :label="$t('coverage area')"
               thumb-color="red"
               thumb-label="always"
               max="50"
               min="5"
-              :rules="[rules.required]"
+              :rules="[$rules.required]"
               step="5"
               ticks
             >
@@ -52,7 +52,7 @@
           :loading="this.$store.state.auth.loading"
           type="submit"
         >
-          {{ $t("Next") }}
+          {{ $t("NEXT") }}
         </v-btn>
       </v-form>
     </div>
