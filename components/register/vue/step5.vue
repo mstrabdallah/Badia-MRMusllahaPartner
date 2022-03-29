@@ -1,17 +1,13 @@
 <template>
   <div class="form_register">
     <h3 class="mb-5">
-      {{ $t("nationality and license") }}
+      {{ $t("Nationality and license") }}
     </h3>
 
     <div class="form">
-      <v-form
-        ref="form"
-        v-model="valid"
-        lazy-validation
-      >
+      <v-form ref="form" v-model="valid" lazy-validation>
         <div class="form_body">
-          <p>Please choose a nationality ...</p>
+          <p>{{ $t("Please choose a nationality ...") }}</p>
           <div class="nationality">
             <div class="mt-4 mb-4">
               <v-select
@@ -19,7 +15,7 @@
                 item-text="co_name"
                 item-value="id"
                 dense
-                label="nationality"
+                :label="$t('Nationality')"
                 outlined
                 :rules="[rules.required]"
                 v-model="data.nationality_id"
@@ -28,7 +24,7 @@
             </div>
 
             <v-file-input
-              label="Click here to nationality file PDF"
+              :label="$t('Click here to nationality file PDF')"
               outlined
               dense
               :rules="[rules.required]"
@@ -38,7 +34,7 @@
           <v-divider></v-divider>
 
           <div class="reg_license mt-8">
-            <p>license information (optional)</p>
+            <p>{{ $t("license information (optional)") }}</p>
             <v-text-field
               class="mt-6 mb-4"
               v-model="data.license"
@@ -50,7 +46,7 @@
             ></v-text-field>
 
             <v-file-input
-              label="Click here to Upload license iamge"
+              :label="$t('Click here to Upload license iamge')"
               outlined
               dense
               @change="onFileChange"
@@ -73,13 +69,12 @@
           :loading="this.$store.state.auth.loading"
           type="submit"
         >
-          {{ $t("Next") }}
+          {{ $t("NEXT") }}
         </v-btn>
       </v-form>
     </div>
   </div>
 </template>
-
 
 <script>
 import { mapActions, mapGetters } from "vuex";
@@ -123,4 +118,3 @@ export default {
   },
 };
 </script>
- 

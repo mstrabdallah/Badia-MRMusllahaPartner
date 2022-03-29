@@ -21,6 +21,7 @@
 <style scoped>
 .head {
   min-height: calc(100vh - 120px);
+      height: 600px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -64,5 +65,13 @@
 }
 .but_down svg{
     font-size: 20px;
+}
+@media(max-width:768px){
+  .head h2{
+        font-size: 2em;
+  }
+  p{
+    font-size: 1em !important;
+  }
 }
 </style>

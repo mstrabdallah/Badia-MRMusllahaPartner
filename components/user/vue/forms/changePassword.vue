@@ -1,5 +1,5 @@
 <template>
-   <div class="form_account">
+  <div class="form_account">
     <h3 class="mb-5">
       {{ $t("Enter your Old Password") }}
     </h3>
@@ -38,14 +38,17 @@
             v-model="data.new_password_confirmation"
             :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
             :type="showPassword ? 'text' : 'password'"
-            :label="$t('Re-enter the password')"
+            :label="$t('Re-enter The Password')"
             @click:append="showPassword = !showPassword"
             :rules="[rules.required, rules.confirmPasswordRules]"
             outlined
             dense
           ></v-text-field>
 
-          <div :class="[allUsers.changePasswordDone ? 'msgdone':'msgerror']" v-if="allUsers.msgPassword !=null">
+          <div
+            :class="[allUsers.changePasswordDone ? 'msgdone' : 'msgerror']"
+            v-if="allUsers.msgPassword != null"
+          >
             {{ allUsers.msgPassword }}
           </div>
           <v-btn
@@ -62,7 +65,6 @@
     </div>
   </div>
 </template>
-
 
 <script>
 import { mapActions, mapGetters } from "vuex";
@@ -98,7 +100,7 @@ export default {
       return () =>
         this.password === this.password_confirmation || "Password must match";
     },
-  },
+  }, 
   mounted() {},
   methods: {
     ...mapActions(["changePassword"]),
@@ -111,4 +113,3 @@ export default {
   },
 };
 </script>
- 

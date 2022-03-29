@@ -13,7 +13,7 @@ const state = {
   register: [],
   loading: false,
   checkUserStatus: false,
-  loadingReg: true,
+  loadingMe: true,
   errors: [],
   forgotStep: 1,
   dataProcess: []
@@ -31,11 +31,11 @@ const actions = {
 
     await this.$axios.setHeader('session-id', data)
     await this.$axios.setHeader('device', state.device)
-    await this.$axios.setHeader('lang',this.$i18n.locale)
-    if (this.$cookies.get("token")) await this.$axios.setHeader('token',this.$cookies.get("token"))
+    await this.$axios.setHeader('lang', this.$i18n.locale)
+    if (this.$cookies.get("token")) await this.$axios.setHeader('token', this.$cookies.get("token"))
     if (!this.$cookies.get("token")) await dispatch('getToken')
 
-
+ 
     //sId = session-id  -- for check if user agent changed
     if (!this.$cookies.get("sId")) this.$cookies.set("sId", data, { path: "/", maxAge: 365 * 24 * 60 * 60 });
     if (this.$cookies.get("sId") != data) alert('a7a')
@@ -43,16 +43,14 @@ const actions = {
     // get api when open site first time
 
     dispatch('getMe')
- 
-    
+
+
   },
-
-
 
   changeOnline({ state }) {
     state.loading = true;
-
-    this.$axios.post("/me/changeStatus", {}).then((res) => {
+    var data = new FormData();
+    this.$axios.post("/me/changeStatus", data).then((res) => {
       state.is_online = res.data.data.status;
       state.loading = false;
     });
@@ -65,18 +63,24 @@ const actions = {
       window.location.href = "/ar";
     }
   },
-  Logout() {
-    this.$cookies.remove('token');
-    this.$cookies.remove('user');
-    this.$cookies.remove('iA');
-    if (this.$i18n.locale === "en") {
-      window.location.href = "/";
-    } else {
-      window.location.href = "/ar";
-    }
+
+  async Logout({dispatch}) {
+    var data = new FormData();
+    data.append("data", '');
+    dispatch('setOverlay',{data:true})
+     await this.$axios.$post('/me/logout',data).then((res) => {
+   
+        this.$cookies.remove('token');
+        this.$cookies.remove('user');
+        this.$cookies.remove('iA');
+        this.$cookies.remove('sId');
+        dispatch('routerTo')
+        dispatch('setOverlay',{data:false})
+
+    })
   },
 
- async getToken({ app, state, dispatch }) {
+  async getToken({ app, state, dispatch }) {
     if (state.checkAuth === true) return false;
     const response = await this.$axios.$get('/check_token').then((res) => {
 
@@ -103,12 +107,11 @@ const actions = {
 
   getMe({ state }) {
 
-    //  state.loadingReg = true;
     const response = this.$axios.$get('/me').then((res) => {
-      state.loadingReg = false;
+      state.loadingMe = false;
       if (res.data === 401) {
         state.step = 1;
-
+        dispatch('Logout')
       } else {
         state.step = res.data.current_step + 1;
         state.user = res.data;
@@ -124,18 +127,15 @@ const actions = {
 
   async Login({ app, state, dispatch }, arrayData) {
 
-    const currentToken = await this.$fire.messaging.getToken()
     var data = new FormData();
     data.append("phone_number", arrayData.phone_number.replace(/\s/g, ''));
     data.append("password", arrayData.password);
     data.append("code", arrayData.code);
-    data.append("fcm", currentToken);
     state.loading = true;
     const response = this.$axios.$post('/me/login', data).then((res) => {
       state.loading = false;
       if (res.status === 200) {
 
-        state.is_active = res.data.is_active;
         this.$cookies.set("user", res.data, { path: "/", maxAge: 365 * 24 * 60 * 60 });
 
         this.$cookies.set("iA", res.data.is_active, {
@@ -206,12 +206,12 @@ const actions = {
       state.register = arrayData;
 
     data.append("name", state.register.name);
-    data.append("phone", state.register.phone.replace(/\s/g, ''));
+    data.append("phone", state.register.code);
     data.append("email", state.register.email);
     data.append("referral", state.register.referral);
     data.append("password", state.register.password);
     data.append("password_confirmation", state.register.password);
-    data.append("code", state.register.code);
+    // data.append("code", state.register.code);
 
     data.append("fcm", currentToken);
 
@@ -278,6 +278,7 @@ const actions = {
       if (res.data.status === 200) {
         state.loading = false;
         state.step = 4;
+        dispatch('getCity')
       }
 
     }).catch((error) => {
@@ -340,15 +341,27 @@ const actions = {
     });
   },
 
-  registerStep7({ state }, arrayData) {
+ async registerStep7({ state }, arrayData) {
+    const currentToken = await this.$fire.messaging.getToken()
+
     var data = new FormData();
     state.register = arrayData;
-
+    data.append("fcm", currentToken);
     data.append("agreements_approved", 1);
     state.loading = true;
     this.$axios.post("/Register/step7", data).then((res) => {
 
-      alert('done')
+      if (res.status === 200) {
+        this.$cookies.set("user", res.data, { path: "/", maxAge: 365 * 24 * 60 * 60 });
+
+        this.$cookies.set("iA", res.data.is_active, {
+          path: "/",
+          maxAge: 365 * 24 * 60 * 60,
+        });
+        dispatch('routerTo');
+      } else {
+        state.errors = res.msg;
+      }
     }).catch((error) => {
       state.loading = false;
     });

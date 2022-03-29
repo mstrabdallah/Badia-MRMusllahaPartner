@@ -12,9 +12,9 @@
             <template v-slot:default>
               <thead>
                 <tr>
-                  <th>services</th>
-                  <th>Quantity</th>
-                  <th>price</th>
+                  <th>{{ $t("Services") }}</th>
+                  <th>{{ $t("Quantity") }}</th>
+                  <th>{{ $t("price") }}</th>
                 </tr>
               </thead>
               <tbody>
@@ -31,7 +31,7 @@
         <div class="boxser_item_">
           <div class="boxser_item1_">
             <font-awesome-icon icon="recycle" />
-            <div>status</div>
+            <div>{{ $t("Status") }}</div>
           </div>
           <span>{{ $t("statusOrder" + data.status) }}</span>
         </div>
@@ -70,7 +70,7 @@ export default {
   props: ["data"],
 };
 </script>
-<style >
+<style>
 .boxser {
   width: 350px;
   margin: 20px;
@@ -112,13 +112,13 @@ export default {
   display: flex;
   justify-content: space-between;
 }
-.boxser_item1_{
+.boxser_item1_ {
   display: flex;
   align-items: center;
   font-weight: bold;
 }
-.boxser_item1_ div{
-      padding: 0px 7px;
+.boxser_item1_ div {
+  padding: 0px 7px;
 }
 
 .boxser_item {

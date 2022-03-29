@@ -26,12 +26,14 @@
                 :type="showPasswordLogin ? 'text' : 'password'"
                 :label="$t('Password')"
                 @click:append="showPasswordLogin = !showPasswordLogin"
-                :rules="[$rules.required]"
+                :rules="[$rules.required, $rules.min]"
                 outlined
                 dense
               ></v-text-field>
               <div class="LForgotPassword">
-                <NuxtLink :to="localePath('/Forgot-Password')">{{$t('Forgot Password ?')}}</NuxtLink>
+                <NuxtLink :to="localePath('/Forgot-Password')">{{
+                  $t("Forgot Password ?")
+                }}</NuxtLink>
               </div>
               <Msg />
 
@@ -61,7 +63,7 @@ export default {
   components: {
     Msg,
   },
-  head() { 
+  head() {
     return {
       title: this.$i18n.t("Login"),
     };
@@ -137,7 +139,12 @@ export default {
 }
 
 .LForgotPassword {
-    margin-top: -16px;
-    display: block;
-    position: absolute;}
+  margin-top: -16px;
+  display: block;
+  position: relative;
+   text-align: right;
+}
+.LForgotPassword:lang(ar){
+   text-align: left;
+}
 </style>

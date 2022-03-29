@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <div class="privacy my-10">
+    <div class="privacy my-10 pt-8">
       <h1>{{ $t("Terms and conditions") }}</h1>
       <p>
         {{

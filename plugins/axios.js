@@ -5,12 +5,14 @@ export default function ({ $axios, app, store }, inject) {
     headers: {
       'Accept': "application/json",
       'Content-Type': 'multipart/form-data',
+      'device':'website',
+      'token': app.$cookies.get("token"),
+
     }
   })
 
-  // axios.setBaseURL('http://192.168.1.26')
   axios.setBaseURL('https://partner-api.mr-mussllaha.tecbadia.com')
 
-  // Inject to context as $api
+  // Inject to context as $axios
   inject('axios', axios)
 }

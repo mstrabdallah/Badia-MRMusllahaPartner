@@ -1,23 +1,27 @@
 <template>
   <div class="container_cc orders_page">
     <div class="orders_page_p">
-      <h1 class="title_page">My Work</h1>
+      <h1 class="title_page">{{ $t("My Work") }}</h1>
       <v-card>
         <v-tabs
           color="deep-purple accent-4"
           :right="this.$i18n.locale === 'ar'"
+          
           class="page_h"
           next-icon="mdi-arrow-right-bold-box-outline"
           prev-icon="mdi-arrow-left-bold-box-outline"
           show-arrows
+
         >
-          <v-tab @click="changeTab('')">All</v-tab>
-          <v-tab @click="changeTab('days=0')">Today</v-tab>
-          <v-tab @click="changeTab('days=1')">tomorrow</v-tab>
-          <v-tab @click="changeTab('days=7')">within the week</v-tab>
-          <v-tab @click="changeTab('missed=1')">missed</v-tab>
-          <v-tab @click="changeTab('canceled=1')">canceled</v-tab>
-          <v-tab @click="changeTab('finished=1')">finished</v-tab>
+          <v-tab @click="changeTab('')">{{ $t("All") }}</v-tab>
+          <v-tab @click="changeTab('days=0')">{{ $t("Today") }}</v-tab>
+          <v-tab @click="changeTab('days=1')">{{ $t("Tomorrow") }}</v-tab>
+          <v-tab @click="changeTab('days=7')">{{
+            $t("Within the week")
+          }}</v-tab>
+          <v-tab @click="changeTab('missed=1')">{{ $t("Missed") }}</v-tab>
+          <v-tab @click="changeTab('canceled=1')">{{ $t("Canceled") }}</v-tab>
+          <v-tab @click="changeTab('finished=1')">{{ $t("Finished") }}</v-tab>
 
           <v-tab-item v-for="n in 7" :key="n">
             <v-container fluid>

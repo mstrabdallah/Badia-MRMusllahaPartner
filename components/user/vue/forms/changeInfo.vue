@@ -21,46 +21,46 @@
             outlined
             dense
           ></v-text-field>
- 
 
           <v-text-field
             v-model="data.email"
             :rules="[rules.required, rules.email]"
-            label="E-mail"
+            :label="$t('E-mail')"
             required
             outlined
             dense
           ></v-text-field>
- 
-     
-        <div :class="[allUsers.msgInfoDone ? 'msgdone':'msgerror']" v-if="allUsers.msgInfo !=null">
+
+          <div
+            :class="[allUsers.msgInfoDone ? 'msgdone' : 'msgerror']"
+            v-if="allUsers.msgInfo != null"
+          >
             {{ allUsers.msgInfo }}
           </div>
 
-        <v-btn
-          :disabled="!valid"
-          color="success"
-          class="sub"
-          @click="changeInfoFunction"
-          :loading="allUsers.loading"
-        >
-          {{ $t("save") }}
-        </v-btn>
+          <v-btn
+            :disabled="!valid"
+            color="success"
+            class="sub"
+            @click="changeInfoFunction"
+            :loading="allUsers.loading"
+          >
+            {{ $t("Save") }}
+          </v-btn>
         </div>
-      </v-form> 
+      </v-form>
     </div>
   </div>
 </template>
 
-
 <script>
-import { mapActions,mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   data: () => ({
     valid: false,
     data: {
-      name: '',
+      name: "",
       email: "",
     },
     msg: "",
@@ -71,16 +71,15 @@ export default {
     },
   }),
   computed: {
-      ...mapGetters(["allAuth","allUsers"]),
-    
+    ...mapGetters(["allAuth", "allUsers"]),
   },
   mounted() {
-    this.complateData()
+    this.complateData();
   },
   methods: {
-    complateData(){
-      this.data.name=this.allAuth.user.name
-      this.data.email=this.allAuth.user.email
+    complateData() {
+      this.data.name = this.allAuth.user.name;
+      this.data.email = this.allAuth.user.email;
     },
     ...mapActions(["changeInfo"]),
 
@@ -92,4 +91,3 @@ export default {
   },
 };
 </script>
- 

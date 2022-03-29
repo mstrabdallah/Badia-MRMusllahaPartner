@@ -20,12 +20,11 @@
         </v-btn>
       </NuxtLink>
     </div>
-    <div class="user_logout">
-      <v-btn>Logout</v-btn>
+    <div class="user_logout" @click="Logout">
+      <v-btn>{{ $t("Logout") }}</v-btn>
     </div>
   </div>
 </template>
-
 
 <script>
 import { mapActions, mapGetters } from "vuex";
@@ -35,9 +34,7 @@ export default {
     ...mapGetters(["allAuth"]),
   },
   methods: {
-    ...mapActions([""]),
+    ...mapActions(["Logout"]),
   },
 };
 </script>
- 
- 

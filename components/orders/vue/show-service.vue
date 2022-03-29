@@ -3,7 +3,7 @@
     <v-dialog v-model="dialog" width="600px">
       <template v-slot:activator="{ on, attrs }">
         <v-btn outlined class="MoreDetails" v-on="on" v-bind="attrs">
-          More Details
+          {{ $t(" More Details") }}
         </v-btn>
       </template>
       <v-card>
@@ -14,15 +14,15 @@
           </div>
 
           <div class="sboxser_body">
-            <h4>Service details</h4>
+            <h4>{{ $t("Service details") }}</h4>
             <div class="sboxser_table">
               <v-simple-table fixed-header max-height="300px">
                 <template v-slot:default>
                   <thead>
                     <tr>
-                      <th>services</th>
-                      <th>Quantity</th>
-                      <th>price</th>
+                      <th>{{ $t("Services") }}</th>
+                      <th>{{ $t("Quantity") }}</th>
+                      <th>{{ $t("price") }}</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -37,12 +37,12 @@
             </div>
 
             <div class="sboxser_payment">
-              <h4>Payments details</h4>
+              <h4>{{ $t("Payments details") }}</h4>
 
               <div class="sboxser_item">
                 <span>
                   <font-awesome-icon icon="money-check-dollar" />
-                  <span>Total Price</span>
+                  <span>{{ $t("Total Price") }}</span>
                 </span>
 
                 <span>{{ data.total_price }}</span>
@@ -52,7 +52,7 @@
                 <span>
                   <font-awesome-icon icon="hand-holding-dollar" />
 
-                  <span>Payment method </span>
+                  <span>{{ $t("Payment method") }}</span>
                 </span>
 
                 <span>{{ data.payment_method }}</span>
@@ -60,7 +60,7 @@
             </div>
 
             <div class="sboxser_user">
-              <h4>User Info</h4>
+              <h4>{{ $t("User Info") }}</h4>
               <div class="sboxser_item">
                 <span class="sboxser_useri">
                   <v-img
@@ -77,7 +77,7 @@
               <div class="sboxser_item">
                 <span>
                   <font-awesome-icon icon="money-check-dollar" />
-                  <span>Phone</span>
+                  <span>{{ $t("Phone") }}</span>
                 </span>
 
                 <span>{{ data.customer.phone }}</span>
@@ -88,7 +88,7 @@
               <div class="sboxser_item">
                 <span>
                   <font-awesome-icon icon="clock" />
-                  <span>Time</span>
+                  <span>{{ $t("Time") }}</span>
                 </span>
                 <span>{{ data.time }}</span>
               </div>
@@ -96,7 +96,7 @@
               <div class="sboxser_item">
                 <span>
                   <font-awesome-icon icon="calendar-days" />
-                  <span>Date</span>
+                  <span>{{ $t("Date") }}</span>
                 </span>
                 <span>{{ data.date }}</span>
               </div>
@@ -104,16 +104,18 @@
               <div class="sboxser_item">
                 <span>
                   <font-awesome-icon icon="calendar-days" />
-                  <span>status</span>
+                  <span>{{ $t("Status") }}</span>
                 </span>
-                 <span>{{$t('statusOrder'+data.status)}}</span>
+                <span>{{ $t("statusOrder" + data.status) }}</span>
               </div>
             </div>
           </div>
         </div>
         <v-card-actions>
           <div class="sboxser_footer">
-            <v-btn color="darken-1" text @click="dialog = false"> hide </v-btn>
+            <v-btn color="darken-1" text @click="dialog = false">
+              {{ $t("Hide") }}
+            </v-btn>
 
             <v-btn
               color="red darken-1"
@@ -123,7 +125,7 @@
               :disabled="allOrders.loadingAc"
               v-if="data.status > 0 && data.status <= 4"
             >
-              Cancel
+              {{ $t("Cancel") }}
             </v-btn>
 
             <v-btn
@@ -134,7 +136,7 @@
               :disabled="allOrders.loadingA"
               v-if="data.status === 0"
             >
-              Accept
+              {{ $t("Accept") }}
             </v-btn>
 
             <v-btn
@@ -145,7 +147,7 @@
               :disabled="allOrders.loadingA"
               v-if="data.status === 1"
             >
-              ReSchedule
+              {{ $t("ReSchedule") }}
             </v-btn>
 
             <v-btn
@@ -156,7 +158,7 @@
               :disabled="allOrders.loadingA2"
               v-if="data.status === 1 || data.status === 4"
             >
-              In Way
+              {{ $t("In Way") }}
             </v-btn>
 
             <v-btn
@@ -167,7 +169,7 @@
               :disabled="allOrders.loadingA"
               v-if="data.status === 2"
             >
-              Start Work
+              {{ $t("Start Work") }}
             </v-btn>
 
             <v-btn
@@ -178,7 +180,7 @@
               :disabled="allOrders.loadingA2"
               v-if="data.status === 3"
             >
-              Complete
+              {{ $t("Complete") }}
             </v-btn>
           </div>
         </v-card-actions>
@@ -202,7 +204,14 @@ export default {
   },
 
   methods: {
-    ...mapActions(["acceptOrder","inWayOrder","startOrder","completeOrder","rescheduleOrder","cancelOrder"]),
+    ...mapActions([
+      "acceptOrder",
+      "inWayOrder",
+      "startOrder",
+      "completeOrder",
+      "rescheduleOrder",
+      "cancelOrder",
+    ]),
     acceptOrderFunction(e) {
       this.acceptOrder(e);
     },
@@ -218,9 +227,8 @@ export default {
   align-items: center;
   display: flex;
 }
-.sboxser_useri svg{
+.sboxser_useri svg {
   font-size: 18px;
-
 }
 
 .sboxser_img {

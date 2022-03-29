@@ -12,3 +12,4 @@ library.add(fas)
 
 // Register the component globally
 Vue.component('font-awesome-icon', FontAwesomeIcon)
+

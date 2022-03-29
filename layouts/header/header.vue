@@ -1,13 +1,17 @@
 <template>
   <header class="header container_cc" :class="scrolled ? 'headerFixed' : ''">
     <div class="header_p">
+      <v-btn text class="menuBtn" @click.stop="showDrawer()">
+        <v-icon>mdi-menu</v-icon>
+      </v-btn>
+
       <NuxtLink :to="localePath('/')" class="logo">
         <img src="/logo.svg" />
       </NuxtLink>
 
       <nav class="menu">
         <ul>
-          <li>
+          <li class="box_op_header d-none d-sm-block">
             <NuxtLink :to="localePath('/')">
               <font-awesome-icon icon="house" class="fa" />
               <span class="navM_">{{ $t("Home") }}</span>
@@ -55,8 +59,8 @@
                   </v-list-item>
                 </NuxtLink>
 
-                <v-list-item>
-                  <div @click="Logout">
+                <v-list-item link @click="Logout">
+                  <div>
                     <v-list-item-title>{{ $t("Logout") }}</v-list-item-title>
                   </div>
                 </v-list-item>
@@ -64,17 +68,20 @@
             </v-menu>
           </li>
 
-          <li v-if="!allAuth.checkAuth">
+          <li v-if="!allAuth.checkAuth" class="d-none d-sm-block">
             <NuxtLink class="login_" :to="localePath('/login')">
-            <font-awesome-icon style=" padding: 0; margin: 0px 5px; " icon="right-to-bracket" />
-            {{$t("Login")}}
+              <font-awesome-icon
+                style="padding: 0; margin: 0px 5px"
+                icon="right-to-bracket"
+              />
+              {{ $t("Login") }}
             </NuxtLink>
           </li>
 
-          <li>
+          <li class="box_op_header">
             <v-menu offset-y>
               <template v-slot:activator="{ on, attrs }">
-                <div v-if="$i18n.locale === 'ar'">
+                <div v-if="$i18n.locale === 'ar'" class="flex">
                   <img
                     v-bind="attrs"
                     v-on="on"
@@ -82,7 +89,7 @@
                     src="/saflag.png"
                   />
                 </div>
-                <div v-else>
+                <div class="flex" v-else>
                   <img
                     v-bind="attrs"
                     v-on="on"
@@ -92,13 +99,13 @@
                 </div>
               </template>
               <v-list>
-                <v-list-item>
+                <v-list-item :disabled="this.$i18n.locale === 'ar'">
                   <a @click="changeLanguage('ar')">
                     <img width="24px" src="/saflag.png" />
                   </a>
                 </v-list-item>
                 <v-list-item>
-                  <a @click="changeLanguage('en')" >
+                  <a @click="changeLanguage('en')">
                     <img width="24px" src="/usflag.png" />
                   </a>
                 </v-list-item>
@@ -107,9 +114,6 @@
           </li>
         </ul>
       </nav>
-      <!-- <div class="mob_nav">
-        <Menu />
-      </div> -->
     </div>
   </header>
 </template>
@@ -131,9 +135,12 @@ export default {
   },
 
   methods: {
-    ...mapActions(["Logout","changeLanguage"]),
+    ...mapActions(["Logout", "changeLanguage", "changeMenuHeader"]),
     handleClick(index) {
       this.items[index].click.call(this);
+    },
+    showDrawer() {
+      this.changeMenuHeader(true);
     },
 
     handleScroll() {
@@ -150,12 +157,11 @@ export default {
 };
 </script>
 
-
 <style scoped>
 header {
   box-shadow: 0px 1px 4px 0 rgb(0 0 0 / 5%);
   border: 1px solid #efefef;
-  z-index: 99;
+  z-index: 3;
   background: #fff;
   width: 100%;
   position: fixed;
@@ -171,8 +177,7 @@ header {
   display: flex;
   align-items: center;
   height: 70px;
-    transition: 1s;
-
+  transition: 1s;
 }
 .headerFixed .header_p {
   height: 60px;
@@ -215,78 +220,48 @@ a.nuxt-link-exact-active.login_ {
 
 .logo img {
   min-width: 47px;
-  height: 50px;
+  height: 40px;
   align-items: center;
   display: flex;
 }
-.search {
-  display: flex;
-  align-items: center;
+.menuBtn{
+  padding: 0px!important;
+  margin-right: 15px;
 }
-.search:lang(en) {
-  margin-left: 30px;
+.menuBtn:lang(ar){
+  margin-left: 15px;
+
 }
-.search:lang(ar) {
-  margin-right: 30px;
-}
-.select_head {
-  margin: 0px 3px;
+.menuBtn i {
+  font-size: 30px;
+  color: #444;
+
 }
 
-.search input {
-  border: 1px solid #9e9e9e;
-  padding: 9px 20px;
-  border-radius: 8px;
-  width: 300px;
-  margin: 0px;
-}
 
 .select_head {
   height: 40px;
   border-radius: 6px;
   max-width: 190px;
 }
-.mob_nav {
-  display: none;
-  font-size: 20px;
-  color: #30c88c;
-}
+
 .theme--light.v-list-item--disabled {
   color: rgba(0, 0, 0, 0.38);
   background: #30c88c;
   color: #fff;
 }
 
-.searchMobile {
-  background: #f5f5f5;
-  padding: 10px 17px;
-  border-radius: 4px;
-  color: #444;
-  cursor: pointer;
-}
-
 @media (max-width: 768px) {
   .menu {
-    justify-content: center;
   }
   .menu ul {
-    justify-content: space-evenly;
-    width: 100%;
+    justify-content: end;
   }
-  .menu ul li {
-    margin-left: 0em !important;
-    margin-right: 0em !important;
-    background: #f4f4f4;
-    padding: 10px;
-    border-radius: 5px;
+  .box_op_header {
   }
 
   .emptyData_loding {
     width: 100%;
-  }
-
-  .mob_nav {
-    display: block;
   }
 
   .navM_ {

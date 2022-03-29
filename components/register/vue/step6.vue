@@ -5,18 +5,14 @@
     </h3>
 
     <div class="form">
-      <v-form
-        ref="form"
-        v-model="valid"
-        lazy-validation
-      >
+      <v-form ref="form" v-model="valid" lazy-validation>
         <div class="form_body">
-          <h3>Please select workplace photos</h3>
+          <h3>{{ $t("Please select workplace photos") }}</h3>
 
-          <p class="mt-4">The main picture of the workshop</p>
+          <p class="mt-4">{{ $t("The main picture of the workshop") }}</p>
 
           <v-file-input
-            label="Click here to Upload The main picture "
+            :label="$t('Click here to Upload The main picture')"
             outlined
             dense
             @change="onFileChangeBesic"
@@ -31,13 +27,12 @@
           </div>
 
           <p class="mt-4 p_x00">
-            The number of the specified image must be between 3 to 5 images, it
-            should not be reduced, and it should not increase
+            {{ $t("step6 p2") }}
           </p>
 
           <div class="mt-2">
             <v-file-input
-              label="Click here to Upload Workplace images"
+              :label="$t('Click here to Upload Workplace images')"
               outlined
               dense
               multiple
@@ -67,13 +62,12 @@
           :loading="this.$store.state.auth.loading"
           type="submit"
         >
-          {{ $t("Next") }}
+          {{ $t("NEXT") }}
         </v-btn>
       </v-form>
     </div>
   </div>
 </template>
-
 
 <script>
 import { mapActions, mapGetters } from "vuex";
@@ -135,7 +129,6 @@ export default {
   },
 };
 </script>
- 
 <style scoped>
 .msgStep6 {
   color: #f00;

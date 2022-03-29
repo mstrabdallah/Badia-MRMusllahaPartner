@@ -1,21 +1,24 @@
 <template>
   <div class="app">
     <v-app>
+      <Menu />
+
       <Header />
       <div class="pages">
         <Nuxt />
       </div>
       <Footer />
+      <Overlays />
     </v-app>
   </div>
 </template>
 <script>
-import HeaderTop from "./header/header-top.vue";
 import Header from "./header/header.vue";
 import Footer from "./footer/footer.vue";
+import Menu from "./header/menu.vue";
 import { mapActions } from "vuex";
 import { uuid } from "vue-uuid";
-
+import  Overlays from '../components/overlays/overlays.vue'
 export default {
   head() {
     return this.$nuxtI18nHead({ addSeoAttributes: true });
@@ -23,12 +26,12 @@ export default {
   components: {
     Header,
     Footer,
-    HeaderTop,
+    Menu,
+    Overlays
   },
 
   async beforeCreate() {
     this.$vuetify.rtl = this.$i18n.locale === "ar" ? true : false;
-    
   },
 
   async mounted() {
@@ -36,9 +39,9 @@ export default {
       this.getOrderPending();
     });
 
-    await this.setApi(uuid.v5(navigator.userAgent, "65f9af5d-f23f-4065-ac85-da725569fdcd"));
-
-   
+    await this.setApi(
+      uuid.v5(navigator.userAgent, "65f9af5d-f23f-4065-ac85-da725569fdcd")
+    );
   },
   methods: {
     ...mapActions(["getToken", "setApi", "getOrderPending"]),
@@ -59,6 +62,9 @@ export default {
 }
 html {
   scroll-behavior: smooth;
+}
+body{
+      overflow: hidden;
 }
 
 body,
@@ -137,23 +143,6 @@ img {
   right: auto;
   left: 10px;
 }
-/* bootstrap */
-
-button.close {
-  border: none;
-  padding: 5px 13px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-select {
-  margin-top: 20px;
-  padding: 6px;
-  border: 1px solid #ccc;
-  margin-bottom: 20px;
-  width: 100%;
-}
-
 /* vuetify */
 
 .v-application p,
@@ -194,23 +183,23 @@ p {
 .v-otp-input {
   direction: ltr;
 }
+
 /* plugins */
 
- 
 .country-selector__input:lang(ar) {
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;
-        border-top-left-radius: 0!important;
-    border-bottom-left-radius: 0!important;
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
 }
-.input-tel__input:lang(ar) {
+input.input-tel__input:lang(ar) {
   direction: ltr;
-    border-top-left-radius: 4px !important;
+  border-top-left-radius: 4px !important;
   border-bottom-left-radius: 4px !important;
-      border-top-right-radius: 0px;
-    border-bottom-right-radius: 0px;
-
+  border-top-right-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
 }
+
 .input-tel__label:lang(ar) {
   right: 13px;
   left: auto;

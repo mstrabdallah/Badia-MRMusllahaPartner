@@ -1,17 +1,13 @@
 <template>
   <div class="form_register">
     <h3 class="mb-5">
-      {{ $t("agreements approved") }}
+      {{ $t("Agreements Approve") }}
     </h3>
 
     <div class="form">
-      <v-form
-        ref="form"
-        v-model="valid"
-        lazy-validation
-      >
+      <v-form ref="form" v-model="valid" lazy-validation>
         <div class="form_body">
-          <p>Before starting, the agreements must be approved</p>
+          <p>{{ $t("Before starting, the agreements must be approved") }}</p>
           <div class="agreements_s">
             <v-checkbox
               :rules="[rules.required]"
@@ -19,7 +15,7 @@
             >
               <template v-slot:label>
                 <div>
-                  By continuing, you agree to
+                  {{ $t("By continuing, you agree to") }}
                   <v-tooltip bottom>
                     <template v-slot:activator="{ on }">
                       <a
@@ -28,10 +24,10 @@
                         @click.stop
                         v-on="on"
                       >
-                        the Terms and Conditions
+                        {{ $t("Terms and conditions") }}
                       </a>
 
-                      and
+                      {{ $t("and") }}
 
                       <a
                         target="_blank"
@@ -39,7 +35,7 @@
                         @click.stop
                         v-on="on"
                       >
-                        Privacy Policy
+                        {{ $t("Privacy Policy") }}
                       </a>
                     </template>
                   </v-tooltip>
@@ -64,7 +60,6 @@
     </div>
   </div>
 </template>
-
 
 <script>
 import { mapActions, mapGetters } from "vuex";
@@ -95,7 +90,6 @@ export default {
   },
 };
 </script>
- 
 <style scoped>
 .agreements_s {
   background: #fff;

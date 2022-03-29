@@ -14,9 +14,9 @@
         <div class="links_heading_p">
           <div class="links">
             <h2 class="links_heading">{{ $t("Other pages") }}</h2>
-            <nuxt-link to="">{{ $t("Terms and conditions") }}</nuxt-link>
-            <nuxt-link to="">{{ $t("Privacy Policy") }}</nuxt-link>
-            <nuxt-link to="">{{ $t("About mr.musllaha") }}</nuxt-link>
+            <nuxt-link :to="localePath('terms-condition')">{{ $t("Terms and conditions") }}</nuxt-link>
+            <nuxt-link :to="localePath('/privcy-policy')">{{ $t("Privacy Policy") }}</nuxt-link>
+            <nuxt-link :to="localePath('/about')">{{ $t("About mr.musllaha") }}</nuxt-link>
           </div>
         </div>
       </v-col>
@@ -24,8 +24,11 @@
         <div class="links_heading_p">
           <h2 class="links_heading">{{ $t("Quick links") }}</h2>
           <div class="links">
-            <nuxt-link to="/login">{{ $t("Login") }}</nuxt-link>
-            <nuxt-link to="/register">{{ $t("Create Account") }}</nuxt-link>
+            <nuxt-link :to="localePath('/')" >{{ $t("Home") }}</nuxt-link>
+            <nuxt-link :to="localePath('/notifications')"  v-if="allAuth.checkAuth"  >{{ $t("Notifications") }}</nuxt-link>
+            <nuxt-link :to="localePath('/my-work')"  v-if="allAuth.checkAuth"  >{{ $t("My Work") }}</nuxt-link>
+            <nuxt-link :to="localePath('/login')"  v-if="!allAuth.checkAuth"  >{{ $t("Login") }}</nuxt-link>
+            <nuxt-link :to="localePath('/register')"  v-if="!allAuth.checkAuth" >{{ $t("Create Account") }}</nuxt-link>
           </div>
         </div>
       </v-col>
@@ -41,15 +44,20 @@
     <v-divider></v-divider>
 
     <p class="my-2 copy">
-      {{ $t("All copy rights reserved to mrmusllaha © 2022.") }}
+      {{ $t("copyright") }}
     </p>
   </footer>
 </template>
 <script>
+import { mapGetters } from 'vuex';
 export default {
   data: () => ({
     icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
   }),
+
+  computed:{
+    ...mapGetters(['allAuth'])
+  }
 };
 </script>
 

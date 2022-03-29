@@ -1,5 +1,5 @@
 <template>
-  <v-container class="my-10">
+  <v-container class="my-10 pt-8">
     <h1 class="about_heading">{{ $t("About mrmusllaha") }}</h1>
     <v-row>
       <v-col cols="12">

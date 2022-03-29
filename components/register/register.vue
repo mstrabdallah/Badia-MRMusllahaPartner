@@ -3,7 +3,7 @@
     <div class="register">
       <h1>{{ $t("Create Account") }}</h1>
 
-      <div class="loadingReg" v-if="this.$store.state.auth.loadingReg">
+      <div class="loadingReg" v-if="allAuth.loadingMe">
         <v-progress-circular
           :size="50"
           color="primary"
@@ -20,7 +20,7 @@
 
 <script>
 import Stepper from "./vue/stepper.vue";
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   head() {
     return {
@@ -35,13 +35,10 @@ export default {
       ],
     };
   },
-  data: () => ({}),
-
-  mounted() {
+   computed: {
+    ...mapGetters(["allAuth"]),
   },
-  methods: {
-
-},
+  methods: {},
   components: {
     Stepper,
   },
@@ -63,14 +60,14 @@ export default {
   margin-top: 5px;
 }
 
-.loadingReg{
-    min-height: 500px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 4px;
+.loadingReg {
+  min-height: 500px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
 }
 
 .form_register h3 {

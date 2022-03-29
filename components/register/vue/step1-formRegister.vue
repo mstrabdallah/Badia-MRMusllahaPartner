@@ -22,8 +22,9 @@
             class="mb-7"
             required
             v-bind="vuePhone.props"
-            @update="data.code = $event.countryCallingCode"
+            @update="data.code = $event.formattedNumber"
           />
+
            <v-text-field
             v-model="data.email"
             :rules="[rules.required, rules.email]"

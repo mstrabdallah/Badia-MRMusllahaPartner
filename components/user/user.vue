@@ -1,26 +1,20 @@
 <template>
   <div class="page container_cc user">
-         <div  class="title_page">
-            <h1>My Account</h1>
-         </div>
+    <div class="title_page">
+      <h1>{{ $t("My Account") }}</h1>
+    </div>
 
- 
-      <v-row no-gutters>
-        <v-col cols="12" md="4">
-          <UserInfo />
-        </v-col>
+    <v-row no-gutters>
+      <v-col cols="12" md="4">
+        <UserInfo />
+      </v-col>
 
-        <v-col cols="12" md="8">
-         
-        
-      
-          <UserItem />
-        </v-col>
-      </v-row>
-     
+      <v-col cols="12" md="8">
+        <UserItem />
+      </v-col>
+    </v-row>
   </div>
 </template>
-
 
 <script>
 import { mapActions, mapGetters } from "vuex";
@@ -50,7 +44,6 @@ export default {
   components: {
     UserInfo,
     UserItem,
-    
   },
   computed: {
     ...mapGetters(["allAuth"]),
@@ -60,84 +53,80 @@ export default {
   },
 };
 </script>
- 
-
 
 <style>
-.user{
+.user {
   margin-bottom: 20px;
 }
-.msgerror{
-      color: #f00;
-    border: 1px solid #f00;
-    padding: 10px;
-    margin: 10px 0px;
-    border-radius: 4px;
+.msgerror {
+  color: #f00;
+  border: 1px solid #f00;
+  padding: 10px;
+  margin: 10px 0px;
+  border-radius: 4px;
 }
-.msgdone{
-      color: #30c88c;
-    border: 1px solid #30c88c;
-    padding: 10px;
-    margin: 10px 0px;
-    border-radius: 4px;
+.msgdone {
+  color: #30c88c;
+  border: 1px solid #30c88c;
+  padding: 10px;
+  margin: 10px 0px;
+  border-radius: 4px;
 }
-.form_account{
+.form_account {
   max-width: 500px;
-} 
-.form_account_body{
-      background: #fcfcfc;
-    padding: 10px;
-    border: 1px solid #f5f4f4;
-    border-radius: 4px;
 }
-.user_info,.user_items{
-   min-height:500px;
-   height: 100%;
+.form_account_body {
+  background: #fcfcfc;
+  padding: 10px;
+  border: 1px solid #f5f4f4;
+  border-radius: 4px;
 }
-.user_items{
-    background: #f0f0f038;
-    padding: 20px;
-    border: 1px solid #ededed;
+.user_info,
+.user_items {
+  min-height: 500px;
+  height: 100%;
+}
+.user_items {
+  background: #f0f0f038;
+  padding: 20px;
+  border: 1px solid #ededed;
 }
 
 .user_items .v-expansion-panel {
-    margin-bottom: 25px;
-    padding: 10px;
+  margin-bottom: 25px;
+  padding: 10px;
 }
-
 
 /* info */
-.user_info{
-text-align: center;
-    padding: 10px;
-    border: 1px solid #e9e9e9cc;
-    border-radius: 5px;
-    position: relative;
+.user_info {
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #e9e9e9cc;
+  border-radius: 5px;
+  position: relative;
 }
-.user_image{
+.user_image {
   margin-top: 20px;
-    font-size: 40px;
+  font-size: 40px;
 }
-.user_info p{
-        padding: 10px;
-    border-bottom: 1px solid #f6f6f6;
-    margin: 10px 0px;
+.user_info p {
+  padding: 10px;
+  border-bottom: 1px solid #f6f6f6;
+  margin: 10px 0px;
 }
-.user_pages a button{
-      display: block;
-    width: 100%;
-    margin-top: 20px;
+.user_pages a button {
+  display: block;
+  width: 100%;
+  margin-top: 20px;
 }
 .user_logout {
-    border-top: 1px solid #ececec;
-    margin-top: 63px;
+  border-top: 1px solid #ececec;
+  margin-top: 63px;
 }
-.user_logout button{
- 
+.user_logout button {
   margin-top: 30px;
-    border-radius: 9px;
-    background-color: #ebe0e0!important;
-    color: #f00;
+  border-radius: 9px;
+  background-color: #ebe0e0 !important;
+  color: #f00;
 }
- 
 </style>

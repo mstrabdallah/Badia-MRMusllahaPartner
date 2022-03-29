@@ -6,6 +6,8 @@ const state = {
     changePasswordDone: false,
     msgInfo: null,
     msgInfoDone: false,
+    menuHeader: false,
+    overlay: false
 
 
 };
@@ -14,12 +16,20 @@ const getters = {
     allUsers: state => state
 };
 
+
 const actions = {
 
-    async changeLanguage({ state},data){
+    changeMenuHeader({ state }, data) {
+        state.menuHeader = data
+    },
+    setOverlay({ state }, data) {
+        state.overlay = data
+    },
+
+    async changeLanguage({ state }, data) {
         await this.$cookies.set("lang", data, { path: "/", maxAge: 365 * 24 * 60 * 60 });
         location.reload();
-      },
+    },
 
     changeInfo({ state }, arrayData) {
 
@@ -73,7 +83,7 @@ const actions = {
         });
     },
 
-   
+
 
 
 }

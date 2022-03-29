@@ -89,4 +89,23 @@ p:lang(ar) {
 .but_download :nth-child(2):lang(ar) {
   margin-right: 40px;
 }
+
+@media(max-width:768px){
+h3{
+      text-align: center;
+    font-size: 1.6em;
+}
+.but_download{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.but_download a:nth-child(2){
+    margin-left: 0px!important;
+    margin-right: 0px!important;
+    margin-top: 20px;
+
+}
+}
 </style>

@@ -1,15 +1,14 @@
 <template>
-  <v-sheet  class="overflow-hidden menu_header">
-    <v-container class="fill-height">
-      <v-row align="center" justify="center">
-        <v-btn   dark @click.stop="drawer = !drawer"> <font-awesome-icon icon="bars"  /> </v-btn>
-      </v-row>
-    </v-container>
+<div>
+
+
+  <v-sheet class="overflow-hidden menu_header">
+
 
     <v-navigation-drawer
-      v-model="drawer"
+      v-model="allUsers.menuHeader"
       absolute
-       top
+      top
       temporary
       :right="$i18n.locale === 'ar'"
     >
@@ -21,7 +20,7 @@
 
       <v-divider></v-divider>
 
-       <v-list-item>
+      <v-list-item>
         <NuxtLink :to="localePath('/')">
           <fa icon="house" class="fa" />
           {{ $t("Home") }}
@@ -30,8 +29,8 @@
 
       <v-list-item v-if="!this.$store.state.auth.checkAuth">
         <NuxtLink class="login_" :to="localePath('/login')">
-         <fa icon="user" class="fa" />
-        {{$t("Login")}}
+          <fa icon="user" class="fa" />
+          {{ $t("Login") }}
         </NuxtLink>
       </v-list-item>
 
@@ -54,14 +53,14 @@
           <v-list>
             <v-list-item>
               <div @click="Logout">
-                <v-list-item-title >{{ $t("Logout") }}</v-list-item-title>
+                <v-list-item-title>{{ $t("Logout") }}</v-list-item-title>
               </div>
             </v-list-item>
           </v-list>
         </v-menu>
       </v-list-item>
 
-       <v-list-item>
+      <v-list-item>
         <v-menu bottom left>
           <template v-slot:activator="{ on, attrs }">
             <div v-bind="attrs" v-on="on" color="primary" icon>
@@ -87,25 +86,30 @@
       </v-list-item>
     </v-navigation-drawer>
   </v-sheet>
+   <v-overlay :value="allUsers.menuHeader"></v-overlay>
+  </div>
 </template>
  <script>
- import {mapActions} from 'vuex'
+import { mapActions, mapGetters } from "vuex";
 export default {
   data() {
     return {
       drawer: false,
     };
   },
+  computed:{
+...mapGetters(['allUsers'])
+  },
   methods: {
-    ...mapActions(["Logout"]),
+    ...mapActions(["Logout","changeMenuHeader"]),
     afterVisibleChange(val) {
       console.log("visible", val);
     },
     showDrawer() {
-      this.visible = true;
+      this.changeMenuHeader(true)
     },
     onClose() {
-      this.visible = false;
+      this.changeMenuHeader(false)
     },
   },
 };
@@ -116,23 +120,24 @@ export default {
   margin: auto;
   display: block;
   display: flex;
-    display: flex;
-    justify-content: center;
-    padding-top: 22px;
+  display: flex;
+  justify-content: center;
+  padding-top: 22px;
 }
 .logo img {
   width: 100px;
 }
 
- a.nuxt-link-exact-active {
+a.nuxt-link-exact-active {
   color: #bf804b;
   padding-bottom: 10px;
 }
-.v-list-item{
-      font-size: 17px;
+.v-list-item {
+  font-size: 17px;
 }
-.menu_header .theme--dark{
-      background-color: #ffffff;
-    color: #444;
+.menuBtn{
+      font-size: 20px;
+    color: #030303;
+    line-height: 58px;
 }
 </style>
