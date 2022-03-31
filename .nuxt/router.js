@@ -15,7 +15,6 @@ const _6a2bddd4 = () => interopDefault(import('../pages/notifications.vue' /* we
 const _46e177c8 = () => interopDefault(import('../pages/privcy-policy.vue' /* webpackChunkName: "pages/privcy-policy" */))
 const _b3b69736 = () => interopDefault(import('../pages/register.vue' /* webpackChunkName: "pages/register" */))
 const _43f2e6fa = () => interopDefault(import('../pages/terms-condition.vue' /* webpackChunkName: "pages/terms-condition" */))
-const _74811fd4 = () => interopDefault(import('../pages/test.vue' /* webpackChunkName: "pages/test" */))
 
 const emptyFn = () => {}
 
@@ -73,10 +72,6 @@ export const routerOptions = {
     component: _43f2e6fa,
     name: "terms-condition___en"
   }, {
-    path: "/test",
-    component: _74811fd4,
-    name: "test___en"
-  }, {
     path: "/ar/about",
     component: _14c0bb3b,
     name: "about___ar"
@@ -116,10 +111,6 @@ export const routerOptions = {
     path: "/ar/terms-condition",
     component: _43f2e6fa,
     name: "terms-condition___ar"
-  }, {
-    path: "/ar/test",
-    component: _74811fd4,
-    name: "test___ar"
   }, {
     path: "/",
     component: _34789600,

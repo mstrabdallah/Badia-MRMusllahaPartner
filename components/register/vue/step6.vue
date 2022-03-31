@@ -18,7 +18,7 @@
             @change="onFileChangeBesic"
             v-model="data.workshop_front"
             prepend-icon="mdi-camera"
-            :rules="[rules.required]"
+            :rules="[$rules.fileRequired]"
             required
           ></v-file-input>
 
@@ -39,7 +39,7 @@
               @change="onFileChange"
               v-model="data.images"
               prepend-icon="mdi-camera"
-              :rules="[rules.required]"
+              :rules="[$rules.filesRequired]"
               required
             ></v-file-input>
 
@@ -85,9 +85,6 @@ export default {
       images: [],
       workshop_front: null,
     },
-    rules: {
-      required: (v) => !!v || "Required.",
-    },
   }),
 
   methods: {
@@ -95,9 +92,9 @@ export default {
 
     Step6Function(e) {
       e.preventDefault();
+      if (this.$refs.form.validate() === false) return false;
       if (this.data.images.length > 5 || this.data.images.length < 3)
         return false;
-      if (this.$refs.form.validate() === false) return false;
       this.registerStep6(this.data);
     },
 

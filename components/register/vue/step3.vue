@@ -23,7 +23,8 @@
               :label="$t('Main Category')"
               @change="changeCategory"
               v-model="data.category_id"
-              :rules="[this.$rules.required]"
+              :rules="[$rules.required]"
+              :disabled="allCategory.loading"
               dense
               outlined
             ></v-select>
@@ -37,8 +38,9 @@
                   item-value="id"
                   chips
                   class="mt-2"
-                  :label="$t('Cub Category')"
-                  :rules="[this.$rules.required]"
+                  :label="$t('Sub Category')"
+                  :rules="[$rules.required]"
+                  :disabled="allCategory.loading"
                   multiple
                   dense
                   outlined
@@ -64,7 +66,7 @@
           type="submit"
           :loading="allCategory.loading"
         >
-          {{ $t("Next") }}
+          {{ $t("NEXT") }}
         </v-btn>
       </v-form>
     </div>

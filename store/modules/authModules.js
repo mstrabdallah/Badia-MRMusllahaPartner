@@ -4,7 +4,6 @@ const state = {
   checkAuth: false,
   step: 1,
   stepSub: 1,
-  is_active: 0,
   is_online: 0,
   token: null,
   device: 'website',
@@ -16,7 +15,8 @@ const state = {
   loadingMe: true,
   errors: [],
   forgotStep: 1,
-  dataProcess: []
+  dataProcess: [],
+  sessionExpired: false,
 
 };
 
@@ -35,52 +35,78 @@ const actions = {
     if (this.$cookies.get("token")) await this.$axios.setHeader('token', this.$cookies.get("token"))
     if (!this.$cookies.get("token")) await dispatch('getToken')
 
- 
+    //set state Api
+    state.sessionId = data;
+
     //sId = session-id  -- for check if user agent changed
     if (!this.$cookies.get("sId")) this.$cookies.set("sId", data, { path: "/", maxAge: 365 * 24 * 60 * 60 });
-    if (this.$cookies.get("sId") != data) alert('a7a')
+    if (this.$cookies.get("sId") != data && state.checkAuth === true) state.sessionExpired = true;
 
     // get api when open site first time
 
     dispatch('getMe')
 
-
   },
+
+  // async checkApi({ state, dispatch }) {
+  //   if (this.$cookies.get("sId") != state.sessionId) {
+
+  //     //set session-id again
+  //     await this.$axios.setHeader('session-id', state.sessionId)
+  //     await this.$cookies.set("sId", data, { path: "/", maxAge: 365 * 24 * 60 * 60 });
+
+  //     await dispatch('getToken')
+
+  //   }
+  // },
 
   changeOnline({ state }) {
     state.loading = true;
     var data = new FormData();
     this.$axios.post("/me/changeStatus", data).then((res) => {
-      state.is_online = res.data.data.status;
       state.loading = false;
+      if (res.data.status === 200) {
+        state.is_online = res.data.data.status;
+      } else {
+        alert('لدينا مشكلة سوف نعمل على حلها !')
+      }
     });
   },
-
-  routerTo() {
-    if (this.$i18n.locale === "en") {
-      window.location.href = "/";
-    } else {
-      window.location.href = "/ar";
-    }
+  changeSessionExpired({ state }) {
+    state.sessionExpired = false;
   },
 
-  async Logout({dispatch}) {
+  routerTo({ }, reload = 1) {
+    if (reload === 0) {
+      if (this.$i18n.locale === "en")
+        window.location.href = '/login'
+      else
+        window.location.href = '/ar/login'
+    } else {
+      if (this.$i18n.locale === "en")
+        window.location.href = '/'
+      else
+        window.location.href = '/ar'
+    }
+
+  },
+
+  async Logout({ dispatch }, reload = 1) {
     var data = new FormData();
-    data.append("data", '');
-    dispatch('setOverlay',{data:true})
-     await this.$axios.$post('/me/logout',data).then((res) => {
-   
-        this.$cookies.remove('token');
-        this.$cookies.remove('user');
-        this.$cookies.remove('iA');
-        this.$cookies.remove('sId');
-        dispatch('routerTo')
-        dispatch('setOverlay',{data:false})
+    dispatch('setOverlay', true)
+    await this.$axios.$post('/me/logout', data).then((res) => {
+      dispatch('setOverlay', false)
+      this.$cookies.remove('token');
+      this.$cookies.remove('user');
+      this.$cookies.remove('iA');
+      this.$cookies.remove('sId');
+      dispatch('routerTo', 0);
 
     })
   },
 
   async getToken({ app, state, dispatch }) {
+    // alert(state.checkAuth)
     if (state.checkAuth === true) return false;
     const response = await this.$axios.$get('/check_token').then((res) => {
 
@@ -109,9 +135,11 @@ const actions = {
 
     const response = this.$axios.$get('/me').then((res) => {
       state.loadingMe = false;
-      if (res.data === 401) {
-        state.step = 1;
-        dispatch('Logout')
+      if (res.status === 401) {
+        if(state.checkAuth){
+          state.sessionExpired = true;
+        }
+        state.step = 1;     
       } else {
         state.step = res.data.current_step + 1;
         state.user = res.data;
@@ -119,6 +147,7 @@ const actions = {
 
         state.token = res.token;
         this.$cookies.set("user", res.data, { path: "/", maxAge: 365 * 24 * 60 * 60 });
+        this.$cookies.set("iA", res.data.is_active, { path: "/", maxAge: 365 * 24 * 60 * 60, });
       }
     }).catch(function (error) {
 
@@ -127,21 +156,20 @@ const actions = {
 
   async Login({ app, state, dispatch }, arrayData) {
 
+    //set state
+    state.loading = true;
+    //
     var data = new FormData();
     data.append("phone_number", arrayData.phone_number.replace(/\s/g, ''));
     data.append("password", arrayData.password);
     data.append("code", arrayData.code);
-    state.loading = true;
     const response = this.$axios.$post('/me/login', data).then((res) => {
       state.loading = false;
       if (res.status === 200) {
 
         this.$cookies.set("user", res.data, { path: "/", maxAge: 365 * 24 * 60 * 60 });
+        this.$cookies.set("iA", res.data.is_active, { path: "/", maxAge: 365 * 24 * 60 * 60 });
 
-        this.$cookies.set("iA", res.data.is_active, {
-          path: "/",
-          maxAge: 365 * 24 * 60 * 60,
-        });
         dispatch('routerTo');
       } else {
         state.errors = res.msg;
@@ -196,26 +224,22 @@ const actions = {
     state.loading = true;
   },
   async registerStep1({ state, dispatch }, arrayData) {
-    const currentToken = await this.$fire.messaging.getToken()
+    dispatch('setNext')
 
     var data = new FormData();
-
     if (state.stepSub === 2)
       data.append("verification_code", arrayData);
     else
       state.register = arrayData;
 
     data.append("name", state.register.name);
-    data.append("phone", state.register.code);
+    data.append("phone", '+20'+state.register.phone.replace(/\s/g, ''));
     data.append("email", state.register.email);
     data.append("referral", state.register.referral);
     data.append("password", state.register.password);
     data.append("password_confirmation", state.register.password);
     // data.append("code", state.register.code);
 
-    data.append("fcm", currentToken);
-
-    dispatch('setNext')
     this.$axios.post("/Register/step1", data).then((res) => {
       state.loading = false;
 
@@ -241,6 +265,7 @@ const actions = {
   },
 
   registerStep2({ state, dispatch }, arrayData) {
+    dispatch('setNext')
     var data = new FormData();
     state.register = arrayData;
 
@@ -256,6 +281,8 @@ const actions = {
 
         state.step = 3;
         dispatch('getCategory')
+      } else {
+        state.errors = res.data.msg;
       }
 
     }).catch((error) => {
@@ -264,8 +291,8 @@ const actions = {
     });
   },
 
-  registerStep3({ state }, arrayData) {
-
+  registerStep3({ state ,dispatch}, arrayData) {
+    dispatch('setNext')
     var data = new FormData();
     state.register = arrayData;
 
@@ -279,6 +306,8 @@ const actions = {
         state.loading = false;
         state.step = 4;
         dispatch('getCity')
+      } else {
+        state.errors = res.data.msg;
       }
 
     }).catch((error) => {
@@ -286,8 +315,8 @@ const actions = {
     });
   },
 
-  registerStep4({ state }, arrayData) {
-
+  registerStep4({ state,dispatch }, arrayData) {
+    dispatch('setNext')
     var data = new FormData();
     state.register = arrayData;
     data.append("city_id", state.register.city_id);
@@ -295,15 +324,20 @@ const actions = {
 
     state.loading = true;
     this.$axios.post("/Register/step4", data).then((res) => {
-      state.loading = false;
-      state.step = 5;
+      if (res.data.status === 200) {
+        state.loading = false;
+        state.step = 5;
+        dispatch('getCountry')
+      } else {
+        state.errors = res.data.msg;
+      }
     }).catch((error) => {
       state.loading = false;
     });
   },
 
-  registerStep5({ state }, arrayData) {
-
+  registerStep5({ state,dispatch }, arrayData) {
+    dispatch('setNext')
     var data = new FormData();
     state.register = arrayData;
 
@@ -314,15 +348,19 @@ const actions = {
 
     state.loading = true;
     this.$axios.post("/Register/step5", data).then((res) => {
-      state.loading = false;
-      state.step = 6;
-
+      if (res.data.status === 200) {
+        state.loading = false;
+        state.step = 6;
+      } else {
+        state.errors = res.data.msg;
+      }
     }).catch((error) => {
       state.loading = false;
     });
   },
 
   registerStep6({ state, dispatch }, arrayData) {
+    dispatch('setNext')
     var data = new FormData();
     state.register = arrayData;
 
@@ -335,13 +373,21 @@ const actions = {
     state.loading = true;
     this.$axios.post("/Register/step6", data).then((res) => {
       state.loading = false;
-      state.step = 7;
+
+      if (res.data.status === 200) {
+        state.step = 7;
+      } else {
+        state.errors = res.data.msg;
+      }
+
+
     }).catch((error) => {
       state.loading = false;
     });
   },
 
- async registerStep7({ state }, arrayData) {
+  async registerStep7({ state, dispatch }, arrayData) {
+    dispatch('setNext')
     const currentToken = await this.$fire.messaging.getToken()
 
     var data = new FormData();
@@ -351,13 +397,11 @@ const actions = {
     state.loading = true;
     this.$axios.post("/Register/step7", data).then((res) => {
 
-      if (res.status === 200) {
-        this.$cookies.set("user", res.data, { path: "/", maxAge: 365 * 24 * 60 * 60 });
 
-        this.$cookies.set("iA", res.data.is_active, {
-          path: "/",
-          maxAge: 365 * 24 * 60 * 60,
-        });
+      if (res.data.status === 200) {
+        this.$cookies.set("user", res.data.data, { path: "/", maxAge: 365 * 24 * 60 * 60 });
+
+        this.$cookies.set("iA", res.data.data.is_active, { path: "/", maxAge: 365 * 24 * 60 * 60, });
         dispatch('routerTo');
       } else {
         state.errors = res.msg;

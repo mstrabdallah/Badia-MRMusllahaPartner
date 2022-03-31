@@ -74,6 +74,10 @@ footer .copy {
   justify-content: center;
   width: 100%;
 }
+.copy{
+        height: 46px;
+
+}
 .footer_info {
   flex-direction: column;
 }

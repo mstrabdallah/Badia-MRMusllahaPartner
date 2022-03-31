@@ -1,8 +1,8 @@
 
 <template>
   <v-stepper
-    vertical
-    alt-labels
+     
+    
     v-model="this.$store.state.auth.step"
   >
     <v-stepper-header>

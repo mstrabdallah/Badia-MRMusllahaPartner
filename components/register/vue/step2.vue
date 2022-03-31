@@ -7,7 +7,7 @@
     <div class="form">
       <v-form ref="form" v-model="valid" lazy-validation>
         <div class="form_body">
-          <v-radio-group :rules="[this.$rules.required]" v-model="data.type" row>
+          <v-radio-group :rules="[$rules.required]" v-model="data.type" row>
             <label>{{$t('Type')}} : </label>
             <v-radio :label="$t('Individual')" value="individual"></v-radio>
             <v-radio  :label="$t('Company')" value="company"></v-radio>
@@ -23,7 +23,7 @@
                 : $t('ID No.'),
             ]"
             
-            :rules="[this.$rules.required,this.$rules.min]"
+            :rules="[$rules.required,$rules.min]"
             required
             outlined
             dense
@@ -42,7 +42,7 @@
             dense
             @change="onFileChange"
             :v-model="data.id_file"
-             :rules="[this.$rules.required]"
+             :rules="[$rules.fileRequired]"
             prepend-icon="mdi-camera"
             required
           ></v-file-input>

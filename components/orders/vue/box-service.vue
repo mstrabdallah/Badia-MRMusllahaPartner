@@ -72,8 +72,6 @@ export default {
 </script>
 <style>
 .boxser {
-  width: 350px;
-  margin: 20px;
   padding: 15px;
   border-radius: 4px;
   border: 1px solid #ece9e9;

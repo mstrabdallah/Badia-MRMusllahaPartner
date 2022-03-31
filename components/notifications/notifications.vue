@@ -4,8 +4,9 @@
 
     <div class="Notif_loading" v-if="allNotifications.loading"><Loading /></div>
     <div v-else>
-
-      <div v-if="allNotifications.notifications.data.length === 0">{{ $t("You have no notifications") }}</div>
+      <div v-if="allNotifications.notifications.data.length === 0">
+        {{ $t("You have no notifications") }}
+      </div>
 
       <v-card v-else max-width="700">
         <v-list-item
@@ -30,8 +31,13 @@
 </template>
 <script>
 import { mapActions, mapGetters } from "vuex";
-import Loading from '../tools/loadingP.vue'
+import Loading from "../tools/loadingP.vue";
 export default {
+  head() {
+    return {
+      title: this.$i18n.t("Notifications"),
+    };
+  },
   computed: {
     ...mapGetters(["allNotifications"]),
   },
@@ -41,9 +47,9 @@ export default {
   methods: {
     ...mapActions(["getNotifications"]),
   },
-  components:{
-    Loading
-  }
+  components: {
+    Loading,
+  },
 };
 </script>
 <style scoped>

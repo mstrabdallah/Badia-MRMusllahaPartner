@@ -25,7 +25,6 @@ export default {
   env: env.parsed,
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-
     'vue-phone-number-input/dist/vue-phone-number-input.css',
     '@fortawesome/fontawesome-svg-core/styles.css'
 
@@ -37,7 +36,7 @@ export default {
       '~assets/scss/variables.scss'
     ]
   },
-
+ 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/axios.js',

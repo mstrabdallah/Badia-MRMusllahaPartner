@@ -27,6 +27,29 @@
           <ChangePassword />
         </v-expansion-panel-content>
       </v-expansion-panel>
+            <v-expansion-panel>
+        <v-expansion-panel-header>
+          <template>
+            <v-row no-gutters> {{ $t("Bank Details") }} </v-row>
+          </template>
+        </v-expansion-panel-header>
+
+        <v-expansion-panel-content>
+          <Bankdetails />
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+
+      <v-expansion-panel>
+        <v-expansion-panel-header>
+          <template>
+            <v-row no-gutters> {{ $t("Invite friends") }} </v-row>
+          </template>
+        </v-expansion-panel-header>
+
+        <v-expansion-panel-content>
+          <Referalcode />
+        </v-expansion-panel-content>
+      </v-expansion-panel>
     </v-expansion-panels>
   </div>
 </template>
@@ -35,6 +58,8 @@
 import ChangePassword from "./forms/changePassword.vue";
 import ChangeInfo from "./forms/changeInfo.vue";
 import Complete from "./user-complete.vue";
+import Bankdetails from './forms/bankdetails.vue'
+import Referalcode from './user-referalcode.vue'
 
 export default {
   data: () => ({
@@ -50,6 +75,8 @@ export default {
     ChangePassword,
     ChangeInfo,
     Complete,
+    Bankdetails,
+    Referalcode
   },
 };
 </script>

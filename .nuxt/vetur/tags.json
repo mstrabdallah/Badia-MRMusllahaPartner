@@ -5,26 +5,35 @@
   "IndexPartner": {
     "description": "Auto imported from components/index/indexPartner.vue"
   },
-  "MyEarnings": {
-    "description": "Auto imported from components/myEarnings/myEarnings.vue"
-  },
   "LoginForgotPassword": {
     "description": "Auto imported from components/login/forgot-password.vue"
   },
   "Login": {
     "description": "Auto imported from components/login/login.vue"
   },
+  "Notifications": {
+    "description": "Auto imported from components/notifications/notifications.vue"
+  },
   "Orders": {
     "description": "Auto imported from components/orders/orders.vue"
+  },
+  "OverlaysSessionExpired": {
+    "description": "Auto imported from components/overlays/Session-expired.vue"
+  },
+  "Overlays": {
+    "description": "Auto imported from components/overlays/overlays.vue"
   },
   "Register": {
     "description": "Auto imported from components/register/register.vue"
   },
+  "MyEarnings": {
+    "description": "Auto imported from components/myEarnings/myEarnings.vue"
+  },
   "ToolsLoadingP": {
     "description": "Auto imported from components/tools/loadingP.vue"
   },
-  "Notifications": {
-    "description": "Auto imported from components/notifications/notifications.vue"
+  "ToolsNoData": {
+    "description": "Auto imported from components/tools/no-data.vue"
   },
   "User": {
     "description": "Auto imported from components/user/user.vue"
@@ -40,6 +49,18 @@
   },
   "IndexVueMobileApp": {
     "description": "Auto imported from components/index/vue/mobileApp.vue"
+  },
+  "IndexActive": {
+    "description": "Auto imported from components/index/vuePartner/indexActive.vue"
+  },
+  "IndexNoActive": {
+    "description": "Auto imported from components/index/vuePartner/indexNoActive.vue"
+  },
+  "IndexNoComplate": {
+    "description": "Auto imported from components/index/vuePartner/indexNoComplate.vue"
+  },
+  "LoginForm": {
+    "description": "Auto imported from components/login/vue/loginForm.vue"
   },
   "OrdersToolsMsg": {
     "description": "Auto imported from components/orders/tools/msg.vue"
@@ -88,6 +109,12 @@
   },
   "UserItems": {
     "description": "Auto imported from components/user/vue/user-items.vue"
+  },
+  "UserReferalcode": {
+    "description": "Auto imported from components/user/vue/user-referalcode.vue"
+  },
+  "UserVueFormsBankdetails": {
+    "description": "Auto imported from components/user/vue/forms/bankdetails.vue"
   },
   "UserVueFormsChangeInfo": {
     "description": "Auto imported from components/user/vue/forms/changeInfo.vue"

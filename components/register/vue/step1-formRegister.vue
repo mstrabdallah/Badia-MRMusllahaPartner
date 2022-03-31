@@ -1,5 +1,5 @@
 <template>
-  <div class="form_register" v-if="this.$store.state.auth.stepSub === 1">
+  <div class="form_register" v-if="allAuth.stepSub === 1">
     <h3 class="mb-5">
       {{ $t("Enter Your Basic Information") }}
     </h3>
@@ -80,7 +80,7 @@
           color="success"
           class="sub"
           @click="Step1Function"
-          :loading="this.$store.state.auth.loading"
+          :loading="allAuth.loading"
           type="submit"
         >
           {{ $t("NEXT") }}

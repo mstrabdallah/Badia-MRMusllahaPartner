@@ -9,6 +9,7 @@
       </div>
       <Footer />
       <Overlays />
+      <SessionExpired />
     </v-app>
   </div>
 </template>
@@ -19,6 +20,7 @@ import Menu from "./header/menu.vue";
 import { mapActions } from "vuex";
 import { uuid } from "vue-uuid";
 import  Overlays from '../components/overlays/overlays.vue'
+import SessionExpired from '../components/overlays/Session-expired.vue'
 export default {
   head() {
     return this.$nuxtI18nHead({ addSeoAttributes: true });
@@ -27,7 +29,8 @@ export default {
     Header,
     Footer,
     Menu,
-    Overlays
+    Overlays,
+    SessionExpired
   },
 
   async beforeCreate() {
@@ -46,7 +49,7 @@ export default {
   methods: {
     ...mapActions(["getToken", "setApi", "getOrderPending"]),
   },
-};
+}; 
 </script>
 
  
@@ -144,7 +147,9 @@ img {
   left: 10px;
 }
 /* vuetify */
-
+.v-label{
+  font-size: 14px;
+}
 .v-application p,
 p {
   margin-bottom: 0px;

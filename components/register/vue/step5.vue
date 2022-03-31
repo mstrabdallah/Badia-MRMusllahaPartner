@@ -17,7 +17,7 @@
                 dense
                 :label="$t('Nationality')"
                 outlined
-                :rules="[rules.required]"
+                :rules="[$rules.required]"
                 v-model="data.nationality_id"
                 :disabled="allCity.loading"
               ></v-select>
@@ -27,7 +27,7 @@
               :label="$t('Click here to nationality file PDF')"
               outlined
               dense
-              :rules="[rules.required]"
+              :rules="[$rules.fileRequired]"
               v-model="data.nationality_file"
             ></v-file-input>
           </div>

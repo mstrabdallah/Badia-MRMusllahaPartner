@@ -4,25 +4,17 @@
       <h1>{{ $t("Privacy Policy") }}</h1>
       <p>
         {{
-          $t(
-            "This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You."
-          )
+          $t('Privacy Policy p1')
         }}
       </p>
       <p>
-        {{
-          $t(
-            "We use Your Personal data to provide and improve the Service. By using the Service, You agree to the collection and use of information in accordance with this Privacy Policy."
-          )
-        }}
+        {{$t('Privacy Policy p2')}}
       </p>
-      <h2>{{ $t("Collecting and Using Your Personal Data") }}</h2>
+      <h2 class="mt-9">{{ $t("Privacy Policy H2") }}</h2>
       <h3>{{ $t("Personal Data") }}</h3>
       <p>
         {{
-          $t(
-            "While using Our Service, We may ask You to provide Us with certain personally identifiable information that can be used to contact or identify You. Personally identifiable information may include, but is not limited to:"
-          )
+          $t("Privacy Policy p3")
         }}
       </p>
       <ul>
@@ -34,7 +26,13 @@
   </v-container>
 </template>
 <script>
-export default {};
+export default {
+      head() {
+    return {
+      title: this.$i18n.t("Privacy Policy"),
+    };
+  },
+};
 </script>
 <style scoped>
 .privacy p,
@@ -46,7 +44,7 @@ export default {};
 }
 .privacy p,
 .privacy ul li {
-  font-size: 18px;
+  font-size: 14px;
 }
 .privacy ul {
   list-style: disc;

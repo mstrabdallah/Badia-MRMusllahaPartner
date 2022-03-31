@@ -38,9 +38,10 @@ const actions = {
 
   acceptOrder({ state, dispatch }, paramters) {
     state.loadingA = true;
-    this.$axios.post("/Order/acceptOrder/" + paramters, {}).then((res) => {
+    var data = new FormData();
+    this.$axios.post("/Order/acceptOrder/" + paramters, data).then((res) => {
       if (res.data.status === 200) {
-        dispatch('getOrder', state.paramters)
+        dispatch('getOrderPending')
       }
       state.loadingA = false;
     });
@@ -49,7 +50,9 @@ const actions = {
 
   inWayOrder({ state, dispatch }, paramters) {
     state.loadingA2 = true;
-    this.$axios.post("/Order/inWayOrder/" + paramters, {}).then((res) => {
+    var data = new FormData();
+
+    this.$axios.post("/Order/inWayOrder/" + paramters, data).then((res) => {
       if (res.data.status === 200) {
         dispatch('getOrder', state.paramters)
       }
@@ -59,7 +62,9 @@ const actions = {
 
   startOrder({ state, dispatch }, paramters) {
     state.loadingA2 = true;
-    this.$axios.post("/Order/startOrder/" + paramters, {}).then((res) => {
+    var data = new FormData();
+
+    this.$axios.post("/Order/startOrder/" + paramters, data).then((res) => {
       if (res.data.status === 200) {
         dispatch('getOrder', state.paramters)
       }
@@ -70,7 +75,9 @@ const actions = {
 
   rescheduleOrder({ state }, paramters) {
     state.loadingA = true;
-    this.$axios.post("/Order/rescheduleOrder/" + paramters, {}).then((res) => {
+    var data = new FormData();
+
+    this.$axios.post("/Order/rescheduleOrder/" + paramters,data).then((res) => {
       if (res.data.status === 200) {
         dispatch('getOrder', state.paramters)
       }
@@ -80,7 +87,9 @@ const actions = {
 
   cancelOrder({ state, dispatch }, paramters) {
     state.loadingAc = true;
-    this.$axios.post("/Order/cancelOrder/" + paramters, {}).then((res) => {
+    var data = new FormData();
+
+    this.$axios.post("/Order/cancelOrder/" + paramters, data).then((res) => {
       if (res.data.status === 200) {
         dispatch('getOrder', state.paramters)
       }
@@ -91,7 +100,9 @@ const actions = {
 
   completeOrder({ state, dispatch }, paramters) {
     state.loadingA2 = true;
-    this.$axios.post("/Order/completeOrder/" + paramters, {}).then((res) => {
+    var data = new FormData();
+
+    this.$axios.post("/Order/completeOrder/" + paramters, data).then((res) => {
       if (res.data.status === 200) {
         dispatch('getOrder', state.paramters)
       }

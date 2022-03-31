@@ -25,9 +25,12 @@
 
           <v-tab-item v-for="n in 7" :key="n">
             <v-container fluid>
+              <div v-if="!allOrders.loading">
+              <NoData :data="$t('There is no business here')" v-if="allOrders.orders.data.length ===0" />
+                </div>
               <LoadingP v-if="allOrders.loading" />
 
-              <v-row v-else>
+              <v-row v-else class="mt-6">
                 <v-col
                   cols="12"
                   md="4"
@@ -58,10 +61,17 @@
 import { mapActions, mapGetters } from "vuex";
 import BoxService from "./vue/box-service.vue";
 import LoadingP from "../tools/loadingP.vue";
+import NoData from '../tools/no-data.vue'
 export default {
+    head() {
+    return {
+      title: this.$i18n.t("My Work"),
+    };
+  },
   components: {
     BoxService,
     LoadingP,
+    NoData
   },
 
   mounted() {
@@ -96,5 +106,8 @@ export default {
   display: block;
   margin-top: 70px;
   position: relative;
+}
+.v-tab {
+    margin: 0px !important;
 }
 </style>

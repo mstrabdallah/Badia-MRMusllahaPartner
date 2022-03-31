@@ -48,7 +48,13 @@
   </v-container>
 </template>
 <script>
-export default {};
+export default {
+  head() {
+    return {
+      title: this.$i18n.t("Terms and conditions"),
+    };
+  },
+};
 </script>
 <style scoped>
 .privacy p,
@@ -57,6 +63,6 @@ export default {};
 }
 .privacy p {
   width: 80%;
-  font-size: 18px;
+  font-size: 14px;
 }
 </style>

@@ -25,17 +25,9 @@ export default {
   head() {
     return {
       title: this.$i18n.t("Create Account"),
-      meta: [
-        // hid is used as unique identifier. Do not use `vmid` for it as it will not work
-        {
-          hid: "todos description",
-          name: "todos description",
-          content: "todos My custom description",
-        },
-      ],
     };
   },
-   computed: {
+  computed: {
     ...mapGetters(["allAuth"]),
   },
   methods: {},

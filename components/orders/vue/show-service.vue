@@ -3,7 +3,7 @@
     <v-dialog v-model="dialog" width="600px">
       <template v-slot:activator="{ on, attrs }">
         <v-btn outlined class="MoreDetails" v-on="on" v-bind="attrs">
-          {{ $t(" More Details") }}
+          {{ $t("More Details") }}
         </v-btn>
       </template>
       <v-card>
@@ -71,8 +71,9 @@
                     icon="user"
                     v-if="data.customer.image === null"
                   />
-                  <span>{{ data.customer.name }}</span>
+                  <span>{{ $t("Name") }}</span>
                 </span>
+                  <span>{{ data.customer.name }}</span>
               </div>
               <div class="sboxser_item">
                 <span>
@@ -293,11 +294,10 @@ export default {
 }
 
 button.MoreDetails {
-  width: 100%;
-  margin-top: 15px;
-  height: 36px;
-  padding: 0 16px;
-  margin-top: 15px;
-  border: 1px solid #30c88c;
+    width: 100%;
+    margin-top: 28px;
+    border: 0px;
+    border-top: 1px solid #efeded;
+    border-radius: 0px;
 }
 </style>

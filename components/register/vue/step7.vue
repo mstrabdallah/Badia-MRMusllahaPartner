@@ -10,7 +10,7 @@
           <p>{{ $t("Before starting, the agreements must be approved") }}</p>
           <div class="agreements_s">
             <v-checkbox
-              :rules="[rules.required]"
+              :rules="[$rules.required]"
               v-model="data.agreements_approved"
             >
               <template v-slot:label>
@@ -20,7 +20,7 @@
                     <template v-slot:activator="{ on }">
                       <a
                         target="_blank"
-                        href="https://vuetifyjs.com"
+                        href="/terms-condition"
                         @click.stop
                         v-on="on"
                       >
@@ -31,7 +31,7 @@
 
                       <a
                         target="_blank"
-                        href="https://vuetifyjs.com"
+                        href="/privcy-policy"
                         @click.stop
                         v-on="on"
                       >
@@ -74,9 +74,6 @@ export default {
     data: {
       agreements_approved: false,
     },
-    rules: {
-      required: (v) => !!v || "Required.",
-    },
   }),
 
   methods: {
@@ -97,5 +94,8 @@ export default {
   border-radius: 4px;
   margin-top: 20px;
   border: 1px solid #cccc;
+}
+a{
+      color: #30c88d;
 }
 </style>

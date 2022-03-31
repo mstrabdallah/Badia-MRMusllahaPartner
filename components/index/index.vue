@@ -18,6 +18,11 @@ import Box from "./vue/box.vue";
 import IndexPatner from "./indexPartner.vue";
 import { mapGetters } from "vuex";
 export default {
+    head() {
+    return {
+      title: this.$i18n.t("Home"),
+    };
+  },
   components: {
     Head,
     Services,

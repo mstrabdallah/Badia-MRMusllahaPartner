@@ -23,15 +23,7 @@ import UserItem from "./vue/user-items.vue";
 export default {
   head() {
     return {
-      title: this.$i18n.t("Account-page"),
-      meta: [
-        // hid is used as unique identifier. Do not use `vmid` for it as it will not work
-        {
-          hid: "todos description",
-          name: "todos description",
-          content: "todos My custom description",
-        },
-      ],
+      title: this.$i18n.t("My Account"),
     };
   },
   data: () => ({

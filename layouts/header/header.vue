@@ -226,11 +226,14 @@ a.nuxt-link-exact-active.login_ {
 }
 .menuBtn{
   padding: 0px!important;
+  min-width: max-content!important;
+}
+.menuBtn:lang(en){
   margin-right: 15px;
+
 }
 .menuBtn:lang(ar){
   margin-left: 15px;
-
 }
 .menuBtn i {
   font-size: 30px;
