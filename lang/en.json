@@ -68,6 +68,7 @@
   "password": "It should be a minimum of 6 letters and numbers",
   "Email must be valid":"Email must be valid",
   "This field must be numbers only.":"This field must be numbers only.",
+  "The password confirmation does not match.":"The password confirmation does not match.",
   "NEXT": "NEXT",
   "------- Error": "",
   "You don't have authority to access this page": "You don't have authority to access this page",

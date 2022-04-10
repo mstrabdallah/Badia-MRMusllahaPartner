@@ -123,29 +123,6 @@ img {
   align-items: center;
 }
 
-/* pages style */
-
-.tickets_add {
-  position: absolute;
-  bottom: 11px;
-  right: 10px;
-  font-size: 31px;
-  background-color: #2b4a4b !important;
-  color: #fff;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px !important;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
-.tickets_add:lang(ar) {
-  right: auto;
-  left: 10px;
-}
 /* vuetify */
 .v-label{
   font-size: 14px;
@@ -188,9 +165,14 @@ p {
 .v-otp-input {
   direction: ltr;
 }
-
+.v-stepper__label{
+  font-size: 12px;
+}
 /* plugins */
 
+.country-selector__input{
+      font-family: 'Almarai';
+}
 .country-selector__input:lang(ar) {
   border-top-right-radius: 4px;
   border-bottom-right-radius: 4px;

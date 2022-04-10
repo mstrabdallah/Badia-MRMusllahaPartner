@@ -1,9 +1,8 @@
 <template>
   <header class="header container_cc" :class="scrolled ? 'headerFixed' : ''">
     <div class="header_p">
-      <v-btn text class="menuBtn" @click.stop="showDrawer()">
-        <v-icon>mdi-menu</v-icon>
-      </v-btn>
+       <v-app-bar-nav-icon  class="menuBtn" @click.stop="showDrawer()"></v-app-bar-nav-icon>
+ 
 
       <NuxtLink :to="localePath('/')" class="logo">
         <img src="/logo.svg" />
@@ -237,7 +236,7 @@ a.nuxt-link-exact-active.login_ {
 }
 .menuBtn i {
   font-size: 30px;
-  color: #444;
+  color: #444!important;;
 
 }
 

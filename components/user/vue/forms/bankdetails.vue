@@ -43,10 +43,10 @@
           <div
             :class="[allUsers.msgInfoDone ? 'msgdone' : 'msgerror']"
             v-if="allUsers.msgInfo != null"
-          >
+          > 
             {{ allUsers.msgInfo }}
           </div>
-
+ <!-- <Msg /> -->
           <v-btn
             :disabled="!valid"
             color="success"
@@ -64,8 +64,11 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
-
+import Msg from '../../../tools/msg.vue'
 export default {
+  components:{
+   Msg 
+  },
   data: () => ({
     valid: false,
     data: {

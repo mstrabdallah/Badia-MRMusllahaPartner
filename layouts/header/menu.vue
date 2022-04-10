@@ -10,9 +10,9 @@
       >
         <v-list-item>
           <div class="menu_head">
-            <v-btn text class="menuBtn" @click.stop="onClose()">
-              <v-icon>mdi-menu</v-icon>
-            </v-btn>
+                   <v-app-bar-nav-icon  class="menuBtn" @click.stop="onClose()"></v-app-bar-nav-icon>
+
+  
 
             <NuxtLink :to="localePath('/')" class="logo">
               <img src="/logo.svg" />
@@ -265,8 +265,8 @@ a.nuxt-link-exact-active {
 
 .menuBtn {
   font-size: 20px;
-  color: #030303;
-  line-height: 58px;
+   line-height: 58px;
+      color: #444!important;
 }
 .navM_ {
   font-size: 14px;

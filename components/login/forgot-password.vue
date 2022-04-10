@@ -44,7 +44,7 @@
                 <v-text-field
                   v-model="data.new_password"
                   :append-icon="showPasswordLogin ? 'mdi-eye' : 'mdi-eye-off'"
-                  :rules="[rules.required, rules.passwordRules]"
+                  :rules="[$rules.required, $rules.password]"
                   :type="showPasswordLogin ? 'text' : 'password'"
                   :label="$t('Enter the new password')"
                   @click:append="showPasswordLogin = !showPasswordLogin"
@@ -58,14 +58,20 @@
                   :type="showPasswordLogin ? 'text' : 'password'"
                   :label="$t('Re-enter The new Password')"
                   @click:append="showPasswordLogin = !showPasswordLogin"
-                  :rules="[rules.required, rules.confirmPasswordRules]"
+                  :rules="[
+                    $rules.required,
+                    $rules.confirmPassword(
+                      data.new_password_confirmation,
+                      data.new_password
+                    ),
+                  ]"
                   outlined
                   dense
                 ></v-text-field>
               </div>
 
               <div v-if="allAuth.forgotStep === 4">
-                <p>{{$t('The password has been changed successfully')}}</p>
+                <p>{{ $t("The password has been changed successfully") }}</p>
 
                 <NuxtLink :to="localePath('/login')">
                   <v-btn color="success" class="button_login">
@@ -137,14 +143,7 @@ export default {
 
       valid: false,
       showPasswordLogin: false,
-      rules: {
-        required: (value) => !!value || this.$i18n.t('Required'),
-        passwordRules: (value) =>
-          (value && value.length >= 6) || "minimum 6 characters or Number",
-        confirmPasswordRules: (value) =>
-          value === this.data.new_password ||
-          "The password confirmation does not match.",
-      },
+ 
       data: {
         phone_number: "",
         verification_code: "",
@@ -156,12 +155,12 @@ export default {
   computed: {
     ...mapGetters(["allAuth"]),
   },
-  mounted(){
-    this.inputText= this.allAuth.forgotStep == 1 ? "Send OTP" : "NEXT";
+  mounted() {
+    this.inputText = this.allAuth.forgotStep == 1 ? "Send OTP" : "NEXT";
   },
   methods: {
     ...mapActions(["forgotPassword"]),
-    
+
     finish() {
       this.forgotPassword(this.data);
     },

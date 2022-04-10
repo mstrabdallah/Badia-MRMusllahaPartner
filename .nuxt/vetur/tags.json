@@ -11,8 +11,8 @@
   "Login": {
     "description": "Auto imported from components/login/login.vue"
   },
-  "Notifications": {
-    "description": "Auto imported from components/notifications/notifications.vue"
+  "MyEarnings": {
+    "description": "Auto imported from components/myEarnings/myEarnings.vue"
   },
   "Orders": {
     "description": "Auto imported from components/orders/orders.vue"
@@ -26,14 +26,17 @@
   "Register": {
     "description": "Auto imported from components/register/register.vue"
   },
-  "MyEarnings": {
-    "description": "Auto imported from components/myEarnings/myEarnings.vue"
-  },
   "ToolsLoadingP": {
     "description": "Auto imported from components/tools/loadingP.vue"
   },
+  "ToolsMsg": {
+    "description": "Auto imported from components/tools/msg.vue"
+  },
   "ToolsNoData": {
     "description": "Auto imported from components/tools/no-data.vue"
+  },
+  "Notifications": {
+    "description": "Auto imported from components/notifications/notifications.vue"
   },
   "User": {
     "description": "Auto imported from components/user/user.vue"

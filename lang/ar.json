@@ -69,6 +69,7 @@
     "password": "يجب أن يكون الحد الأدنى من 6 أحرف او أرقام",
     "Email must be valid":"يجب ان يكون البريد الاكتروني صحيح",
     "This field must be numbers only.":"هذا الحقل يجب ان يكون ارقام فقط",
+    "The password confirmation does not match.":"تأكيد كلمة المرور غير متطابق.",
 
     "NEXT": "التالى",
     "------- Error": "",

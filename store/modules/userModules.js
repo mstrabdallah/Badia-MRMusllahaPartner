@@ -7,7 +7,7 @@ const state = {
     msgInfo: null,
     msgInfoDone: false,
     menuHeader: false,
-    overlay: false
+    overlay: false,
 
 
 };
@@ -19,15 +19,6 @@ const getters = {
 
 const actions = {
 
-    // routerToPage({ }, data) {
- 
-    //     if (this.$i18n.locale === 'en')
-    //       //  return router.redirect(data)
-    //         this.$router.push(data)
-    //     else
-    //     this.$router.push('/ar'+data)
-    //      //   return router.redirect('/ar' + data)
-    // },
     changeMenuHeader({ state }, data) {
         state.menuHeader = data
     },
@@ -118,6 +109,7 @@ const actions = {
             state.loading = false;
           });
       },
+
       withdraw({ state }, arrayData) {
         var data = new FormData();
         data.append("amount", arrayData);

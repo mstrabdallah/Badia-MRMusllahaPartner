@@ -5,13 +5,14 @@
     </h3>
 
     <div class="form">
-      <v-form ref="form" v-model="valid" lazy-validation>
+      <v-form ref="form" v-model="valid"  lazy-validation>
+ 
         <div class="form_body">
           <v-text-field
             v-model="data.name"
             :counter="200"
             :label="$t('Name')"
-            :rules="[rules.required]"
+            :rules="[$rules.required]"
             required
             outlined
             dense
@@ -27,7 +28,7 @@
 
            <v-text-field
             v-model="data.email"
-            :rules="[rules.required, rules.email]"
+            :rules="[$rules.required, $rules.email]"
             :label="$t('E-mail')"
             required
             outlined
@@ -37,7 +38,7 @@
           <v-text-field
             v-model="data.password"
             :append-icon="showPasswordLogin ? 'mdi-eye' : 'mdi-eye-off'"
-            :rules="[rules.required, rules.passwordRules]"
+            :rules="[$rules.required, $rules.password]"
             :type="showPasswordLogin ? 'text' : 'password'"
             :label="$t('Password')"
             @click:append="showPasswordLogin = !showPasswordLogin"
@@ -51,7 +52,7 @@
             :type="showPasswordLogin ? 'text' : 'password'"
             :label="$t('Re-enter The Password')"
             @click:append="showPasswordLogin = !showPasswordLogin"
-            :rules="[rules.required, rules.confirmPasswordRules]"
+            :rules="[$rules.required, $rules.confirmPassword(data.password_confirmation,data.password)]"
             outlined
             dense
           ></v-text-field>
@@ -131,15 +132,6 @@ export default {
       msg: "",
       msgStatus: true,
       rules: {
-        required: (v) => !!v || this.$i18n.t('Required'),
-        email: (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
-        phoneVal: (v) =>
-          (v && v.length <= 11) || "Phone must be less than 11 Number",
-        phoneNum: (v) =>
-          Number.isInteger(Number(v)) || "The value must be an integer number",
-        min: (v) => v.length >= 8 || "Min 8 characters",
-        passwordRules: (value) =>
-          (value && value.length >= 6) || "minimum 6 characters or Number",
         confirmPasswordRules: (value) =>
           value === this.data.password ||
           "The password confirmation does not match.",

@@ -1,48 +1,44 @@
 
 <template>
-  <v-stepper
-     
-    
-    v-model="this.$store.state.auth.step"
-  >
+  <v-stepper alt-labels v-model="allAuth.step">
     <v-stepper-header>
-      <v-stepper-step :complete="this.$store.state.auth.step > 1" step="1">{{
+      <v-stepper-step :complete="allAuth.step > 1" step="1">{{
         $t("The Basic Information")
       }}</v-stepper-step>
 
       <v-divider></v-divider>
 
-      <v-stepper-step :complete="this.$store.state.auth.step > 2" step="2">
+      <v-stepper-step :complete="allAuth.step > 2" step="2">
         {{ $t("The Personal Information") }}
       </v-stepper-step>
 
       <v-divider></v-divider>
 
-      <v-stepper-step :complete="this.$store.state.auth.step > 3" step="3">{{
+      <v-stepper-step :complete="allAuth.step > 3" step="3">{{
         $t("Choose Categories")
       }}</v-stepper-step>
 
       <v-divider></v-divider>
 
-      <v-stepper-step :complete="this.$store.state.auth.step > 4" step="4">{{
+      <v-stepper-step :complete="allAuth.step > 4" step="4">{{
         $t("Coverage Area")
       }}</v-stepper-step>
 
       <v-divider></v-divider>
 
-      <v-stepper-step :complete="this.$store.state.auth.step > 5" step="5">{{
+      <v-stepper-step :complete="allAuth.step > 5" step="5">{{
         $t("Nationality And License")
       }}</v-stepper-step>
 
       <v-divider></v-divider>
 
-      <v-stepper-step :complete="this.$store.state.auth.step > 6" step="6">{{
+      <v-stepper-step :complete="allAuth.step > 6" step="6">{{
         $t("Workplace")
       }}</v-stepper-step>
 
       <v-divider></v-divider>
 
-      <v-stepper-step :complete="this.$store.state.auth.step > 7" step="7">{{
+      <v-stepper-step :complete="allAuth.step > 7" step="7">{{
         $t("Agreements Approve")
       }}</v-stepper-step>
     </v-stepper-header>
@@ -80,6 +76,7 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import Step1FormRegister from "./step1-formRegister.vue";
 import Step1OTP from "./step1-otp.vue";
 import Step2 from "./step2.vue";
@@ -92,7 +89,9 @@ export default {
   data() {
     return {};
   },
-
+  computed: {
+    ...mapGetters(["allAuth"]),
+  },
   methods: {},
   components: {
     Step1FormRegister,
@@ -107,7 +106,7 @@ export default {
 };
 </script>
 <style scoped>
-.v-stepper__label{
+.v-stepper__label {
   text-align: center;
 }
 </style>
