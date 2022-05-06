@@ -7,7 +7,7 @@
             <v-col cols="12" md="6">
               <div class="mob_imgs">
                 <img
-                  src="https://www.mrmusllaha.com/static/media/mobileapp1.b7b023d7.png"
+                  src="/mobileapp.png"
                 />
               </div>
             </v-col>
@@ -24,18 +24,18 @@
                     target="_blank"
                     rel="noreferrer"
                     ><img
-                      src="https://www.mrmusllaha.com/app_store.png"
+                      src="/apple.svg"
                       alt=""
-                      style="max-height: 48px; max-width: 142px"
+                      style="max-height: 100px;max-width: 160px;"
                     /> </a
                   ><a
                     href="https://apps.apple.com/us/app/mr-musllaha/id1582292480"
                     target="_blank"
                     rel="noreferrer"
                     ><img
-                      src="https://www.mrmusllaha.com/playstore.png"
+                      src="googleapp.svg"
                       alt=""
-                      style="max-height: 48px; max-width: 142px"
+                      style="max-height: 100px;max-width: 160px;"
                     />
                   </a>
                 </div>
